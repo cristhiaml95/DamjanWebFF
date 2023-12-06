@@ -93,7 +93,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'order_warehouse',
           path: '/orderWarehouse',
-          builder: (context, params) => const OrderWarehouseWidget(),
+          builder: (context, params) => OrderWarehouseWidget(
+            orderWarehouseTablesKey:
+                params.getParam('orderWarehouseTablesKey', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'users',
@@ -103,12 +106,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'warehouse2',
           path: '/warehouse2',
-          builder: (context, params) => const Warehouse2Widget(),
+          builder: (context, params) => Warehouse2Widget(
+            warehouse2TablesKey:
+                params.getParam('warehouse2TablesKey', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'order_overview',
           path: '/orderOverview',
-          builder: (context, params) => const OrderOverviewWidget(),
+          builder: (context, params) => OrderOverviewWidget(
+            orderOverviewTableKey:
+                params.getParam('orderOverviewTableKey', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -17,9 +17,11 @@ class FormsWidget extends StatefulWidget {
   const FormsWidget({
     super.key,
     required this.orderId,
-  });
+    String? formsKey,
+  })  : formsKey = formsKey ?? 'formsDefKey';
 
   final String? orderId;
+  final String formsKey;
 
   @override
   _FormsWidgetState createState() => _FormsWidgetState();
@@ -75,14 +77,23 @@ class _FormsWidgetState extends State<FormsWidget> {
     _model.weightTController ??= TextEditingController();
     _model.weightTFocusNode ??= FocusNode();
 
-    _model.universalRefNumTController ??= TextEditingController();
-    _model.universalRefNumTFocusNode ??= FocusNode();
+    _model.universalRefNumTController1 ??= TextEditingController();
+    _model.universalRefNumTFocusNode1 ??= FocusNode();
 
-    _model.fmsRefTController ??= TextEditingController();
-    _model.fmsRefTFocusNode ??= FocusNode();
+    _model.fmsRefTController1 ??= TextEditingController();
+    _model.fmsRefTFocusNode1 ??= FocusNode();
 
-    _model.loadRefDvhTController ??= TextEditingController();
-    _model.loadRefDvhTFocusNode ??= FocusNode();
+    _model.loadRefDvhTController1 ??= TextEditingController();
+    _model.loadRefDvhTFocusNode1 ??= FocusNode();
+
+    _model.universalRefNumTController2 ??= TextEditingController();
+    _model.universalRefNumTFocusNode2 ??= FocusNode();
+
+    _model.fmsRefTController2 ??= TextEditingController();
+    _model.fmsRefTFocusNode2 ??= FocusNode();
+
+    _model.loadRefDvhTController2 ??= TextEditingController();
+    _model.loadRefDvhTFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -121,10 +132,13 @@ class _FormsWidgetState extends State<FormsWidget> {
         return Align(
           alignment: const AlignmentDirectional(0.00, 0.00),
           child: FutureBuilder<List<VistaOrderLevelExtendedRow>>(
-            future: VistaOrderLevelExtendedTable().querySingleRow(
-              queryFn: (q) => q.eq(
-                'id',
-                widget.orderId,
+            future: FFAppState().tables(
+              uniqueQueryKey: widget.formsKey,
+              requestFn: () => VistaOrderLevelExtendedTable().querySingleRow(
+                queryFn: (q) => q.eq(
+                  'id',
+                  widget.orderId,
+                ),
               ),
             ),
             builder: (context, snapshot) {
@@ -476,6 +490,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
+                                                                fontSize: 24.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -524,7 +539,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        fontSize:
+                                                                            24.0,
+                                                                      ),
                                                                   hintStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium,
@@ -587,7 +608,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      fontSize:
+                                                                          14.0,
+                                                                    ),
                                                                 maxLines: 2,
                                                                 validator: _model
                                                                     .orderNoTFControllerValidator
@@ -636,8 +663,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                         .bold,
                                                               ),
                                                         ),
-                                                        Text(
+                                                        AutoSizeText(
                                                           containerVistaOrderLevelExtendedRow.clientName!,
+                                                          maxLines: 3,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -647,10 +675,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
+                                                                fontSize: 24.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
                                                               ),
+                                                          minFontSize: 6.0,
                                                         ),
                                                       ],
                                                     ),
@@ -742,7 +772,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           .labelMedium,
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium,
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        fontSize:
+                                                                            24.0,
+                                                                      ),
                                                                   hintText: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
@@ -842,6 +878,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
+                                                                fontSize: 24.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -899,7 +936,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium,
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        fontSize:
+                                                                            24.0,
+                                                                      ),
                                                               hintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -998,6 +1041,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
+                                                                fontSize: 24.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -1142,7 +1186,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium,
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        fontSize:
+                                                                            24.0,
+                                                                      ),
                                                                 ),
                                                               ),
                                                             ),
@@ -7026,10 +7076,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 FlutterFlowDropDown<
                                                                     String>(
                                                               controller: _model
-                                                                      .assistant5DDValueController ??=
+                                                                      .assistant5DDValueController1 ??=
                                                                   FormFieldController<
                                                                       String>(
-                                                                _model.assistant5DDValue ??=
+                                                                _model.assistant5DDValue1 ??=
                                                                     '',
                                                               ),
                                                               options: List<
@@ -7045,7 +7095,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       .toList(),
                                                               onChanged: (val) =>
                                                                   setState(() =>
-                                                                      _model.assistant5DDValue =
+                                                                      _model.assistant5DDValue1 =
                                                                           val),
                                                               width: 280.0,
                                                               height: 40.0,
@@ -7376,9 +7426,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .universalRefNumTController,
+                                                                    .universalRefNumTController1,
                                                                 focusNode: _model
-                                                                    .universalRefNumTFocusNode,
+                                                                    .universalRefNumTFocusNode1,
                                                                 obscureText:
                                                                     false,
                                                                 decoration:
@@ -7456,7 +7506,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     .bodyMedium,
                                                                 maxLines: 2,
                                                                 validator: _model
-                                                                    .universalRefNumTControllerValidator
+                                                                    .universalRefNumTController1Validator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -7555,9 +7605,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .fmsRefTController,
+                                                                    .fmsRefTController1,
                                                                 focusNode: _model
-                                                                    .fmsRefTFocusNode,
+                                                                    .fmsRefTFocusNode1,
                                                                 obscureText:
                                                                     false,
                                                                 decoration:
@@ -7635,7 +7685,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     .bodyMedium,
                                                                 maxLines: 2,
                                                                 validator: _model
-                                                                    .fmsRefTControllerValidator
+                                                                    .fmsRefTController1Validator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -7731,9 +7781,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .loadRefDvhTController,
+                                                                    .loadRefDvhTController1,
                                                                 focusNode: _model
-                                                                    .loadRefDvhTFocusNode,
+                                                                    .loadRefDvhTFocusNode1,
                                                                 obscureText:
                                                                     false,
                                                                 decoration:
@@ -7811,7 +7861,876 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     .bodyMedium,
                                                                 maxLines: 2,
                                                                 validator: _model
-                                                                    .loadRefDvhTControllerValidator
+                                                                    .loadRefDvhTController1Validator
+                                                                    .asValidator(
+                                                                        context),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 24.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'e8m9gut8' /* Load ref/dvh:   */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            containerVistaOrderLevelExtendedRow
+                                                                .loadRefDvh,
+                                                            'brez izbire',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Container(
+                                                            width: 280.0,
+                                                            height: 50.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                            ),
+                                                            child:
+                                                                FlutterFlowDropDown<
+                                                                    String>(
+                                                              controller: _model
+                                                                      .assistant5DDValueController2 ??=
+                                                                  FormFieldController<
+                                                                      String>(
+                                                                _model.assistant5DDValue2 ??=
+                                                                    '',
+                                                              ),
+                                                              options: List<
+                                                                      String>.from(
+                                                                  formsUsersRowList
+                                                                      .map((e) =>
+                                                                          e.id)
+                                                                      .toList()),
+                                                              optionLabels:
+                                                                  formsUsersRowList
+                                                                      .map((e) =>
+                                                                          e.lastName)
+                                                                      .toList(),
+                                                              onChanged: (val) =>
+                                                                  setState(() =>
+                                                                      _model.assistant5DDValue2 =
+                                                                          val),
+                                                              width: 280.0,
+                                                              height: 40.0,
+                                                              searchHintTextStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium,
+                                                              hintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                'hpaa4n3g' /* Please select... */,
+                                                              ),
+                                                              searchHintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                'zc13fj1i' /* Search for an item... */,
+                                                              ),
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_down_rounded,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 24.0,
+                                                              ),
+                                                              fillColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              elevation: 2.0,
+                                                              borderColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                              borderWidth: 2.0,
+                                                              borderRadius: 8.0,
+                                                              margin:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              hidesUnderline:
+                                                                  true,
+                                                              isSearchable:
+                                                                  true,
+                                                              isMultiSelect:
+                                                                  false,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 24.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'bt3p1muw' /* Load ref/dvh:   */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            containerVistaOrderLevelExtendedRow
+                                                                .loadRefDvh,
+                                                            'brez izbire',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Container(
+                                                            width: 280.0,
+                                                            height: 50.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                            ),
+                                                            child:
+                                                                FlutterFlowDropDown<
+                                                                    String>(
+                                                              controller: _model
+                                                                      .assistant5DDValueController3 ??=
+                                                                  FormFieldController<
+                                                                      String>(
+                                                                _model.assistant5DDValue3 ??=
+                                                                    '',
+                                                              ),
+                                                              options: List<
+                                                                      String>.from(
+                                                                  formsUsersRowList
+                                                                      .map((e) =>
+                                                                          e.id)
+                                                                      .toList()),
+                                                              optionLabels:
+                                                                  formsUsersRowList
+                                                                      .map((e) =>
+                                                                          e.lastName)
+                                                                      .toList(),
+                                                              onChanged: (val) =>
+                                                                  setState(() =>
+                                                                      _model.assistant5DDValue3 =
+                                                                          val),
+                                                              width: 280.0,
+                                                              height: 40.0,
+                                                              searchHintTextStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium,
+                                                              hintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                '9nxifn9g' /* Please select... */,
+                                                              ),
+                                                              searchHintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                '69e8wsns' /* Search for an item... */,
+                                                              ),
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_down_rounded,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 24.0,
+                                                              ),
+                                                              fillColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              elevation: 2.0,
+                                                              borderColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                              borderWidth: 2.0,
+                                                              borderRadius: 8.0,
+                                                              margin:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              hidesUnderline:
+                                                                  true,
+                                                              isSearchable:
+                                                                  true,
+                                                              isMultiSelect:
+                                                                  false,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 24.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'u4u807ox' /* Universal ref num:   */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            containerVistaOrderLevelExtendedRow
+                                                                .universalRefNo,
+                                                            'brez izbire',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Container(
+                                                            width: 280.0,
+                                                            height: 50.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                            ),
+                                                            child: SizedBox(
+                                                              width: double
+                                                                  .infinity,
+                                                              child:
+                                                                  TextFormField(
+                                                                controller: _model
+                                                                    .universalRefNumTController2,
+                                                                focusNode: _model
+                                                                    .universalRefNumTFocusNode2,
+                                                                obscureText:
+                                                                    false,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  labelText: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    '6cya4eut' /* Insert new value... */,
+                                                                  ),
+                                                                  labelStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                                  hintStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .warning,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  errorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  focusedErrorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium,
+                                                                maxLines: 2,
+                                                                validator: _model
+                                                                    .universalRefNumTController2Validator
+                                                                    .asValidator(
+                                                                        context),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 24.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            '5reaqscy' /* FMS ref:   */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            containerVistaOrderLevelExtendedRow
+                                                                .fmsRef,
+                                                            'brez izbire',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Container(
+                                                            width: 280.0,
+                                                            height: 50.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                            ),
+                                                            child: SizedBox(
+                                                              width: double
+                                                                  .infinity,
+                                                              child:
+                                                                  TextFormField(
+                                                                controller: _model
+                                                                    .fmsRefTController2,
+                                                                focusNode: _model
+                                                                    .fmsRefTFocusNode2,
+                                                                obscureText:
+                                                                    false,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  labelText: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'qmzyz0qk' /* Insert new value... */,
+                                                                  ),
+                                                                  labelStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                                  hintStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .warning,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  errorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  focusedErrorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium,
+                                                                maxLines: 2,
+                                                                validator: _model
+                                                                    .fmsRefTController2Validator
+                                                                    .asValidator(
+                                                                        context),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 24.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'ehpkl2ac' /* Load ref/dvh:   */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            containerVistaOrderLevelExtendedRow
+                                                                .loadRefDvh,
+                                                            'brez izbire',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Container(
+                                                            width: 280.0,
+                                                            height: 50.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                            ),
+                                                            child: SizedBox(
+                                                              width: double
+                                                                  .infinity,
+                                                              child:
+                                                                  TextFormField(
+                                                                controller: _model
+                                                                    .loadRefDvhTController2,
+                                                                focusNode: _model
+                                                                    .loadRefDvhTFocusNode2,
+                                                                obscureText:
+                                                                    false,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  labelText: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'lzfz2efv' /* Insert new value... */,
+                                                                  ),
+                                                                  labelStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                                  hintStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .warning,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  errorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                  focusedErrorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                  ),
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium,
+                                                                maxLines: 2,
+                                                                validator: _model
+                                                                    .loadRefDvhTController2Validator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -8038,11 +8957,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                   : containerVistaOrderLevelExtendedRow
                                                       .assistant4,
                                               'assistant5': _model
-                                                              .assistant5DDValue !=
+                                                              .assistant5DDValue1 !=
                                                           null &&
-                                                      _model.assistant5DDValue !=
+                                                      _model.assistant5DDValue1 !=
                                                           ''
-                                                  ? _model.assistant5DDValue
+                                                  ? _model.assistant5DDValue1
                                                   : containerVistaOrderLevelExtendedRow
                                                       .assistant5,
                                               'assistant6': _model
@@ -8053,25 +8972,26 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                   ? _model.assistant6DDValue
                                                   : containerVistaOrderLevelExtendedRow
                                                       .assistant6,
-                                              'fms_ref': _model.fmsRefTController
+                                              'fms_ref': _model.fmsRefTController1
                                                               .text !=
                                                           ''
                                                   ? _model
-                                                      .fmsRefTController.text
+                                                      .fmsRefTController1.text
                                                   : containerVistaOrderLevelExtendedRow
                                                       .fmsRef,
-                                              'load_ref_dvh': _model.loadRefDvhTController
+                                              'load_ref_dvh': _model.loadRefDvhTController1
                                                               .text !=
                                                           ''
-                                                  ? _model.loadRefDvhTController
+                                                  ? _model
+                                                      .loadRefDvhTController1
                                                       .text
                                                   : containerVistaOrderLevelExtendedRow
                                                       .loadRefDvh,
-                                              'universal_ref_no': _model.universalRefNumTController
+                                              'universal_ref_no': _model.universalRefNumTController1
                                                               .text !=
                                                           ''
                                                   ? _model
-                                                      .universalRefNumTController
+                                                      .universalRefNumTController1
                                                       .text
                                                   : containerVistaOrderLevelExtendedRow
                                                       .universalRefNo,

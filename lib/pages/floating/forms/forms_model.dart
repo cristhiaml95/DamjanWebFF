@@ -130,23 +130,41 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   String? assistant4DDValue;
   FormFieldController<String>? assistant4DDValueController;
   // State field(s) for assistant5DD widget.
-  String? assistant5DDValue;
-  FormFieldController<String>? assistant5DDValueController;
+  String? assistant5DDValue1;
+  FormFieldController<String>? assistant5DDValueController1;
   // State field(s) for assistant6DD widget.
   String? assistant6DDValue;
   FormFieldController<String>? assistant6DDValueController;
   // State field(s) for universalRefNumT widget.
-  FocusNode? universalRefNumTFocusNode;
-  TextEditingController? universalRefNumTController;
-  String? Function(BuildContext, String?)? universalRefNumTControllerValidator;
+  FocusNode? universalRefNumTFocusNode1;
+  TextEditingController? universalRefNumTController1;
+  String? Function(BuildContext, String?)? universalRefNumTController1Validator;
   // State field(s) for fmsRefT widget.
-  FocusNode? fmsRefTFocusNode;
-  TextEditingController? fmsRefTController;
-  String? Function(BuildContext, String?)? fmsRefTControllerValidator;
+  FocusNode? fmsRefTFocusNode1;
+  TextEditingController? fmsRefTController1;
+  String? Function(BuildContext, String?)? fmsRefTController1Validator;
   // State field(s) for loadRefDvhT widget.
-  FocusNode? loadRefDvhTFocusNode;
-  TextEditingController? loadRefDvhTController;
-  String? Function(BuildContext, String?)? loadRefDvhTControllerValidator;
+  FocusNode? loadRefDvhTFocusNode1;
+  TextEditingController? loadRefDvhTController1;
+  String? Function(BuildContext, String?)? loadRefDvhTController1Validator;
+  // State field(s) for assistant5DD widget.
+  String? assistant5DDValue2;
+  FormFieldController<String>? assistant5DDValueController2;
+  // State field(s) for assistant5DD widget.
+  String? assistant5DDValue3;
+  FormFieldController<String>? assistant5DDValueController3;
+  // State field(s) for universalRefNumT widget.
+  FocusNode? universalRefNumTFocusNode2;
+  TextEditingController? universalRefNumTController2;
+  String? Function(BuildContext, String?)? universalRefNumTController2Validator;
+  // State field(s) for fmsRefT widget.
+  FocusNode? fmsRefTFocusNode2;
+  TextEditingController? fmsRefTController2;
+  String? Function(BuildContext, String?)? fmsRefTController2Validator;
+  // State field(s) for loadRefDvhT widget.
+  FocusNode? loadRefDvhTFocusNode2;
+  TextEditingController? loadRefDvhTController2;
+  String? Function(BuildContext, String?)? loadRefDvhTController2Validator;
 
   /// Initialization and disposal methods.
 
@@ -191,14 +209,23 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
     weightTFocusNode?.dispose();
     weightTController?.dispose();
 
-    universalRefNumTFocusNode?.dispose();
-    universalRefNumTController?.dispose();
+    universalRefNumTFocusNode1?.dispose();
+    universalRefNumTController1?.dispose();
 
-    fmsRefTFocusNode?.dispose();
-    fmsRefTController?.dispose();
+    fmsRefTFocusNode1?.dispose();
+    fmsRefTController1?.dispose();
 
-    loadRefDvhTFocusNode?.dispose();
-    loadRefDvhTController?.dispose();
+    loadRefDvhTFocusNode1?.dispose();
+    loadRefDvhTController1?.dispose();
+
+    universalRefNumTFocusNode2?.dispose();
+    universalRefNumTController2?.dispose();
+
+    fmsRefTFocusNode2?.dispose();
+    fmsRefTController2?.dispose();
+
+    loadRefDvhTFocusNode2?.dispose();
+    loadRefDvhTController2?.dispose();
   }
 
   /// Action blocks are added here.

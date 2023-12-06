@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/components/filters/filters_widget.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
 import '/pages/components/user_detail/user_detail_widget.dart';
 import 'order_overview_widget.dart' show OrderOverviewWidget;
@@ -13,6 +14,10 @@ class OrderOverviewModel extends FlutterFlowModel<OrderOverviewWidget> {
   late LightModeModel lightModeModel;
   // Model for userDetail component.
   late UserDetailModel userDetailModel;
+  // State field(s) for Switch widget.
+  bool? switchValue;
+  // Model for filters component.
+  late FiltersModel filtersModel;
 
   /// Initialization and disposal methods.
 
@@ -20,6 +25,7 @@ class OrderOverviewModel extends FlutterFlowModel<OrderOverviewWidget> {
   void initState(BuildContext context) {
     lightModeModel = createModel(context, () => LightModeModel());
     userDetailModel = createModel(context, () => UserDetailModel());
+    filtersModel = createModel(context, () => FiltersModel());
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
   }
 
@@ -28,6 +34,7 @@ class OrderOverviewModel extends FlutterFlowModel<OrderOverviewWidget> {
     unfocusNode.dispose();
     lightModeModel.dispose();
     userDetailModel.dispose();
+    filtersModel.dispose();
   }
 
   /// Action blocks are added here.

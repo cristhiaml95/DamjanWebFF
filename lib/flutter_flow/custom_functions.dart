@@ -37,3 +37,7 @@ DateTime parsePostgresTimestamp(String timestamp) {
   print('Could not parse the date/time: $timestamp');
   throw FormatException('Invalid date/time format');
 }
+
+List<String> splitBarcodes(String barcodesGroup) {
+  return barcodesGroup.split(RegExp(r'\s|\n'));
+}

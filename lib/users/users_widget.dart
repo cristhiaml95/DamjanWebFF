@@ -862,42 +862,81 @@ class _UsersWidgetState extends State<UsersWidget>
                                               .headlineSmall,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 36.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed('create_account');
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            '0inci51p' /* Create account */,
-                                          ),
-                                          options: FFButtonOptions(
-                                            height: 56.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Colors.white,
-                                                    ),
-                                            elevation: 3.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                      Container(
+                                        decoration: const BoxDecoration(),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 28.0, 0.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  FFAppState()
+                                                      .clearUsersCache();
+                                                },
+                                                child: Icon(
+                                                  Icons.restore_page_sharp,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 40.0,
+                                                ),
+                                              ),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 36.0, 0.0),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  context.pushNamed(
+                                                      'create_account');
+                                                },
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  '0inci51p' /* Create account */,
+                                                ),
+                                                options: FFButtonOptions(
+                                                  height: 56.0,
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          24.0, 0.0, 24.0, 0.0),
+                                                  iconPadding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Colors.white,
+                                                          ),
+                                                  elevation: 3.0,
+                                                  borderSide: const BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],

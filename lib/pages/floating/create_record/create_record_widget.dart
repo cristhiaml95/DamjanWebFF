@@ -116,7 +116,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
           alignment: const AlignmentDirectional(0.00, 0.00),
           child: Container(
             width: 800.0,
-            height: 800.0,
+            height: 900.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
               borderRadius: BorderRadius.circular(28.0),
@@ -414,6 +414,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Readex Pro',
+                                                            fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -456,7 +457,13 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                               labelStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        fontSize:
+                                                                            24.0,
+                                                                      ),
                                                               hintStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
@@ -562,6 +569,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Readex Pro',
+                                                            fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -645,11 +653,23 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                               searchHintTextStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        fontSize:
+                                                                            14.0,
+                                                                      ),
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium,
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        fontSize:
+                                                                            24.0,
+                                                                      ),
                                                               hintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -730,6 +750,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Readex Pro',
+                                                            fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -781,7 +802,13 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        24.0,
+                                                                  ),
                                                           hintText:
                                                               FFLocalizations.of(
                                                                       context)
@@ -851,6 +878,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .override(
                                                             fontFamily:
                                                                 'Readex Pro',
+                                                            fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -989,7 +1017,13 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyMedium,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        24.0,
+                                                                  ),
                                                             ),
                                                           ),
                                                         ),
@@ -1095,7 +1129,13 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    fontSize:
+                                                                        24.0,
+                                                                  ),
                                                           hintText:
                                                               FFLocalizations.of(
                                                                       context)
@@ -1110,9 +1150,10 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                 .secondaryText,
                                                             size: 24.0,
                                                           ),
-                                                          fillColor: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
+                                                          fillColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .success,
                                                           elevation: 2.0,
                                                           borderColor:
                                                               FlutterFlowTheme.of(

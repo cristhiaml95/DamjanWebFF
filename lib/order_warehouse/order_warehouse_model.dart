@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/components/filters/filters_widget.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
 import '/pages/components/user_detail/user_detail_widget.dart';
 import 'order_warehouse_widget.dart' show OrderWarehouseWidget;
@@ -13,6 +14,10 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   late LightModeModel lightModeModel;
   // Model for userDetail component.
   late UserDetailModel userDetailModel;
+  // State field(s) for Switch widget.
+  bool? switchValue;
+  // Model for filters component.
+  late FiltersModel filtersModel;
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -28,6 +33,8 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   void initState(BuildContext context) {
     lightModeModel = createModel(context, () => LightModeModel());
     userDetailModel = createModel(context, () => UserDetailModel());
+    filtersModel = createModel(context, () => FiltersModel());
+    dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
@@ -39,6 +46,7 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
     unfocusNode.dispose();
     lightModeModel.dispose();
     userDetailModel.dispose();
+    filtersModel.dispose();
   }
 
   /// Action blocks are added here.
