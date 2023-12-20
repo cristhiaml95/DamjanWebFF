@@ -17,12 +17,14 @@ class DetailsWidget extends StatefulWidget {
     String? orderId,
     String? orderNo,
     required this.warehouseIdDetails,
+    this.detailsKey,
   })  : orderId = orderId ?? 'brez izbire',
         orderNo = orderNo ?? 'brez izbire';
 
   final String orderId;
   final String orderNo;
   final String? warehouseIdDetails;
+  final String? detailsKey;
 
   @override
   _DetailsWidgetState createState() => _DetailsWidgetState();
@@ -57,7 +59,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.00, 0.00),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 800.0,
         height: 800.0,
@@ -75,7 +77,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,7 +90,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           'ej3c0qzx' /* Details */,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Roboto',
                               color: FlutterFlowTheme.of(context).primary,
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
@@ -113,7 +115,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -123,7 +125,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         'n91zm2rr' /* Orden No: */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
+                            fontFamily: 'Roboto',
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -134,7 +136,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       child: Text(
                         widget.orderNo,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Roboto',
                               color: FlutterFlowTheme.of(context).secondaryText,
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -146,10 +148,16 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               ),
               Flexible(
                 child: FutureBuilder<List<DetailsViewRow>>(
-                  future: DetailsViewTable().queryRows(
-                    queryFn: (q) => q.eq(
-                      'order_id',
-                      widget.orderId,
+                  future: FFAppState().detailsView(
+                    uniqueQueryKey: valueOrDefault<String>(
+                      widget.detailsKey,
+                      'detailsDefKey',
+                    ),
+                    requestFn: () => DetailsViewTable().queryRows(
+                      queryFn: (q) => q.eq(
+                        'order_id',
+                        widget.orderId,
+                      ),
                     ),
                   ),
                   builder: (context, snapshot) {
@@ -188,15 +196,16 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: AutoSizeText(
                                           FFLocalizations.of(context).getText(
-                                            'ng7qeep5' /* Good */,
+                                            '19723qox' /* Packaging */,
                                           ),
+                                          textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Roboto',
                                                 fontSize: 12.0,
                                               ),
                                           minFontSize: 6.0,
@@ -219,16 +228,16 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: AutoSizeText(
                                           FFLocalizations.of(context).getText(
-                                            'h5mensag' /* Good description */,
+                                            '5kdfhiqm' /* Warehouse position */,
                                           ),
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Roboto',
                                                 fontSize: 12.0,
                                               ),
                                           minFontSize: 6.0,
@@ -251,16 +260,16 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: AutoSizeText(
                                           FFLocalizations.of(context).getText(
-                                            '4oeuzpi8' /* Packaging */,
+                                            'nbpuiz1p' /* Barcode */,
                                           ),
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Roboto',
                                                 fontSize: 12.0,
                                               ),
                                           minFontSize: 6.0,
@@ -283,68 +292,27 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: AutoSizeText(
                                           FFLocalizations.of(context).getText(
-                                            '5gd7acex' /* Warehouse position */,
+                                            '18c2679x' /* Edit */,
                                           ),
                                           textAlign: TextAlign.center,
+                                          maxLines: 1,
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Roboto',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
                                                 fontSize: 12.0,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                           minFontSize: 6.0,
                                         ),
                                       ),
                                     ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            DataColumn2(
-                              label: DefaultTextStyle.merge(
-                                softWrap: true,
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.00, 0.00),
-                                  child: AutoSizeText(
-                                    FFLocalizations.of(context).getText(
-                                      'tr6v4m0i' /* Barcode */,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 12.0,
-                                        ),
-                                    minFontSize: 6.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            DataColumn2(
-                              label: DefaultTextStyle.merge(
-                                softWrap: true,
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.00, 0.00),
-                                  child: AutoSizeText(
-                                    FFLocalizations.of(context).getText(
-                                      'ta1q4u0r' /* Edit */,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 1,
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color:
-                                              FlutterFlowTheme.of(context).info,
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                    minFontSize: 6.0,
                                   ),
                                 ),
                               ),
@@ -354,17 +322,17 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                               label: DefaultTextStyle.merge(
                                 softWrap: true,
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.00, 0.00),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: AutoSizeText(
                                     FFLocalizations.of(context).getText(
-                                      'w9prd8ot' /* Delete */,
+                                      'qapcudau' /* Delete */,
                                     ),
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                     style: FlutterFlowTheme.of(context)
                                         .labelLarge
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Roboto',
                                           color: FlutterFlowTheme.of(context)
                                               .warning,
                                           fontSize: 12.0,
@@ -382,35 +350,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                       dataTableDetailsViewRow) =>
                                   [
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
-                                      child: AutoSizeText(
-                                        valueOrDefault<String>(
-                                          dataTableDetailsViewRow.item,
-                                          'brez izbire',
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        maxLines: 2,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                        minFontSize: 6.0,
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
-                                      child: AutoSizeText(
-                                        dataTableDetailsViewRow.opisBlaga!,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 2,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                        minFontSize: 6.0,
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: AutoSizeText(
                                         dataTableDetailsViewRow
                                             .packagingDescription!,
@@ -422,8 +362,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: AutoSizeText(
                                         dataTableDetailsViewRow
                                             .warehousePositionName!,
@@ -435,23 +374,21 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: AutoSizeText(
                                         dataTableDetailsViewRow.barcode!,
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto',
                                               fontSize: 12.0,
                                             ),
                                         minFontSize: 6.0,
                                       ),
                                     ),
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Builder(
                                         builder: (context) => InkWell(
                                           splashColor: Colors.transparent,
@@ -497,8 +434,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Builder(
                                         builder: (context) => InkWell(
                                           splashColor: Colors.transparent,

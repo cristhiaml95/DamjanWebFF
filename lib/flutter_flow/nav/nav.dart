@@ -101,7 +101,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'users',
           path: '/users',
-          builder: (context, params) => const UsersWidget(),
+          builder: (context, params) => UsersWidget(
+            usersKey: params.getParam('usersKey', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'warehouse2',
@@ -117,6 +119,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OrderOverviewWidget(
             orderOverviewTableKey:
                 params.getParam('orderOverviewTableKey', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'explore',
+          path: '/explore',
+          builder: (context, params) => ExploreWidget(
+            exploreWarehousesKey:
+                params.getParam('exploreWarehousesKey', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'calendar',
+          path: '/calendar',
+          builder: (context, params) => CalendarWidget(
+            calendarKey: params.getParam('calendarKey', ParamType.String),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
@@ -314,13 +331,20 @@ class FFRoute {
                   key: state.pageKey,
                   child: child,
                   transitionDuration: transitionInfo.duration,
-                  transitionsBuilder: PageTransition(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          PageTransition(
                     type: transitionInfo.transitionType,
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
                     child: child,
-                  ).transitionsBuilder,
+                  ).buildTransitions(
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ),
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },

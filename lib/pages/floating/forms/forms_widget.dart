@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
+import '/pages/floating/pdf_viewer/pdf_viewer_widget.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -50,9 +52,6 @@ class _FormsWidgetState extends State<FormsWidget> {
     _model.internalAccTController ??= TextEditingController();
     _model.internalAccTFocusNode ??= FocusNode();
 
-    _model.documentTFController ??= TextEditingController();
-    _model.documentTFFocusNode ??= FocusNode();
-
     _model.sequenceController ??= TextEditingController();
     _model.sequenceFocusNode ??= FocusNode();
 
@@ -77,23 +76,14 @@ class _FormsWidgetState extends State<FormsWidget> {
     _model.weightTController ??= TextEditingController();
     _model.weightTFocusNode ??= FocusNode();
 
-    _model.universalRefNumTController1 ??= TextEditingController();
-    _model.universalRefNumTFocusNode1 ??= FocusNode();
+    _model.universalRefNumTController ??= TextEditingController();
+    _model.universalRefNumTFocusNode ??= FocusNode();
 
-    _model.fmsRefTController1 ??= TextEditingController();
-    _model.fmsRefTFocusNode1 ??= FocusNode();
+    _model.fmsRefTController ??= TextEditingController();
+    _model.fmsRefTFocusNode ??= FocusNode();
 
-    _model.loadRefDvhTController1 ??= TextEditingController();
-    _model.loadRefDvhTFocusNode1 ??= FocusNode();
-
-    _model.universalRefNumTController2 ??= TextEditingController();
-    _model.universalRefNumTFocusNode2 ??= FocusNode();
-
-    _model.fmsRefTController2 ??= TextEditingController();
-    _model.fmsRefTFocusNode2 ??= FocusNode();
-
-    _model.loadRefDvhTController2 ??= TextEditingController();
-    _model.loadRefDvhTFocusNode2 ??= FocusNode();
+    _model.loadRefDvhTController ??= TextEditingController();
+    _model.loadRefDvhTFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -130,7 +120,7 @@ class _FormsWidgetState extends State<FormsWidget> {
         }
         List<UsersRow> formsUsersRowList = snapshot.data!;
         return Align(
-          alignment: const AlignmentDirectional(0.00, 0.00),
+          alignment: const AlignmentDirectional(0.0, 0.0),
           child: FutureBuilder<List<VistaOrderLevelExtendedRow>>(
             future: FFAppState().tables(
               uniqueQueryKey: widget.formsKey,
@@ -164,7 +154,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                       : null;
               return Container(
                 width: 800.0,
-                height: 800.0,
+                height: 900.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(28.0),
@@ -206,7 +196,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context).primary,
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.bold,
@@ -261,49 +251,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).secondary,
-                                width: 4.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              setState(() {
-                                _model.page = 1;
-                              });
-                              await _model.pageViewController?.animateToPage(
-                                1,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.ease,
-                              );
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'slij6xnt' /* Form 2 */,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFFD9EAD3),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Color(0xFF74DA7F),
                                 width: 4.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -321,7 +275,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              'ixgnt5vg' /* Form 3 */,
+                              'ixgnt5vg' /* Form 2 */,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
@@ -333,13 +287,49 @@ class _FormsWidgetState extends State<FormsWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                   ),
                               elevation: 3.0,
                               borderSide: const BorderSide(
                                 color: Color(0xFF1F262A),
+                                width: 4.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                          FFButtonWidget(
+                            onPressed: () async {
+                              setState(() {
+                                _model.page = 1;
+                              });
+                              await _model.pageViewController?.animateToPage(
+                                1,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'slij6xnt' /* Form 3 */,
+                            ),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: const Color(0xFFD9EAD3),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Roboto',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Color(0xFF74DA7F),
                                 width: 4.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -369,7 +359,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                   ),
@@ -405,7 +395,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                   ),
@@ -471,31 +461,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
-                                                        ),
-                                                        AutoSizeText(
-                                                          containerVistaOrderLevelExtendedRow!
-                                                              .orderNo!,
-                                                          maxLines: 1,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 24.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                          minFontSize: 6.0,
                                                         ),
                                                       ],
                                                     ),
@@ -532,23 +502,33 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'il7vvnn2' /* Insert new value... */,
-                                                                  ),
+                                                                  labelText:
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.orderNo,
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Roboto',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
                                                                         fontSize:
-                                                                            24.0,
+                                                                            16.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                       ),
                                                                   hintStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Roboto',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontSize:
+                                                                            16.0,
+                                                                      ),
                                                                   enabledBorder:
                                                                       OutlineInputBorder(
                                                                     borderSide:
@@ -611,7 +591,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          'Readex Pro',
+                                                                          'Roboto',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
                                                                       fontSize:
                                                                           14.0,
                                                                     ),
@@ -657,30 +640,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
-                                                        ),
-                                                        AutoSizeText(
-                                                          containerVistaOrderLevelExtendedRow.clientName!,
-                                                          maxLines: 3,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 24.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                          minFontSize: 6.0,
                                                         ),
                                                       ],
                                                     ),
@@ -709,10 +673,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 List<
                                                                     ClientsRow>>(
                                                               future:
-                                                                  ClientsTable()
-                                                                      .queryRows(
-                                                                queryFn: (q) =>
-                                                                    q,
+                                                                  FFAppState()
+                                                                      .clients(
+                                                                uniqueQueryKey:
+                                                                    widget
+                                                                        .formsKey,
+                                                                requestFn: () =>
+                                                                    ClientsTable()
+                                                                        .queryRows(
+                                                                  queryFn:
+                                                                      (q) => q,
+                                                                ),
                                                               ),
                                                               builder: (context,
                                                                   snapshot) {
@@ -766,24 +737,31 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                               val),
                                                                   width: 280.0,
                                                                   height: 40.0,
-                                                                  searchHintTextStyle:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium,
+                                                                  searchHintTextStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Roboto',
+                                                                        fontSize:
+                                                                            16.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                      ),
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Roboto',
                                                                         fontSize:
-                                                                            24.0,
+                                                                            16.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                       ),
-                                                                  hintText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'mqr4u205' /* Please select... */,
-                                                                  ),
+                                                                  hintText:
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.clientName,
                                                                   searchHintText:
                                                                       FFLocalizations.of(
                                                                               context)
@@ -813,7 +791,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       8.0,
                                                                   margin: const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          8.0,
+                                                                          0.0,
                                                                           0.0,
                                                                           8.0,
                                                                           0.0),
@@ -861,27 +839,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          containerVistaOrderLevelExtendedRow.flow!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 24.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -939,16 +900,15 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Roboto',
                                                                         fontSize:
-                                                                            24.0,
+                                                                            16.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                       ),
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'kzd3mask' /* Please select... */,
-                                                              ),
+                                                                  containerVistaOrderLevelExtendedRow
+                                                                      ?.flow,
                                                               icon: Icon(
                                                                 Icons
                                                                     .keyboard_arrow_down_rounded,
@@ -1016,35 +976,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            'yMMMd',
-                                                            functions.parsePostgresTimestamp(
-                                                                containerVistaOrderLevelExtendedRow.arrival!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 24.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -1061,141 +996,142 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
+                                                          Stack(
+                                                            children: [
+                                                              InkWell(
+                                                                splashColor: Colors
                                                                     .transparent,
-                                                            onTap: () async {
-                                                              // creationDate
-                                                              final datePicked1Date =
-                                                                  await showDatePicker(
-                                                                context:
-                                                                    context,
-                                                                initialDate:
-                                                                    getCurrentTimestamp,
-                                                                firstDate:
-                                                                    getCurrentTimestamp,
-                                                                lastDate:
-                                                                    DateTime(
-                                                                        2050),
-                                                                builder:
-                                                                    (context,
-                                                                        child) {
-                                                                  return wrapInMaterialDatePickerTheme(
-                                                                    context,
-                                                                    child!,
-                                                                    headerBackgroundColor:
-                                                                        const Color(
-                                                                            0xFFDEB6B7),
-                                                                    headerForegroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                    headerTextStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineLarge
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Outfit',
-                                                                          fontSize:
-                                                                              32.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                        ),
-                                                                    pickerBackgroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                    pickerForegroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                    selectedDateTimeBackgroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                    selectedDateTimeForegroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                    actionButtonForegroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                    iconSize:
-                                                                        24.0,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  // creationDate
+                                                                  final datePicked1Date =
+                                                                      await showDatePicker(
+                                                                    context:
+                                                                        context,
+                                                                    initialDate:
+                                                                        getCurrentTimestamp,
+                                                                    firstDate:
+                                                                        getCurrentTimestamp,
+                                                                    lastDate:
+                                                                        DateTime(
+                                                                            2050),
+                                                                    builder:
+                                                                        (context,
+                                                                            child) {
+                                                                      return wrapInMaterialDatePickerTheme(
+                                                                        context,
+                                                                        child!,
+                                                                        headerBackgroundColor:
+                                                                            const Color(0xFFDEB6B7),
+                                                                        headerForegroundColor:
+                                                                            FlutterFlowTheme.of(context).primary,
+                                                                        headerTextStyle: FlutterFlowTheme.of(context)
+                                                                            .headlineLarge
+                                                                            .override(
+                                                                              fontFamily: 'Open Sans',
+                                                                              fontSize: 32.0,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            ),
+                                                                        pickerBackgroundColor:
+                                                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        pickerForegroundColor:
+                                                                            FlutterFlowTheme.of(context).primaryText,
+                                                                        selectedDateTimeBackgroundColor:
+                                                                            FlutterFlowTheme.of(context).primaryBackground,
+                                                                        selectedDateTimeForegroundColor:
+                                                                            FlutterFlowTheme.of(context).primary,
+                                                                        actionButtonForegroundColor:
+                                                                            FlutterFlowTheme.of(context).primaryText,
+                                                                        iconSize:
+                                                                            24.0,
+                                                                      );
+                                                                    },
                                                                   );
-                                                                },
-                                                              );
 
-                                                              if (datePicked1Date !=
-                                                                  null) {
-                                                                safeSetState(
-                                                                    () {
-                                                                  _model.datePicked1 =
-                                                                      DateTime(
-                                                                    datePicked1Date
-                                                                        .year,
-                                                                    datePicked1Date
-                                                                        .month,
-                                                                    datePicked1Date
-                                                                        .day,
-                                                                  );
-                                                                });
-                                                              }
-                                                            },
-                                                            child: Container(
-                                                              width: 280.0,
-                                                              height: 50.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
+                                                                  if (datePicked1Date !=
+                                                                      null) {
+                                                                    safeSetState(
+                                                                        () {
+                                                                      _model.datePicked1 =
+                                                                          DateTime(
+                                                                        datePicked1Date
+                                                                            .year,
+                                                                        datePicked1Date
+                                                                            .month,
+                                                                        datePicked1Date
+                                                                            .day,
+                                                                      );
+                                                                    });
+                                                                  }
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  width: 280.0,
+                                                                  height: 50.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
                                                                             12.0),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  width: 2.0,
-                                                                ),
-                                                              ),
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      -1.00,
-                                                                      0.00),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                  ),
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          -1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    _model
-                                                                        .datePicked1
-                                                                        ?.toString(),
-                                                                    'Pick a date...',
+                                                                    child: Text(
+                                                                      _model.datePicked1 !=
+                                                                              null
+                                                                          ? _model
+                                                                              .datePicked1!
+                                                                              .toString()
+                                                                          : dateTimeFormat(
+                                                                              'yMMMd',
+                                                                              functions.parsePostgresTimestamp(containerVistaOrderLevelExtendedRow!.etaDate!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            fontSize:
+                                                                                16.0,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                    ),
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        fontSize:
-                                                                            24.0,
-                                                                      ),
                                                                 ),
                                                               ),
-                                                            ),
+                                                            ],
                                                           ),
                                                         ],
                                                       ),
@@ -1231,26 +1167,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          containerVistaOrderLevelExtendedRow.orderStatus!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -1317,11 +1237,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'zpcydixd' /* Please select... */,
-                                                              ),
+                                                                  containerVistaOrderLevelExtendedRow
+                                                                      ?.orderStatus,
                                                               icon: Icon(
                                                                 Icons
                                                                     .keyboard_arrow_down_rounded,
@@ -1389,26 +1306,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          containerVistaOrderLevelExtendedRow.warehouseName!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -1437,11 +1338,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                             child: FutureBuilder<
                                                                 List<
                                                                     WarehousesRow>>(
-                                                              future:
-                                                                  WarehousesTable()
-                                                                      .queryRows(
-                                                                queryFn: (q) =>
-                                                                    q,
+                                                              future: FFAppState()
+                                                                  .warehouses(
+                                                                uniqueQueryKey:
+                                                                    widget
+                                                                        .formsKey,
+                                                                requestFn: () =>
+                                                                    WarehousesTable()
+                                                                        .queryRows(
+                                                                  queryFn:
+                                                                      (q) => q,
+                                                                ),
                                                               ),
                                                               builder: (context,
                                                                   snapshot) {
@@ -1498,11 +1405,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium,
-                                                                  hintText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'qmkrs0zj' /* Please select... */,
-                                                                  ),
+                                                                  hintText:
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.warehouseName,
                                                                   icon: Icon(
                                                                     Icons
                                                                         .keyboard_arrow_down_rounded,
@@ -1581,34 +1486,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            'yMMMd',
-                                                            functions.parsePostgresTimestamp(
-                                                                containerVistaOrderLevelExtendedRow.createdAt!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -1665,7 +1546,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -1730,8 +1611,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               ),
                                                               alignment:
                                                                   const AlignmentDirectional(
-                                                                      -1.00,
-                                                                      0.00),
+                                                                      -1.0,
+                                                                      0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     const EdgeInsetsDirectional
@@ -1743,10 +1624,18 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    _model
-                                                                        .datePicked2
-                                                                        ?.toString(),
-                                                                    'Pick a date...',
+                                                                    _model.datePicked2 !=
+                                                                            null
+                                                                        ? _model
+                                                                            .datePicked2
+                                                                            ?.toString()
+                                                                        : dateTimeFormat(
+                                                                            'yMMMd',
+                                                                            functions.parsePostgresTimestamp(containerVistaOrderLevelExtendedRow!.createdAt!.toString()),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
+                                                                    'brez izbire',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -1789,26 +1678,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.adminName} ${containerVistaOrderLevelExtendedRow.adminLastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -1870,11 +1743,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'h0mm7fz2' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.adminName} ${containerVistaOrderLevelExtendedRow?.adminLastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -1902,7 +1771,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               margin:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          8.0,
+                                                                          0.0,
                                                                           0.0,
                                                                           8.0,
                                                                           0.0),
@@ -1948,26 +1817,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          containerVistaOrderLevelExtendedRow.customName!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -1997,10 +1850,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 List<
                                                                     CustomsRow>>(
                                                               future:
-                                                                  CustomsTable()
-                                                                      .queryRows(
-                                                                queryFn: (q) =>
-                                                                    q,
+                                                                  FFAppState()
+                                                                      .customs(
+                                                                uniqueQueryKey:
+                                                                    widget
+                                                                        .formsKey,
+                                                                requestFn: () =>
+                                                                    CustomsTable()
+                                                                        .queryRows(
+                                                                  queryFn:
+                                                                      (q) => q,
+                                                                ),
                                                               ),
                                                               builder: (context,
                                                                   snapshot) {
@@ -2057,11 +1917,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium,
-                                                                  hintText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'cw8appfo' /* Please select... */,
-                                                                  ),
+                                                                  hintText:
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.customName,
                                                                   icon: Icon(
                                                                     Icons
                                                                         .keyboard_arrow_down_rounded,
@@ -2135,35 +1993,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
                                                           minFontSize: 6.0,
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .internalRefCustom
-                                                                ?.toString(),
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
                                                       ],
                                                     ),
@@ -2201,10 +2037,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'm57k31e3' /* Insert new value... */,
+                                                                  labelText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.internalRefCustom
+                                                                        ?.toString(),
+                                                                    'brez izbire',
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -2314,29 +2153,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
                                                           minFontSize: 6.0,
-                                                        ),
-                                                        Text(
-                                                          containerVistaOrderLevelExtendedRow.internalAccounting!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
                                                       ],
                                                     ),
@@ -2374,11 +2197,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'bg5uoreu' /* Insert new value... */,
-                                                                  ),
+                                                                  labelText:
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.internalAccounting,
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium,
@@ -2489,29 +2310,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
                                                           minFontSize: 6.0,
-                                                        ),
-                                                        Text(
-                                                          containerVistaOrderLevelExtendedRow.document!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
                                                       ],
                                                     ),
@@ -2527,104 +2332,188 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          Container(
-                                                            width: 280.0,
-                                                            height: 50.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                            ),
-                                                            child: SizedBox(
-                                                              width: double
-                                                                  .infinity,
-                                                              child:
-                                                                  TextFormField(
-                                                                controller: _model
-                                                                    .documentTFController,
-                                                                focusNode: _model
-                                                                    .documentTFFocusNode,
-                                                                obscureText:
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              final selectedFiles =
+                                                                  await selectFiles(
+                                                                storageFolderPath:
+                                                                    '/',
+                                                                allowedExtensions: [
+                                                                  'pdf'
+                                                                ],
+                                                                multiFile:
                                                                     false,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'fsg9rj3i' /* Insert new value... */,
-                                                                  ),
-                                                                  labelStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  hintStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondary,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  errorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedErrorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
+                                                              );
+                                                              if (selectedFiles !=
+                                                                  null) {
+                                                                setState(() =>
+                                                                    _model.isDataUploading =
+                                                                        true);
+                                                                var selectedUploadedFiles =
+                                                                    <FFUploadedFile>[];
+
+                                                                var downloadUrls =
+                                                                    <String>[];
+                                                                try {
+                                                                  selectedUploadedFiles =
+                                                                      selectedFiles
+                                                                          .map((m) =>
+                                                                              FFUploadedFile(
+                                                                                name: m.storagePath.split('/').last,
+                                                                                bytes: m.bytes,
+                                                                              ))
+                                                                          .toList();
+
+                                                                  downloadUrls =
+                                                                      await uploadSupabaseStorageFiles(
+                                                                    bucketName:
+                                                                        'documents',
+                                                                    selectedFiles:
+                                                                        selectedFiles,
+                                                                  );
+                                                                } finally {
+                                                                  _model.isDataUploading =
+                                                                      false;
+                                                                }
+                                                                if (selectedUploadedFiles
+                                                                            .length ==
+                                                                        selectedFiles
+                                                                            .length &&
+                                                                    downloadUrls
+                                                                            .length ==
+                                                                        selectedFiles
+                                                                            .length) {
+                                                                  setState(() {
+                                                                    _model.uploadedLocalFile =
+                                                                        selectedUploadedFiles
+                                                                            .first;
+                                                                    _model.uploadedFileUrl =
+                                                                        downloadUrls
+                                                                            .first;
+                                                                  });
+                                                                } else {
+                                                                  setState(
+                                                                      () {});
+                                                                  return;
+                                                                }
+                                                              }
+                                                            },
+                                                            child: Container(
+                                                              width: 248.0,
+                                                              height: 50.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
-                                                                maxLines: 2,
-                                                                validator: _model
-                                                                    .documentTFControllerValidator
-                                                                    .asValidator(
-                                                                        context),
+                                                                    .secondaryBackground,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12.0),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                                  width: 2.0,
+                                                                ),
+                                                              ),
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      -1.0,
+                                                                      0.0),
+                                                              child: Align(
+                                                                alignment:
+                                                                    const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .upload_file_rounded,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Builder(
+                                                            builder:
+                                                                (context) =>
+                                                                    Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  await showAlignedDialog(
+                                                                    context:
+                                                                        context,
+                                                                    isGlobal:
+                                                                        true,
+                                                                    avoidOverflow:
+                                                                        false,
+                                                                    targetAnchor: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    followerAnchor: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Material(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        child:
+                                                                            PdfViewerWidget(
+                                                                          pdfLink:
+                                                                              valueOrDefault<String>(
+                                                                            containerVistaOrderLevelExtendedRow?.document,
+                                                                            'https://aaxptvfturwawmigxwgq.supabase.co/storage/v1/object/public/documents/noPdf.pdf',
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      setState(
+                                                                          () {}));
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .remove_red_eye,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 24.0,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -2680,31 +2569,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .invStatus,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -2771,10 +2639,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'i3yhp4qt' /* Please select... */,
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                containerVistaOrderLevelExtendedRow
+                                                                    ?.invStatus,
+                                                                'brez izbire',
                                                               ),
                                                               icon: Icon(
                                                                 Icons
@@ -2843,34 +2712,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            'Hm',
-                                                            functions.parsePostgresTimestamp(
-                                                                containerVistaOrderLevelExtendedRow.arrival!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -2924,7 +2769,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -2992,8 +2837,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               ),
                                                               alignment:
                                                                   const AlignmentDirectional(
-                                                                      -1.00,
-                                                                      0.00),
+                                                                      -1.0,
+                                                                      0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     const EdgeInsetsDirectional
@@ -3005,9 +2850,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    _model
-                                                                        .datePicked3
-                                                                        ?.toString(),
+                                                                    _model.datePicked3 !=
+                                                                            null
+                                                                        ? _model
+                                                                            .datePicked3
+                                                                            ?.toString()
+                                                                        : dateTimeFormat(
+                                                                            'Hm',
+                                                                            functions.parsePostgresTimestamp(containerVistaOrderLevelExtendedRow!.etaI!.toString()),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
                                                                     'brez izbire',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -3051,34 +2904,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            'Hm',
-                                                            functions.parsePostgresTimestamp(
-                                                                containerVistaOrderLevelExtendedRow.arrival!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -3132,7 +2961,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -3200,8 +3029,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               ),
                                                               alignment:
                                                                   const AlignmentDirectional(
-                                                                      -1.00,
-                                                                      0.00),
+                                                                      -1.0,
+                                                                      0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     const EdgeInsetsDirectional
@@ -3213,9 +3042,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    _model
-                                                                        .datePicked4
-                                                                        ?.toString(),
+                                                                    _model.datePicked4 !=
+                                                                            null
+                                                                        ? _model
+                                                                            .datePicked4
+                                                                            ?.toString()
+                                                                        : dateTimeFormat(
+                                                                            'Hm',
+                                                                            functions.parsePostgresTimestamp(containerVistaOrderLevelExtendedRow!.etaF!.toString()),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
                                                                     'brez izbire',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -3259,34 +3096,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            'Hm',
-                                                            functions.parsePostgresTimestamp(
-                                                                containerVistaOrderLevelExtendedRow.arrival!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -3340,7 +3153,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -3408,8 +3221,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               ),
                                                               alignment:
                                                                   const AlignmentDirectional(
-                                                                      -1.00,
-                                                                      0.00),
+                                                                      -1.0,
+                                                                      0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     const EdgeInsetsDirectional
@@ -3421,9 +3234,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    _model
-                                                                        .datePicked5
-                                                                        ?.toString(),
+                                                                    _model.datePicked5 !=
+                                                                            null
+                                                                        ? _model
+                                                                            .datePicked5
+                                                                            ?.toString()
+                                                                        : dateTimeFormat(
+                                                                            'Hm',
+                                                                            functions.parsePostgresTimestamp(containerVistaOrderLevelExtendedRow!.arrival!.toString()),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
                                                                     'brez izbire',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -3467,31 +3288,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadingGateRamp,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -3520,11 +3320,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                             child: FutureBuilder<
                                                                 List<
                                                                     LoadingGatesRow>>(
-                                                              future:
-                                                                  LoadingGatesTable()
-                                                                      .queryRows(
-                                                                queryFn: (q) =>
-                                                                    q,
+                                                              future: FFAppState()
+                                                                  .loadingGates(
+                                                                uniqueQueryKey:
+                                                                    widget
+                                                                        .formsKey,
+                                                                requestFn: () =>
+                                                                    LoadingGatesTable()
+                                                                        .queryRows(
+                                                                  queryFn:
+                                                                      (q) => q,
+                                                                ),
                                                               ),
                                                               builder: (context,
                                                                   snapshot) {
@@ -3589,10 +3395,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium,
-                                                                  hintText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    't4qr6f8j' /* Please select... */,
+                                                                  hintText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.loadingGateRamp,
+                                                                    'brez izbire',
                                                                   ),
                                                                   icon: Icon(
                                                                     Icons
@@ -3677,32 +3485,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadingSequence
-                                                                ?.toString(),
-                                                            '-1',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -3741,10 +3527,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'slsk32a0' /* Insert new value... */,
+                                                                  labelText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.loadingSequence
+                                                                        ?.toString(),
+                                                                    '-1',
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -3854,34 +3643,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            'Hm',
-                                                            functions.parsePostgresTimestamp(
-                                                                containerVistaOrderLevelExtendedRow.start!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -3935,7 +3700,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -4003,8 +3768,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               ),
                                                               alignment:
                                                                   const AlignmentDirectional(
-                                                                      -1.00,
-                                                                      0.00),
+                                                                      -1.0,
+                                                                      0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     const EdgeInsetsDirectional
@@ -4016,9 +3781,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    _model
-                                                                        .datePicked6
-                                                                        ?.toString(),
+                                                                    _model.datePicked6 !=
+                                                                            null
+                                                                        ? _model
+                                                                            .datePicked6
+                                                                            ?.toString()
+                                                                        : dateTimeFormat(
+                                                                            'Hm',
+                                                                            functions.parsePostgresTimestamp(containerVistaOrderLevelExtendedRow!.start!.toString()),
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
                                                                     'brez izbire',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -4062,34 +3835,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            'Hm',
-                                                            functions.parsePostgresTimestamp(
-                                                                containerVistaOrderLevelExtendedRow.stop!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -4143,7 +3892,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -4211,8 +3960,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               ),
                                                               alignment:
                                                                   const AlignmentDirectional(
-                                                                      -1.00,
-                                                                      0.00),
+                                                                      -1.0,
+                                                                      0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     const EdgeInsetsDirectional
@@ -4288,31 +4037,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .licencePlate,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -4351,10 +4079,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'g2oexmbs' /* Insert new value... */,
+                                                                  labelText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.licencePlate,
+                                                                    'brez izbire',
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -4464,31 +4194,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .improvement,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -4565,10 +4274,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '7s53wqbg' /* Please select... */,
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                containerVistaOrderLevelExtendedRow
+                                                                    ?.improvement,
+                                                                'brez izbire',
                                                               ),
                                                               icon: Icon(
                                                                 Icons
@@ -4637,31 +4347,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .containerNo,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -4700,10 +4389,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'fx6e2bzz' /* Insert new value... */,
+                                                                  labelText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.containerNo,
+                                                                    'brez izbire',
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -4813,26 +4504,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          containerVistaOrderLevelExtendedRow.comment!,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -4871,11 +4546,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'l8lg1mif' /* Insert new value... */,
-                                                                  ),
+                                                                  labelText:
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.comment,
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium,
@@ -4991,32 +4664,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .quantity
-                                                                ?.toString(),
-                                                            '-1',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -5063,10 +4714,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       false,
                                                                   decoration:
                                                                       InputDecoration(
-                                                                    labelText: FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      '2bnlr1ye' /* Insert new value... */,
+                                                                    labelText:
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.quantity
+                                                                          ?.toString(),
+                                                                      '-1',
                                                                     ),
                                                                     labelStyle:
                                                                         FlutterFlowTheme.of(context)
@@ -5176,32 +4830,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .palletPosition
-                                                                ?.toString(),
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -5248,10 +4880,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       false,
                                                                   decoration:
                                                                       InputDecoration(
-                                                                    labelText: FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      '963ibpdr' /* Insert new value... */,
+                                                                    labelText:
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.palletPosition
+                                                                          ?.toString(),
+                                                                      'brez izbire',
                                                                     ),
                                                                     labelStyle:
                                                                         FlutterFlowTheme.of(context)
@@ -5361,32 +4996,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .unit
-                                                                ?.toString(),
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -5433,10 +5046,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       false,
                                                                   decoration:
                                                                       InputDecoration(
-                                                                    labelText: FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'qvrjjt6g' /* Insert new value... */,
+                                                                    labelText:
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.unit
+                                                                          ?.toString(),
+                                                                      'brez izbire',
                                                                     ),
                                                                     labelStyle:
                                                                         FlutterFlowTheme.of(context)
@@ -5546,32 +5162,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .weight
-                                                                ?.toString(),
-                                                            '-1',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -5618,10 +5212,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       false,
                                                                   decoration:
                                                                       InputDecoration(
-                                                                    labelText: FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      '6todpo8g' /* Insert new value... */,
+                                                                    labelText:
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                      containerVistaOrderLevelExtendedRow
+                                                                          ?.weight
+                                                                          ?.toString(),
+                                                                      '-1',
                                                                     ),
                                                                     labelStyle:
                                                                         FlutterFlowTheme.of(context)
@@ -5750,31 +5347,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .otherManipulation,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -5841,10 +5417,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'i0pz743s' /* Please select... */,
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                containerVistaOrderLevelExtendedRow
+                                                                    ?.otherManipulation,
+                                                                'brez izbire',
                                                               ),
                                                               icon: Icon(
                                                                 Icons
@@ -5913,31 +5490,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadingType,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -5994,10 +5550,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'kl95uo2h' /* Please select... */,
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                containerVistaOrderLevelExtendedRow
+                                                                    ?.loadingType,
+                                                                'brez izbire',
                                                               ),
                                                               icon: Icon(
                                                                 Icons
@@ -6066,31 +5623,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadingType2,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -6147,10 +5683,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'xp1y9n5j' /* Please select... */,
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                containerVistaOrderLevelExtendedRow
+                                                                    ?.loadingType2,
+                                                                'brez izbire',
                                                               ),
                                                               icon: Icon(
                                                                 Icons
@@ -6219,26 +5756,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.responsibleName} ${containerVistaOrderLevelExtendedRow.responsibleLastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -6300,11 +5821,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'lpb3jm2f' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.responsibleName} ${containerVistaOrderLevelExtendedRow?.responsibleLastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -6385,26 +5902,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.assistant1Name} ${containerVistaOrderLevelExtendedRow.assistant1LastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -6466,11 +5967,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '5u7x6vvh' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.assistant1Name} ${containerVistaOrderLevelExtendedRow?.assistant1LastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -6544,26 +6041,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.assistant2Name} ${containerVistaOrderLevelExtendedRow.assistant2LastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -6625,11 +6106,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '7dgi3yr1' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.assistant2Name} ${containerVistaOrderLevelExtendedRow?.assistant2LastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -6703,26 +6180,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.assistant3Name} ${containerVistaOrderLevelExtendedRow.assistant3LastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -6784,11 +6245,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '5krsnwmb' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.assistant3Name} ${containerVistaOrderLevelExtendedRow?.assistant3LastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -6864,29 +6321,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 14.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
                                                           minFontSize: 6.0,
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.assistant4Name} ${containerVistaOrderLevelExtendedRow.assistant4LastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
                                                       ],
                                                     ),
@@ -6947,11 +6388,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '9o3069n6' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.assistant4Name} ${containerVistaOrderLevelExtendedRow?.assistant4LastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -7025,29 +6462,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 14.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
                                                           minFontSize: 6.0,
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.assistant5Name} ${containerVistaOrderLevelExtendedRow.assistant5LastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
                                                       ],
                                                     ),
@@ -7108,11 +6529,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '3jwd32ei' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.assistant5Name} ${containerVistaOrderLevelExtendedRow?.assistant5LastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -7188,29 +6605,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 14.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
                                                               ),
                                                           minFontSize: 6.0,
-                                                        ),
-                                                        Text(
-                                                          '${containerVistaOrderLevelExtendedRow.assistant6Name} ${containerVistaOrderLevelExtendedRow.assistant6LastName}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
                                                         ),
                                                       ],
                                                     ),
@@ -7271,11 +6672,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                           context)
                                                                       .bodyMedium,
                                                               hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '601yzbo9' /* Please select... */,
-                                                              ),
+                                                                  '${containerVistaOrderLevelExtendedRow?.assistant6Name} ${containerVistaOrderLevelExtendedRow?.assistant6LastName}',
                                                               searchHintText:
                                                                   FFLocalizations.of(
                                                                           context)
@@ -7336,10 +6733,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     SingleChildScrollView(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Padding(
                                             padding:
@@ -7370,31 +6770,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .universalRefNo,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -7426,17 +6805,19 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .universalRefNumTController1,
+                                                                    .universalRefNumTController,
                                                                 focusNode: _model
-                                                                    .universalRefNumTFocusNode1,
+                                                                    .universalRefNumTFocusNode,
                                                                 obscureText:
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'r44a4w8x' /* Insert new value... */,
+                                                                  labelText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.universalRefNo,
+                                                                    'brez izbire',
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -7506,7 +6887,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     .bodyMedium,
                                                                 maxLines: 2,
                                                                 validator: _model
-                                                                    .universalRefNumTController1Validator
+                                                                    .universalRefNumTControllerValidator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -7549,31 +6930,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .fmsRef,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -7605,17 +6965,19 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .fmsRefTController1,
+                                                                    .fmsRefTController,
                                                                 focusNode: _model
-                                                                    .fmsRefTFocusNode1,
+                                                                    .fmsRefTFocusNode,
                                                                 obscureText:
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    '9mg68zg5' /* Insert new value... */,
+                                                                  labelText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.fmsRef,
+                                                                    'brez izbire',
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -7685,7 +7047,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     .bodyMedium,
                                                                 maxLines: 2,
                                                                 validator: _model
-                                                                    .fmsRefTController1Validator
+                                                                    .fmsRefTControllerValidator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -7725,31 +7087,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadRefDvh,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -7781,17 +7122,19 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .loadRefDvhTController1,
+                                                                    .loadRefDvhTController,
                                                                 focusNode: _model
-                                                                    .loadRefDvhTFocusNode1,
+                                                                    .loadRefDvhTFocusNode,
                                                                 obscureText:
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'r5g4gonq' /* Insert new value... */,
+                                                                  labelText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.loadRefDvh,
+                                                                    'brez izbire',
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -7861,7 +7204,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                     .bodyMedium,
                                                                 maxLines: 2,
                                                                 validator: _model
-                                                                    .loadRefDvhTController1Validator
+                                                                    .loadRefDvhTControllerValidator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -7894,38 +7237,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'e8m9gut8' /* Load ref/dvh:   */,
+                                                            'e8m9gut8' /* Good:   */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadRefDvh,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -7951,84 +7273,121 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       .of(context)
                                                                   .secondaryBackground,
                                                             ),
-                                                            child:
-                                                                FlutterFlowDropDown<
-                                                                    String>(
-                                                              controller: _model
-                                                                      .assistant5DDValueController2 ??=
-                                                                  FormFieldController<
-                                                                      String>(
-                                                                _model.assistant5DDValue2 ??=
-                                                                    '',
+                                                            child: FutureBuilder<
+                                                                List<GoodsRow>>(
+                                                              future:
+                                                                  GoodsTable()
+                                                                      .queryRows(
+                                                                queryFn: (q) =>
+                                                                    q,
                                                               ),
-                                                              options: List<
-                                                                      String>.from(
-                                                                  formsUsersRowList
+                                                              builder: (context,
+                                                                  snapshot) {
+                                                                // Customize what your widget looks like when it's loading.
+                                                                if (!snapshot
+                                                                    .hasData) {
+                                                                  return Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          50.0,
+                                                                      child:
+                                                                          CircularProgressIndicator(
+                                                                        valueColor:
+                                                                            AlwaysStoppedAnimation<Color>(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primary,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                List<GoodsRow>
+                                                                    assistant5DDGoodsRowList =
+                                                                    snapshot
+                                                                        .data!;
+                                                                return FlutterFlowDropDown<
+                                                                    String>(
+                                                                  controller: _model
+                                                                          .assistant5DDValueController2 ??=
+                                                                      FormFieldController<
+                                                                          String>(
+                                                                    _model.assistant5DDValue2 ??=
+                                                                        '',
+                                                                  ),
+                                                                  options: List<
+                                                                          String>.from(
+                                                                      assistant5DDGoodsRowList
+                                                                          .map((e) =>
+                                                                              e.id)
+                                                                          .toList()),
+                                                                  optionLabels: assistant5DDGoodsRowList
                                                                       .map((e) =>
-                                                                          e.id)
-                                                                      .toList()),
-                                                              optionLabels:
-                                                                  formsUsersRowList
-                                                                      .map((e) =>
-                                                                          e.lastName)
+                                                                          e.item)
                                                                       .toList(),
-                                                              onChanged: (val) =>
-                                                                  setState(() =>
-                                                                      _model.assistant5DDValue2 =
-                                                                          val),
-                                                              width: 280.0,
-                                                              height: 40.0,
-                                                              searchHintTextStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
+                                                                  onChanged: (val) =>
+                                                                      setState(() =>
+                                                                          _model.assistant5DDValue2 =
+                                                                              val),
+                                                                  width: 280.0,
+                                                                  height: 40.0,
+                                                                  searchHintTextStyle:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium,
+                                                                  textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium,
-                                                              hintText:
-                                                                  FFLocalizations.of(
+                                                                  hintText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.item,
+                                                                    'brez izbire',
+                                                                  ),
+                                                                  searchHintText:
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                    'zc13fj1i' /* Search for an item... */,
+                                                                  ),
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_down_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 24.0,
+                                                                  ),
+                                                                  fillColor: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .getText(
-                                                                'hpaa4n3g' /* Please select... */,
-                                                              ),
-                                                              searchHintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'zc13fj1i' /* Search for an item... */,
-                                                              ),
-                                                              icon: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_rounded,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                size: 24.0,
-                                                              ),
-                                                              fillColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              elevation: 2.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                              borderWidth: 2.0,
-                                                              borderRadius: 8.0,
-                                                              margin:
-                                                                  const EdgeInsetsDirectional
+                                                                      .secondaryBackground,
+                                                                  elevation:
+                                                                      2.0,
+                                                                  borderColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .warning,
+                                                                  borderWidth:
+                                                                      2.0,
+                                                                  borderRadius:
+                                                                      8.0,
+                                                                  margin: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
                                                                           8.0,
                                                                           0.0),
-                                                              hidesUnderline:
-                                                                  true,
-                                                              isSearchable:
-                                                                  true,
-                                                              isMultiSelect:
-                                                                  false,
+                                                                  hidesUnderline:
+                                                                      true,
+                                                                  isSearchable:
+                                                                      true,
+                                                                  isMultiSelect:
+                                                                      false,
+                                                                );
+                                                              },
                                                             ),
                                                           ),
                                                         ],
@@ -8058,38 +7417,17 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'bt3p1muw' /* Load ref/dvh:   */,
+                                                            'bt3p1muw' /* Good description:   */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadRefDvh,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -8115,625 +7453,122 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                       .of(context)
                                                                   .secondaryBackground,
                                                             ),
-                                                            child:
-                                                                FlutterFlowDropDown<
-                                                                    String>(
-                                                              controller: _model
-                                                                      .assistant5DDValueController3 ??=
-                                                                  FormFieldController<
-                                                                      String>(
-                                                                _model.assistant5DDValue3 ??=
-                                                                    '',
+                                                            child: FutureBuilder<
+                                                                List<
+                                                                    GoodDescriptionsRow>>(
+                                                              future:
+                                                                  GoodDescriptionsTable()
+                                                                      .queryRows(
+                                                                queryFn: (q) =>
+                                                                    q,
                                                               ),
-                                                              options: List<
-                                                                      String>.from(
-                                                                  formsUsersRowList
+                                                              builder: (context,
+                                                                  snapshot) {
+                                                                // Customize what your widget looks like when it's loading.
+                                                                if (!snapshot
+                                                                    .hasData) {
+                                                                  return Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          50.0,
+                                                                      child:
+                                                                          CircularProgressIndicator(
+                                                                        valueColor:
+                                                                            AlwaysStoppedAnimation<Color>(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primary,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                List<GoodDescriptionsRow>
+                                                                    assistant5DDGoodDescriptionsRowList =
+                                                                    snapshot
+                                                                        .data!;
+                                                                return FlutterFlowDropDown<
+                                                                    String>(
+                                                                  controller: _model
+                                                                          .assistant5DDValueController3 ??=
+                                                                      FormFieldController<
+                                                                          String>(
+                                                                    _model.assistant5DDValue3 ??=
+                                                                        '',
+                                                                  ),
+                                                                  options: List<
+                                                                          String>.from(
+                                                                      assistant5DDGoodDescriptionsRowList
+                                                                          .map((e) =>
+                                                                              e.id)
+                                                                          .toList()),
+                                                                  optionLabels: assistant5DDGoodDescriptionsRowList
                                                                       .map((e) =>
-                                                                          e.id)
-                                                                      .toList()),
-                                                              optionLabels:
-                                                                  formsUsersRowList
-                                                                      .map((e) =>
-                                                                          e.lastName)
+                                                                          e.opisBlaga)
                                                                       .toList(),
-                                                              onChanged: (val) =>
-                                                                  setState(() =>
-                                                                      _model.assistant5DDValue3 =
-                                                                          val),
-                                                              width: 280.0,
-                                                              height: 40.0,
-                                                              searchHintTextStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
+                                                                  onChanged: (val) =>
+                                                                      setState(() =>
+                                                                          _model.assistant5DDValue3 =
+                                                                              val),
+                                                                  width: 280.0,
+                                                                  height: 40.0,
+                                                                  searchHintTextStyle:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium,
+                                                                  textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium,
-                                                              hintText:
-                                                                  FFLocalizations.of(
+                                                                  hintText:
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    containerVistaOrderLevelExtendedRow
+                                                                        ?.opisBlaga,
+                                                                    'brez izbire',
+                                                                  ),
+                                                                  searchHintText:
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                    '69e8wsns' /* Search for an item... */,
+                                                                  ),
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_down_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 24.0,
+                                                                  ),
+                                                                  fillColor: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .getText(
-                                                                '9nxifn9g' /* Please select... */,
-                                                              ),
-                                                              searchHintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '69e8wsns' /* Search for an item... */,
-                                                              ),
-                                                              icon: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_rounded,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                size: 24.0,
-                                                              ),
-                                                              fillColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              elevation: 2.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                              borderWidth: 2.0,
-                                                              borderRadius: 8.0,
-                                                              margin:
-                                                                  const EdgeInsetsDirectional
+                                                                      .secondaryBackground,
+                                                                  elevation:
+                                                                      2.0,
+                                                                  borderColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .warning,
+                                                                  borderWidth:
+                                                                      2.0,
+                                                                  borderRadius:
+                                                                      8.0,
+                                                                  margin: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
                                                                           8.0,
                                                                           0.0),
-                                                              hidesUnderline:
-                                                                  true,
-                                                              isSearchable:
-                                                                  true,
-                                                              isMultiSelect:
-                                                                  false,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SingleChildScrollView(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 24.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'u4u807ox' /* Universal ref num:   */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .universalRefNo,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Container(
-                                                            width: 280.0,
-                                                            height: 50.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                            ),
-                                                            child: SizedBox(
-                                                              width: double
-                                                                  .infinity,
-                                                              child:
-                                                                  TextFormField(
-                                                                controller: _model
-                                                                    .universalRefNumTController2,
-                                                                focusNode: _model
-                                                                    .universalRefNumTFocusNode2,
-                                                                obscureText:
-                                                                    false,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    '6cya4eut' /* Insert new value... */,
-                                                                  ),
-                                                                  labelStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  hintStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .warning,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  errorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedErrorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium,
-                                                                maxLines: 2,
-                                                                validator: _model
-                                                                    .universalRefNumTController2Validator
-                                                                    .asValidator(
-                                                                        context),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 24.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            '5reaqscy' /* FMS ref:   */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .fmsRef,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Container(
-                                                            width: 280.0,
-                                                            height: 50.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                            ),
-                                                            child: SizedBox(
-                                                              width: double
-                                                                  .infinity,
-                                                              child:
-                                                                  TextFormField(
-                                                                controller: _model
-                                                                    .fmsRefTController2,
-                                                                focusNode: _model
-                                                                    .fmsRefTFocusNode2,
-                                                                obscureText:
-                                                                    false,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'qmzyz0qk' /* Insert new value... */,
-                                                                  ),
-                                                                  labelStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  hintStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .warning,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  errorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedErrorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium,
-                                                                maxLines: 2,
-                                                                validator: _model
-                                                                    .fmsRefTController2Validator
-                                                                    .asValidator(
-                                                                        context),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 24.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'ehpkl2ac' /* Load ref/dvh:   */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            containerVistaOrderLevelExtendedRow
-                                                                .loadRefDvh,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Container(
-                                                            width: 280.0,
-                                                            height: 50.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                            ),
-                                                            child: SizedBox(
-                                                              width: double
-                                                                  .infinity,
-                                                              child:
-                                                                  TextFormField(
-                                                                controller: _model
-                                                                    .loadRefDvhTController2,
-                                                                focusNode: _model
-                                                                    .loadRefDvhTFocusNode2,
-                                                                obscureText:
-                                                                    false,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  labelText: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'lzfz2efv' /* Insert new value... */,
-                                                                  ),
-                                                                  labelStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  hintStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .warning,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  errorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                  focusedErrorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .error,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                  ),
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium,
-                                                                maxLines: 2,
-                                                                validator: _model
-                                                                    .loadRefDvhTController2Validator
-                                                                    .asValidator(
-                                                                        context),
-                                                              ),
+                                                                  hidesUnderline:
+                                                                      true,
+                                                                  isSearchable:
+                                                                      true,
+                                                                  isMultiSelect:
+                                                                      false,
+                                                                );
+                                                              },
                                                             ),
                                                           ),
                                                         ],
@@ -8788,20 +7623,20 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                   ? _model
                                                       .inventoryStatusDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .invStatus,
+                                                      ?.invStatus,
                                               'order_no': _model.orderNoTFController
                                                               .text !=
                                                           ''
                                                   ? _model
                                                       .orderNoTFController.text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .orderNo,
+                                                      ?.orderNo,
                                               'flow': _model.flowDDValue !=
                                                           null &&
                                                       _model.flowDDValue != ''
                                                   ? _model.flowDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .flow,
+                                                      ?.flow,
                                               'order_status': _model
                                                               .orderStatusDDValue !=
                                                           null &&
@@ -8809,14 +7644,14 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.orderStatusDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .orderStatus,
+                                                      ?.orderStatus,
                                               'admin': _model.reponsibleDDValue !=
                                                           null &&
                                                       _model.reponsibleDDValue !=
                                                           ''
                                                   ? _model.reponsibleDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .admin,
+                                                      ?.admin,
                                               'warehouse': _model
                                                               .warehouseDDValue !=
                                                           null &&
@@ -8824,21 +7659,24 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.warehouseDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .warehouse,
+                                                      ?.warehouse,
                                               'eta_date': supaSerialize<
                                                   DateTime>(_model.datePicked1 ?? functions
                                                       .parsePostgresTimestamp(
-                                                          containerVistaOrderLevelExtendedRow.etaDate!
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .etaDate!
                                                               .toString())),
                                               'eta_i': supaSerialize<
                                                   PostgresTime>(PostgresTime(_model.datePicked3 ?? functions
                                                       .parsePostgresTimestamp(
-                                                          containerVistaOrderLevelExtendedRow.etaI!
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .etaI!
                                                               .toString()))),
                                               'arrival': supaSerialize<
                                                   PostgresTime>(PostgresTime(_model.datePicked5 ?? functions
                                                       .parsePostgresTimestamp(
-                                                          containerVistaOrderLevelExtendedRow.arrival!
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .arrival!
                                                               .toString()))),
                                               'loading_gate': _model
                                                               .loadingGateDDValue !=
@@ -8847,23 +7685,25 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.loadingGateDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .loadingGate,
+                                                      ?.loadingGate,
                                               'loading_sequence': _model.sequenceController
                                                               .text !=
                                                           ''
                                                   ? int.tryParse(_model
                                                       .sequenceController.text)
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .loadingSequence,
+                                                      ?.loadingSequence,
                                               'start': supaSerialize<
                                                   PostgresTime>(PostgresTime(_model.datePicked6 ?? functions
                                                       .parsePostgresTimestamp(
-                                                          containerVistaOrderLevelExtendedRow.start!
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .start!
                                                               .toString()))),
                                               'stop': supaSerialize<
                                                   PostgresTime>(PostgresTime(_model.datePicked7 ?? functions
                                                       .parsePostgresTimestamp(
-                                                          containerVistaOrderLevelExtendedRow.stop!
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .stop!
                                                               .toString()))),
                                               'licence_plate': _model
                                                               .licencePlateTFController
@@ -8873,14 +7713,14 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                       .licencePlateTFController
                                                       .text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .licencePlate,
+                                                      ?.licencePlate,
                                               'quantity': _model.quantityTController
                                                               .text !=
                                                           ''
                                                   ? int.tryParse(_model
                                                       .quantityTController.text)
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .quantity,
+                                                      ?.quantity,
                                               'pallet_position': _model.palletPositionTController
                                                               .text !=
                                                           ''
@@ -8888,34 +7728,34 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                       .palletPositionTController
                                                       .text)
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .palletPosition,
+                                                      ?.palletPosition,
                                               'unit': _model.unitTController
                                                               .text !=
                                                           ''
                                                   ? int.tryParse(_model
                                                       .unitTController.text)
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .unit,
+                                                      ?.unit,
                                               'weight': _model.weightTController
                                                               .text !=
                                                           ''
                                                   ? int.tryParse(_model
                                                       .weightTController.text)
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .weight,
+                                                      ?.weight,
                                               'container_no': _model.containerTController
                                                               .text !=
                                                           ''
                                                   ? _model
                                                       .containerTController.text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .containerNo,
+                                                      ?.containerNo,
                                               'custom': _model.customDDValue !=
                                                           null &&
                                                       _model.customDDValue != ''
                                                   ? _model.customDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .custom,
+                                                      ?.custom,
                                               'responsible': _model
                                                               .responsibleDDValue !=
                                                           null &&
@@ -8923,7 +7763,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.responsibleDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .responsible,
+                                                      ?.responsible,
                                               'assistant1': _model
                                                               .assistant1DDValue !=
                                                           null &&
@@ -8931,7 +7771,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.assistant1DDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .assistant1,
+                                                      ?.assistant1,
                                               'assistant2': _model
                                                               .assistant2DDValue !=
                                                           null &&
@@ -8939,7 +7779,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.assistant2DDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .assistant2,
+                                                      ?.assistant2,
                                               'assistant3': _model
                                                               .assistant3DDValue !=
                                                           null &&
@@ -8947,7 +7787,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.assistant3DDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .assistant3,
+                                                      ?.assistant3,
                                               'assistant4': _model
                                                               .assistant4DDValue !=
                                                           null &&
@@ -8955,7 +7795,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.assistant4DDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .assistant4,
+                                                      ?.assistant4,
                                               'assistant5': _model
                                                               .assistant5DDValue1 !=
                                                           null &&
@@ -8963,7 +7803,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.assistant5DDValue1
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .assistant5,
+                                                      ?.assistant5,
                                               'assistant6': _model
                                                               .assistant6DDValue !=
                                                           null &&
@@ -8971,37 +7811,36 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.assistant6DDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .assistant6,
-                                              'fms_ref': _model.fmsRefTController1
+                                                      ?.assistant6,
+                                              'fms_ref': _model.fmsRefTController
                                                               .text !=
                                                           ''
                                                   ? _model
-                                                      .fmsRefTController1.text
+                                                      .fmsRefTController.text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .fmsRef,
-                                              'load_ref_dvh': _model.loadRefDvhTController1
+                                                      ?.fmsRef,
+                                              'load_ref_dvh': _model.loadRefDvhTController
                                                               .text !=
                                                           ''
-                                                  ? _model
-                                                      .loadRefDvhTController1
+                                                  ? _model.loadRefDvhTController
                                                       .text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .loadRefDvh,
-                                              'universal_ref_no': _model.universalRefNumTController1
+                                                      ?.loadRefDvh,
+                                              'universal_ref_no': _model.universalRefNumTController
                                                               .text !=
                                                           ''
                                                   ? _model
-                                                      .universalRefNumTController1
+                                                      .universalRefNumTController
                                                       .text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .universalRefNo,
+                                                      ?.universalRefNo,
                                               'comment': _model.commentTFController
                                                               .text !=
                                                           ''
                                                   ? _model
                                                       .commentTFController.text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .comment,
+                                                      ?.comment,
                                               'loading_type': _model
                                                               .loadTypeDDValue !=
                                                           null &&
@@ -9009,7 +7848,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.loadTypeDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .loadingType,
+                                                      ?.loadingType,
                                               'loading_type2': _model
                                                               .loadType2DDValue !=
                                                           null &&
@@ -9017,14 +7856,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.loadType2DDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .loadingType2,
-                                              'document': _model.documentTFController
-                                                              .text !=
+                                                      ?.loadingType2,
+                                              'document': _model.uploadedFileUrl !=
                                                           ''
-                                                  ? _model
-                                                      .documentTFController.text
+                                                  ? _model.uploadedFileUrl
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .document,
+                                                      ?.document,
                                               'internal_accounting': _model.internalAccTController
                                                               .text !=
                                                           ''
@@ -9032,7 +7869,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                       .internalAccTController
                                                       .text
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .internalAccounting,
+                                                      ?.internalAccounting,
                                               'internal_ref_custom': _model.internalRefTController
                                                               .text !=
                                                           ''
@@ -9040,13 +7877,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                       .internalRefTController
                                                       .text)
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .internalRefCustom,
+                                                      ?.internalRefCustom,
                                               'client': _model.clientDDValue !=
                                                           null &&
                                                       _model.clientDDValue != ''
                                                   ? _model.clientDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .client,
+                                                      ?.client,
                                               'improvement': _model
                                                               .improvementDDValue !=
                                                           null &&
@@ -9054,7 +7891,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           ''
                                                   ? _model.improvementDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .improvement,
+                                                      ?.improvement,
                                               'other_manipulation': _model
                                                               .otherManipulationDDValue !=
                                                           null &&
@@ -9063,14 +7900,15 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                   ? _model
                                                       .otherManipulationDDValue
                                                   : containerVistaOrderLevelExtendedRow
-                                                      .otherManipulation,
+                                                      ?.otherManipulation,
                                               'created_at': supaSerialize<
                                                   DateTime>(_model.datePicked2 ?? containerVistaOrderLevelExtendedRow
-                                                      .createdAt),
+                                                      ?.createdAt),
                                               'eta_f': supaSerialize<
                                                   PostgresTime>(PostgresTime(_model.datePicked4 ?? functions
                                                       .parsePostgresTimestamp(
-                                                          containerVistaOrderLevelExtendedRow.etaF!
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .etaF!
                                                               .toString()))),
                                             },
                                             matchingRows: (rows) => rows.eq(
@@ -9101,7 +7939,14 @@ class _FormsWidgetState extends State<FormsWidget> {
                                       ),
                                     );
                                   },
-                                ).then((value) => setState(() {}));
+                                ).then((value) => safeSetState(
+                                    () => _model.sureQueryOP = value));
+
+                                if (_model.sureQueryOP!) {
+                                  Navigator.pop(context);
+                                }
+
+                                setState(() {});
                               },
                               text: FFLocalizations.of(context).getText(
                                 'kgb68azj' /* Save changes */,
@@ -9116,7 +7961,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Roboto',
                                       color: Colors.white,
                                     ),
                                 elevation: 3.0,

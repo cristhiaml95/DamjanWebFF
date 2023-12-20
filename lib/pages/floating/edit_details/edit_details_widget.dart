@@ -16,10 +16,12 @@ class EditDetailsWidget extends StatefulWidget {
     super.key,
     required this.idDetailsP,
     required this.warehouseId,
+    this.editDetailsKey,
   });
 
   final String? idDetailsP;
   final String? warehouseId;
+  final String? editDetailsKey;
 
   @override
   _EditDetailsWidgetState createState() => _EditDetailsWidgetState();
@@ -57,12 +59,18 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.00, 0.00),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: FutureBuilder<List<DetailsViewRow>>(
-        future: DetailsViewTable().querySingleRow(
-          queryFn: (q) => q.eq(
-            'id',
-            widget.idDetailsP,
+        future: FFAppState().detailsView(
+          uniqueQueryKey: valueOrDefault<String>(
+            widget.editDetailsKey,
+            'editDetailsDefKey',
+          ),
+          requestFn: () => DetailsViewTable().querySingleRow(
+            queryFn: (q) => q.eq(
+              'id',
+              widget.idDetailsP,
+            ),
           ),
         ),
         builder: (context, snapshot) {
@@ -116,7 +124,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context).primary,
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.bold,
@@ -170,7 +178,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
@@ -182,7 +190,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -207,8 +215,16 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                               ),
                                               child:
                                                   FutureBuilder<List<GoodsRow>>(
-                                                future: GoodsTable().queryRows(
-                                                  queryFn: (q) => q,
+                                                future: FFAppState().goods(
+                                                  uniqueQueryKey:
+                                                      valueOrDefault<String>(
+                                                    widget.editDetailsKey,
+                                                    'editDetailsDefKey',
+                                                  ),
+                                                  requestFn: () =>
+                                                      GoodsTable().queryRows(
+                                                    queryFn: (q) => q,
+                                                  ),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
@@ -329,7 +345,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
@@ -342,7 +358,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -367,9 +383,18 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                               ),
                                               child: FutureBuilder<
                                                   List<GoodDescriptionsRow>>(
-                                                future: GoodDescriptionsTable()
-                                                    .queryRows(
-                                                  queryFn: (q) => q,
+                                                future: FFAppState()
+                                                    .goodDescription(
+                                                  uniqueQueryKey:
+                                                      valueOrDefault<String>(
+                                                    widget.editDetailsKey,
+                                                    'editDetailsDefKey',
+                                                  ),
+                                                  requestFn: () =>
+                                                      GoodDescriptionsTable()
+                                                          .queryRows(
+                                                    queryFn: (q) => q,
+                                                  ),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
@@ -495,7 +520,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
@@ -508,7 +533,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -533,9 +558,17 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                               ),
                                               child: FutureBuilder<
                                                   List<PackagingRow>>(
-                                                future:
-                                                    PackagingTable().queryRows(
-                                                  queryFn: (q) => q,
+                                                future: FFAppState().packagings(
+                                                  uniqueQueryKey:
+                                                      valueOrDefault<String>(
+                                                    widget.editDetailsKey,
+                                                    'editDetailsDefKey',
+                                                  ),
+                                                  requestFn: () =>
+                                                      PackagingTable()
+                                                          .queryRows(
+                                                    queryFn: (q) => q,
+                                                  ),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
@@ -661,7 +694,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
@@ -674,7 +707,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -701,10 +734,18 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                               ),
                                               child: FutureBuilder<
                                                   List<WarehousePositionsRow>>(
-                                                future:
-                                                    WarehousePositionsTable()
-                                                        .queryRows(
-                                                  queryFn: (q) => q,
+                                                future: FFAppState()
+                                                    .warehousePositions(
+                                                  uniqueQueryKey:
+                                                      valueOrDefault<String>(
+                                                    widget.editDetailsKey,
+                                                    'editDetailsDefKey',
+                                                  ),
+                                                  requestFn: () =>
+                                                      WarehousePositionsTable()
+                                                          .queryRows(
+                                                    queryFn: (q) => q,
+                                                  ),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
@@ -840,7 +881,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
@@ -852,7 +893,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -1072,7 +1113,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Roboto',
                                   color: Colors.white,
                                 ),
                             elevation: 3.0,

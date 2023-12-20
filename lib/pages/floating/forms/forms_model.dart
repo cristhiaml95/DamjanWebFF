@@ -55,10 +55,11 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   FocusNode? internalAccTFocusNode;
   TextEditingController? internalAccTController;
   String? Function(BuildContext, String?)? internalAccTControllerValidator;
-  // State field(s) for documentTF widget.
-  FocusNode? documentTFFocusNode;
-  TextEditingController? documentTFController;
-  String? Function(BuildContext, String?)? documentTFControllerValidator;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for inventoryStatusDD widget.
   String? inventoryStatusDDValue;
   FormFieldController<String>? inventoryStatusDDValueController;
@@ -136,35 +137,25 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   String? assistant6DDValue;
   FormFieldController<String>? assistant6DDValueController;
   // State field(s) for universalRefNumT widget.
-  FocusNode? universalRefNumTFocusNode1;
-  TextEditingController? universalRefNumTController1;
-  String? Function(BuildContext, String?)? universalRefNumTController1Validator;
+  FocusNode? universalRefNumTFocusNode;
+  TextEditingController? universalRefNumTController;
+  String? Function(BuildContext, String?)? universalRefNumTControllerValidator;
   // State field(s) for fmsRefT widget.
-  FocusNode? fmsRefTFocusNode1;
-  TextEditingController? fmsRefTController1;
-  String? Function(BuildContext, String?)? fmsRefTController1Validator;
+  FocusNode? fmsRefTFocusNode;
+  TextEditingController? fmsRefTController;
+  String? Function(BuildContext, String?)? fmsRefTControllerValidator;
   // State field(s) for loadRefDvhT widget.
-  FocusNode? loadRefDvhTFocusNode1;
-  TextEditingController? loadRefDvhTController1;
-  String? Function(BuildContext, String?)? loadRefDvhTController1Validator;
+  FocusNode? loadRefDvhTFocusNode;
+  TextEditingController? loadRefDvhTController;
+  String? Function(BuildContext, String?)? loadRefDvhTControllerValidator;
   // State field(s) for assistant5DD widget.
   String? assistant5DDValue2;
   FormFieldController<String>? assistant5DDValueController2;
   // State field(s) for assistant5DD widget.
   String? assistant5DDValue3;
   FormFieldController<String>? assistant5DDValueController3;
-  // State field(s) for universalRefNumT widget.
-  FocusNode? universalRefNumTFocusNode2;
-  TextEditingController? universalRefNumTController2;
-  String? Function(BuildContext, String?)? universalRefNumTController2Validator;
-  // State field(s) for fmsRefT widget.
-  FocusNode? fmsRefTFocusNode2;
-  TextEditingController? fmsRefTController2;
-  String? Function(BuildContext, String?)? fmsRefTController2Validator;
-  // State field(s) for loadRefDvhT widget.
-  FocusNode? loadRefDvhTFocusNode2;
-  TextEditingController? loadRefDvhTController2;
-  String? Function(BuildContext, String?)? loadRefDvhTController2Validator;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  bool? sureQueryOP;
 
   /// Initialization and disposal methods.
 
@@ -181,9 +172,6 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
 
     internalAccTFocusNode?.dispose();
     internalAccTController?.dispose();
-
-    documentTFFocusNode?.dispose();
-    documentTFController?.dispose();
 
     sequenceFocusNode?.dispose();
     sequenceController?.dispose();
@@ -209,23 +197,14 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
     weightTFocusNode?.dispose();
     weightTController?.dispose();
 
-    universalRefNumTFocusNode1?.dispose();
-    universalRefNumTController1?.dispose();
+    universalRefNumTFocusNode?.dispose();
+    universalRefNumTController?.dispose();
 
-    fmsRefTFocusNode1?.dispose();
-    fmsRefTController1?.dispose();
+    fmsRefTFocusNode?.dispose();
+    fmsRefTController?.dispose();
 
-    loadRefDvhTFocusNode1?.dispose();
-    loadRefDvhTController1?.dispose();
-
-    universalRefNumTFocusNode2?.dispose();
-    universalRefNumTController2?.dispose();
-
-    fmsRefTFocusNode2?.dispose();
-    fmsRefTController2?.dispose();
-
-    loadRefDvhTFocusNode2?.dispose();
-    loadRefDvhTController2?.dispose();
+    loadRefDvhTFocusNode?.dispose();
+    loadRefDvhTController?.dispose();
   }
 
   /// Action blocks are added here.

@@ -152,6 +152,16 @@ class VistaOrderLevelExtendedRow extends SupabaseDataRow {
   String? get client => getField<String>('client');
   set client(String? value) => setField<String>('client', value);
 
+  String? get good => getField<String>('good');
+  set good(String? value) => setField<String>('good', value);
+
+  String? get goodDescription => getField<String>('good_description');
+  set goodDescription(String? value) =>
+      setField<String>('good_description', value);
+
+  String? get packaging => getField<String>('packaging');
+  set packaging(String? value) => setField<String>('packaging', value);
+
   String? get adminName => getField<String>('admin_name');
   set adminName(String? value) => setField<String>('admin_name', value);
 
@@ -240,4 +250,13 @@ class VistaOrderLevelExtendedRow extends SupabaseDataRow {
   String? get assistant6LastName => getField<String>('assistant6_last_name');
   set assistant6LastName(String? value) =>
       setField<String>('assistant6_last_name', value);
+
+  String? get item => getField<String>('item');
+  set item(String? value) => setField<String>('item', value);
+
+  String? get opisBlaga => getField<String>('opis_blaga');
+  set opisBlaga(String? value) => setField<String>('opis_blaga', value);
+
+  String? get packagingName => getField<String>('packaging_name');
+  set packagingName(String? value) => setField<String>('packaging_name', value);
 }

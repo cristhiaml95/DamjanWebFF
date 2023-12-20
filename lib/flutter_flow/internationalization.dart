@@ -294,6 +294,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Movimientos recientes',
       'sl': 'Nedavna gibanja',
     },
+    'yyx4v0h9': {
+      'en': 'Calendar',
+      'es': 'Calendario',
+      'sl': 'Koledar',
+    },
     'n56wcqk0': {
       'en': 'Settings',
       'es': 'Ajustes',
@@ -330,17 +335,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Filtros',
       'sl': 'Filtri',
     },
-    '87o52eca': {
+    '4gvv10bv': {
+      'en': 'Delete',
+      'es': 'Borrar',
+      'sl': 'Izbriši',
+    },
+    'vv1dc6qz': {
+      'en': 'Edit',
+      'es': 'Editar',
+      'sl': 'Uredi',
+    },
+    '4ob5746w': {
+      'en': 'Details',
+      'es': 'Detalles',
+      'sl': 'Podrobnosti',
+    },
+    'a85e7y4b': {
       'en': 'Inventory status',
       'es': 'Estado de inventario',
       'sl': 'Stanje zalog',
     },
-    '0hz2bmf4': {
+    '384h2osu': {
       'en': 'Order No.',
       'es': 'N º de pedido.',
       'sl': 'Številka naročila.',
     },
-    'zncalvd1': {
+    '0qc3thun': {
       'en': 'Client',
       'es': 'Cliente',
       'sl': 'Stranka',
@@ -389,21 +409,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Loading Gate',
       'es': 'Puerta de carga',
       'sl': 'Nakladalna vrata',
-    },
-    'ujd8hhk8': {
-      'en': 'Details',
-      'es': 'Detalles',
-      'sl': 'Podrobnosti',
-    },
-    '06hr9q7q': {
-      'en': 'Edit',
-      'es': 'Editar',
-      'sl': 'Uredi',
-    },
-    'ejz2gb7t': {
-      'en': 'Delete',
-      'es': 'Borrar',
-      'sl': 'Izbriši',
     },
     'twdqlob4': {
       'en': 'Loading Gate Sequence',
@@ -455,21 +460,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Mejora',
       'sl': 'Izboljšava',
     },
-    'gusjkb9g': {
-      'en': 'Details',
-      'es': 'Detalles',
-      'sl': 'Podrobnosti',
-    },
-    'k1fp6ucx': {
-      'en': 'Edit',
-      'es': 'Editar',
-      'sl': 'Uredi',
-    },
-    'y4clhm3g': {
-      'en': 'Delete',
-      'es': 'Borrar',
-      'sl': 'Izbriši',
-    },
     '3u4edcpm': {
       'en': 'Customs',
       'es': 'Aduanas',
@@ -520,21 +510,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Cargar ref/dvh',
       'sl': 'Naloži ref/dvh',
     },
-    'mto98zbb': {
-      'en': 'Details',
-      'es': 'Detalles',
-      'sl': 'Podrobnosti',
-    },
-    '42ou2t8a': {
-      'en': 'Edit',
-      'es': 'Editar',
-      'sl': 'Uredi',
-    },
-    '41ejol5s': {
-      'en': 'Delete',
-      'es': 'Borrar',
-      'sl': 'Izbriši',
-    },
     '562co4jx': {
       'en': 'Damaged mark',
       'es': 'marca dañada',
@@ -580,21 +555,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Número de referencia interno - aduanas',
       'sl': 'Interna referenčna številka - carina',
     },
-    'mx5a59jg': {
-      'en': 'Details',
-      'es': 'Detalles',
-      'sl': 'Podrobnosti',
-    },
-    'a245kouc': {
-      'en': 'Edit',
-      'es': 'Editar',
-      'sl': 'Uredi',
-    },
-    'lebyfi8m': {
-      'en': 'Delete',
-      'es': 'Borrar',
-      'sl': 'Izbriši',
-    },
     'gzx8lf20': {
       'en': 'Create new record',
       'es': 'Crear nuevo registro',
@@ -637,6 +597,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Recent movements',
       'es': 'Movimientos recientes',
       'sl': 'Nedavna gibanja',
+    },
+    'cujche2h': {
+      'en': 'Calendar',
+      'es': 'Calendario',
+      'sl': 'Koledar',
     },
     'e2dey9vb': {
       'en': 'Settings',
@@ -756,6 +721,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Recent movements',
       'es': 'Movimientos recientes',
       'sl': 'Nedavna gibanja',
+    },
+    'abhnwadp': {
+      'en': 'Calendar',
+      'es': 'Calendario',
+      'sl': 'Koledar',
     },
     'onsxf48i': {
       'en': 'Settings',
@@ -916,6 +886,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Movimientos recientes',
       'sl': 'Nedavna gibanja',
     },
+    '720ruq5p': {
+      'en': 'Calendar',
+      'es': 'Calendario',
+      'sl': 'Koledar',
+    },
     'hzz4qal4': {
       'en': 'Settings',
       'es': 'Ajustes',
@@ -1043,6 +1018,363 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sl': 'podrobnosti naročila',
     },
   },
+  // explore
+  {
+    'jmbjo6gt': {
+      'en': 'Trampuž',
+      'es': 'Trampuz',
+      'sl': 'Trampuž',
+    },
+    'yp8ed6x3': {
+      'en': 'Dashboard',
+      'es': 'Panel',
+      'sl': 'Nadzorna plošča',
+    },
+    '9o2vdfln': {
+      'en': 'Order overview',
+      'es': 'Resumen de pedidos',
+      'sl': 'Pregled naročila',
+    },
+    'kzzdt5g6': {
+      'en': 'Order warehouse',
+      'es': 'Almacén de pedidos',
+      'sl': 'Naročite skladišče',
+    },
+    '2apulfqc': {
+      'en': 'Warehouse 2',
+      'es': 'Almacén 2',
+      'sl': 'Skladišče 2',
+    },
+    'ejejjc9y': {
+      'en': 'Recent movements',
+      'es': 'Movimientos recientes',
+      'sl': 'Nedavna gibanja',
+    },
+    'fj8bla5j': {
+      'en': 'Calendar',
+      'es': 'Calendario',
+      'sl': 'Koledar',
+    },
+    'kjn32hsn': {
+      'en': 'Settings',
+      'es': 'Ajustes',
+      'sl': 'nastavitve',
+    },
+    'xfut7kxz': {
+      'en': 'Users',
+      'es': 'Usuarios',
+      'sl': 'Uporabniki',
+    },
+    'xzbclzca': {
+      'en': 'Explore',
+      'es': 'Explorar',
+      'sl': 'Raziščite',
+    },
+    'qn4hiip7': {
+      'en': 'Explore',
+      'es': 'Explorar',
+      'sl': 'Raziščite',
+    },
+    '70sojiw8': {
+      'en': 'Static tables',
+      'es': 'tablas estáticas',
+      'sl': 'Statične tabele',
+    },
+    '2qgg50no': {
+      'en': 'Below are the details of your static tables.',
+      'es': 'A continuación se muestran los detalles de sus tablas estáticas.',
+      'sl': 'Spodaj so podrobnosti vaših statičnih tabel.',
+    },
+    'vxsfzvqg': {
+      'en': 'Refresh tables',
+      'es': 'Actualizar tablas',
+      'sl': 'Osveži tabele',
+    },
+    '51h0n2ji': {
+      'en': 'Warehouses',
+      'es': 'Almacenes',
+      'sl': 'Skladišča',
+    },
+    '7edbksh3': {
+      'en': 'Warehouse',
+      'es': 'Depósito',
+      'sl': 'Skladišče',
+    },
+    'n04rcicr': {
+      'en': 'Clients',
+      'es': 'Clientela',
+      'sl': 'Stranke',
+    },
+    'kn8z4zmk': {
+      'en': 'Client',
+      'es': 'Cliente',
+      'sl': 'Stranka',
+    },
+    'nf9pfdmm': {
+      'en': 'Address',
+      'es': 'DIRECCIÓN',
+      'sl': 'Naslov',
+    },
+    'jj9gq5l5': {
+      'en': 'City',
+      'es': 'Ciudad',
+      'sl': 'Mesto',
+    },
+    'vo6vujav': {
+      'en': 'Country',
+      'es': 'País',
+      'sl': 'Država',
+    },
+    '6vbkf8db': {
+      'en': 'Name aiss',
+      'es': 'nombre aiss',
+      'sl': 'Ime aiss',
+    },
+    'ce3ze44x': {
+      'en': 'Vat no',
+      'es': 'IVA no',
+      'sl': 'DDV št',
+    },
+    '6jh8jvmt': {
+      'en': 'Edit',
+      'es': 'Editar',
+      'sl': 'Uredi',
+    },
+    'q9z0b3rk': {
+      'en': 'Delete',
+      'es': 'Borrar',
+      'sl': 'Izbriši',
+    },
+    'l681o904': {
+      'en': 'Customs',
+      'es': 'Aduanas',
+      'sl': 'Carina',
+    },
+    '6al7qlnh': {
+      'en': 'Custom',
+      'es': 'Costumbre',
+      'sl': 'Po meri',
+    },
+    'qjp3n2kp': {
+      'en': 'Goods',
+      'es': 'Bienes',
+      'sl': 'Blago',
+    },
+    'f0h08w8g': {
+      'en': 'Good',
+      'es': 'Bien',
+      'sl': 'Dobro',
+    },
+    'vj3tfbys': {
+      'en': 'Good descriptions',
+      'es': 'Buenas descripciones',
+      'sl': 'Dobri opisi',
+    },
+    'ulbprri0': {
+      'en': 'Good description',
+      'es': 'Buena descripción',
+      'sl': 'Dober opis',
+    },
+    'nn518qwk': {
+      'en': 'Packagings',
+      'es': 'Embalajes',
+      'sl': 'Embalaža',
+    },
+    'tkwn2ymj': {
+      'en': 'Packaging',
+      'es': 'embalaje',
+      'sl': 'Pakiranje',
+    },
+    'srfb3a9b': {
+      'en': 'Abreviation',
+      'es': 'Abreviatura',
+      'sl': 'Okrajšava',
+    },
+    '297p1nq7': {
+      'en': 'Edit',
+      'es': 'Editar',
+      'sl': 'Uredi',
+    },
+    'ls13m4pm': {
+      'en': 'Delete',
+      'es': 'Borrar',
+      'sl': 'Izbriši',
+    },
+    'vfgoswxs': {
+      'en': 'Manipulations',
+      'es': 'Manipulaciones',
+      'sl': 'Manipulacije',
+    },
+    'it5cqdjv': {
+      'en': 'Manipulation',
+      'es': 'Manipulación',
+      'sl': 'Manipulacija',
+    },
+    'bt0i7sba': {
+      'en': 'Order Details',
+      'es': 'Detalles del pedido',
+      'sl': 'podrobnosti naročila',
+    },
+  },
+  // calendar
+  {
+    'pccjrsyx': {
+      'en': 'Trampuž',
+      'es': 'Trampuz',
+      'sl': 'Trampuž',
+    },
+    'e81lwjk0': {
+      'en': 'Dashboard',
+      'es': 'Panel',
+      'sl': 'Nadzorna plošča',
+    },
+    '32jv8iq7': {
+      'en': 'Order overview',
+      'es': 'Resumen de pedidos',
+      'sl': 'Pregled naročila',
+    },
+    'r2yzm09a': {
+      'en': 'Order warehouse',
+      'es': 'Almacén de pedidos',
+      'sl': 'Naročite skladišče',
+    },
+    'dr5xxudp': {
+      'en': 'Warehouse 2',
+      'es': 'Almacén 2',
+      'sl': 'Skladišče 2',
+    },
+    'nyqia1zz': {
+      'en': 'Recent movements',
+      'es': 'Movimientos recientes',
+      'sl': 'Nedavna gibanja',
+    },
+    '38h9lzty': {
+      'en': 'Calendar',
+      'es': 'Calendario',
+      'sl': 'Koledar',
+    },
+    'z9acdbvy': {
+      'en': 'Settings',
+      'es': 'Ajustes',
+      'sl': 'nastavitve',
+    },
+    '1fryj9i0': {
+      'en': 'Users',
+      'es': 'Usuarios',
+      'sl': 'Uporabniki',
+    },
+    'dt3rvtis': {
+      'en': 'Explore',
+      'es': 'Explorar',
+      'sl': 'Raziščite',
+    },
+    'xi5pl87s': {
+      'en': 'Calendar',
+      'es': 'Calendario',
+      'sl': 'Koledar',
+    },
+    '081bbeg6': {
+      'en': 'Upcoming appointments.',
+      'es': 'Próximas citas.',
+      'sl': 'Prihajajoči sestanki.',
+    },
+    '28ou9rxb': {
+      'en': 'Below are the details of your nearest scheduled appointments.',
+      'es':
+          'A continuación se muestran los detalles de sus citas programadas más cercanas.',
+      'sl': 'Spodaj so podrobnosti o vaših najbližjih načrtovanih terminih.',
+    },
+    'e8n2bwae': {
+      'en': 'Filters',
+      'es': 'Filtros',
+      'sl': 'Filtri',
+    },
+    '8k1v831v': {
+      'en': 'Order No.',
+      'es': 'N º de pedido.',
+      'sl': 'Številka naročila.',
+    },
+    'i07pnwd1': {
+      'en': 'Client',
+      'es': 'Cliente',
+      'sl': 'Stranka',
+    },
+    'c994svo9': {
+      'en': 'Flow',
+      'es': 'Fluir',
+      'sl': 'Tok',
+    },
+    '8pd9kjkx': {
+      'en': 'Date (order creation)',
+      'es': 'Fecha (creación del pedido)',
+      'sl': 'Datum (izdelava naročila)',
+    },
+    'pjfdjawp': {
+      'en': 'Time',
+      'es': 'Tiempo',
+      'sl': 'Čas',
+    },
+    'mjolg68s': {
+      'en': 'Order Status',
+      'es': 'Estado del pedido',
+      'sl': 'Status naročila',
+    },
+    'iy1oa0uv': {
+      'en': 'Warehouse',
+      'es': 'Depósito',
+      'sl': 'Skladišče',
+    },
+    '25x069df': {
+      'en': 'Arrival',
+      'es': 'Llegada',
+      'sl': 'Prihod',
+    },
+    'm7itzwyk': {
+      'en': 'Loading gate',
+      'es': 'Puerta de carga',
+      'sl': 'Vrata za nakladanje',
+    },
+    '5oopip42': {
+      'en': 'Sequence',
+      'es': 'Secuencia',
+      'sl': 'Zaporedje',
+    },
+    'w9iza2b6': {
+      'en': 'Start (upload/unload)',
+      'es': 'Iniciar (cargar/descargar)',
+      'sl': 'Začetek (nalaganje/razlaganje)',
+    },
+    'yjkrmrn1': {
+      'en': 'Licence plate',
+      'es': 'Placa de matrícula',
+      'sl': 'Registrska tablica',
+    },
+    'wq7iyvdj': {
+      'en': 'Admin',
+      'es': 'Administración',
+      'sl': 'skrbnik',
+    },
+    'see4u4qz': {
+      'en': 'Details',
+      'es': 'Detalles',
+      'sl': 'Podrobnosti',
+    },
+    'wi2olmv0': {
+      'en': 'Edit',
+      'es': 'Editar',
+      'sl': 'Uredi',
+    },
+    'f5aue5xv': {
+      'en': 'Delete',
+      'es': 'Borrar',
+      'sl': 'Izbriši',
+    },
+    'yhjdd217': {
+      'en': 'Order Details',
+      'es': 'Detalles del pedido',
+      'sl': 'podrobnosti naročila',
+    },
+  },
   // details
   {
     'ej3c0qzx': {
@@ -1055,37 +1387,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Número de orden:',
       'sl': 'Naročilna št.:',
     },
-    'ng7qeep5': {
-      'en': 'Good',
-      'es': 'Bien',
-      'sl': 'Dobro',
-    },
-    'h5mensag': {
-      'en': 'Good description',
-      'es': 'Buena descripción',
-      'sl': 'Dober opis',
-    },
-    '4oeuzpi8': {
+    '19723qox': {
       'en': 'Packaging',
       'es': 'embalaje',
       'sl': 'Pakiranje',
     },
-    '5gd7acex': {
+    '5kdfhiqm': {
       'en': 'Warehouse position',
       'es': 'Posición del almacén',
       'sl': 'Položaj skladišča',
     },
-    'tr6v4m0i': {
+    'nbpuiz1p': {
       'en': 'Barcode',
       'es': 'Código de barras',
       'sl': 'Črtna koda',
     },
-    'ta1q4u0r': {
+    '18c2679x': {
       'en': 'Edit',
       'es': 'Editar',
       'sl': 'Uredi',
     },
-    'w9prd8ot': {
+    'qapcudau': {
       'en': 'Delete',
       'es': 'Borrar',
       'sl': 'Izbriši',
@@ -1103,12 +1425,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Formulario 1',
       'sl': 'obrazec 1',
     },
-    'slij6xnt': {
+    'ixgnt5vg': {
       'en': 'Form 2',
       'es': 'Formulario 2',
       'sl': 'obrazec 2',
     },
-    'ixgnt5vg': {
+    'slij6xnt': {
       'en': 'Form 3',
       'es': 'Formulario 3',
       'sl': 'Obrazec 3',
@@ -1128,20 +1450,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'N º de pedido:',
       'sl': 'Številka naročila:',
     },
-    'il7vvnn2': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     '5puhm8fn': {
       'en': 'Client:  ',
       'es': 'Cliente:',
       'sl': 'Naročnik:',
-    },
-    'mqr4u205': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     'g7vc91j1': {
       'en': 'Search for an item...',
@@ -1162,11 +1474,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'out-naklad',
       'es': 'fuera-naklad',
       'sl': 'izven-naklad',
-    },
-    'kzd3mask': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     'cocrs8uw': {
       'en': 'Search for an item...',
@@ -1208,11 +1515,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'zaključeno',
       'sl': 'zaključeno',
     },
-    'zpcydixd': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     'vinazm7z': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1222,11 +1524,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Warehouse:  ',
       'es': 'Depósito:',
       'sl': 'Skladišče:',
-    },
-    'qmkrs0zj': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     'uyruzdr8': {
       'en': 'Search for an item...',
@@ -1243,11 +1540,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Responsable:',
       'sl': 'Odgovorni:',
     },
-    'h0mm7fz2': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     'uh5dxl5p': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1257,11 +1549,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Custom:  ',
       'es': 'Costumbre:',
       'sl': 'Po meri:',
-    },
-    'cw8appfo': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     'ynfr932b': {
       'en': 'Search for an item...',
@@ -1273,30 +1560,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Número de referencia interna - aduanas:',
       'sl': 'Interna referenčna številka - carina:',
     },
-    'm57k31e3': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     'egsqs1qd': {
       'en': 'Internal number - accounting:  ',
       'es': 'Número interno - contabilidad:',
       'sl': 'Interna številka - računovodstvo:',
     },
-    'bg5uoreu': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     '5d3u0131': {
       'en': 'Documents:  ',
       'es': 'Documentos:',
       'sl': 'Dokumenti:',
-    },
-    'fsg9rj3i': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     '4a40qnn5': {
       'en': 'Inventory status:  ',
@@ -1323,11 +1595,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'zaloga',
       'sl': 'zaloga',
     },
-    'i3yhp4qt': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     'n5adkyve': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1353,11 +1620,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Puerta de carga:',
       'sl': 'Vrata za nakladanje:',
     },
-    't4qr6f8j': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     'o6gubyim': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1367,11 +1629,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Loading gate sequence:  ',
       'es': 'Secuencia de puerta de carga:',
       'sl': 'Zaporedje vrat za nalaganje:',
-    },
-    'slsk32a0': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     'qq1wd08x': {
       'en': 'Start (upload/unload):  ',
@@ -1387,11 +1644,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Licence plate No:  ',
       'es': 'Número de matrícula:',
       'sl': 'Številka registrske tablice:',
-    },
-    'g2oexmbs': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     '42rr8l7b': {
       'en': 'Improvement:  ',
@@ -1428,11 +1680,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'silos',
       'sl': 'silosi',
     },
-    '7s53wqbg': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     '06x3pud7': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1443,60 +1690,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'No contenedor:',
       'sl': 'Št. zabojnika:',
     },
-    'fx6e2bzz': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     'v22y7evv': {
       'en': 'Comment:  ',
       'es': 'Comentario:',
       'sl': 'komentar:',
-    },
-    'l8lg1mif': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     'sfnu9hsh': {
       'en': 'Quantity:  ',
       'es': 'Cantidad:',
       'sl': 'Količina:',
     },
-    '2bnlr1ye': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     've5lecs6': {
       'en': 'Pallet position:  ',
       'es': 'Posición del palet:',
       'sl': 'Položaj palete:',
-    },
-    '963ibpdr': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     '7bxazwwv': {
       'en': 'Unit:  ',
       'es': 'Unidad:',
       'sl': 'Enota:',
     },
-    'qvrjjt6g': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     'nbxsam7i': {
       'en': 'Weight:  ',
       'es': 'Peso:',
       'sl': 'Utež:',
-    },
-    '6todpo8g': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     'xg5td71o': {
       'en': 'Other manipulations:  ',
@@ -1523,11 +1740,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'povezovanje',
       'sl': 'povezovanje',
     },
-    'i0pz743s': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     'mfssgox9': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1547,11 +1759,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'ročno',
       'es': 'ročno',
       'sl': 'ročno',
-    },
-    'kl95uo2h': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     '6ag5u2ug': {
       'en': 'Search for an item...',
@@ -1573,11 +1780,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'ročno',
       'sl': 'ročno',
     },
-    'xp1y9n5j': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     'l18w26s5': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1587,11 +1789,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Responsible  ',
       'es': 'Responsable',
       'sl': 'Odgovorno',
-    },
-    'lpb3jm2f': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     'grcxnp49': {
       'en': 'Search for an item...',
@@ -1603,11 +1800,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Asistente 1:',
       'sl': 'Pomočnik 1:',
     },
-    '5u7x6vvh': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     '3kgownwn': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1617,11 +1809,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assistant 2:  ',
       'es': 'Asistente 2:',
       'sl': 'Pomočnik 2:',
-    },
-    '7dgi3yr1': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     '24xpxxd3': {
       'en': 'Search for an item...',
@@ -1633,11 +1820,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Asistente 3:',
       'sl': 'Pomočnik 3:',
     },
-    '5krsnwmb': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     'qyo1rr3d': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1647,11 +1829,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assistant 4:  ',
       'es': 'Asistente 4:',
       'sl': 'Pomočnik 4:',
-    },
-    '9o3069n6': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     'p5m1vzod': {
       'en': 'Search for an item...',
@@ -1663,11 +1840,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Asistente 5:',
       'sl': 'Pomočnik 5:',
     },
-    '3jwd32ei': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
     '1a084wws': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
@@ -1677,11 +1849,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assistant 6:  ',
       'es': 'Asistente 6:',
       'sl': 'Pomočnik 6:',
-    },
-    '601yzbo9': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
     },
     'pj37fydl': {
       'en': 'Search for an item...',
@@ -1693,40 +1860,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Número de referencia universal:',
       'sl': 'Univerzalna referenčna številka:',
     },
-    'r44a4w8x': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     'fbd2vk8f': {
       'en': 'FMS ref:  ',
       'es': 'Referencia FMS:',
       'sl': 'Ref. FMS:',
-    },
-    '9mg68zg5': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     'hmxvey7w': {
       'en': 'Load ref/dvh:  ',
       'es': 'Cargar ref/dvh:',
       'sl': 'Naloži ref/dvh:',
     },
-    'r5g4gonq': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
     'e8m9gut8': {
-      'en': 'Load ref/dvh:  ',
-      'es': 'Cargar ref/dvh:',
-      'sl': 'Naloži ref/dvh:',
-    },
-    'hpaa4n3g': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
+      'en': 'Good:  ',
+      'es': 'Bien:',
+      'sl': 'dobro:',
     },
     'zc13fj1i': {
       'en': 'Search for an item...',
@@ -1734,49 +1881,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sl': 'Iskanje predmeta ...',
     },
     'bt3p1muw': {
-      'en': 'Load ref/dvh:  ',
-      'es': 'Cargar ref/dvh:',
-      'sl': 'Naloži ref/dvh:',
-    },
-    '9nxifn9g': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
+      'en': 'Good description:  ',
+      'es': 'Buena descripción:',
+      'sl': 'Dober opis:',
     },
     '69e8wsns': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
-    },
-    'u4u807ox': {
-      'en': 'Universal ref num:  ',
-      'es': 'Número de referencia universal:',
-      'sl': 'Univerzalna referenčna številka:',
-    },
-    '6cya4eut': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    '5reaqscy': {
-      'en': 'FMS ref:  ',
-      'es': 'Referencia FMS:',
-      'sl': 'Ref. FMS:',
-    },
-    'qmzyz0qk': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'ehpkl2ac': {
-      'en': 'Load ref/dvh:  ',
-      'es': 'Cargar ref/dvh:',
-      'sl': 'Naloži ref/dvh:',
-    },
-    'lzfz2efv': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     'kgb68azj': {
       'en': 'Save changes',
@@ -1814,12 +1926,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Formulario 1',
       'sl': 'obrazec 1',
     },
-    'bx2iudm8': {
+    '5eb5bex3': {
       'en': 'Form 2',
       'es': 'Formulario 2',
       'sl': 'obrazec 2',
     },
-    '5eb5bex3': {
+    'bx2iudm8': {
       'en': 'Form 3',
       'es': 'Formulario 3',
       'sl': 'Obrazec 3',
@@ -2003,11 +2115,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Documents:  ',
       'es': 'Documentos:',
       'sl': 'Dokumenti:',
-    },
-    'asma1rh7': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
     },
     'mh5ueire': {
       'en': 'Inventory status:  ',
@@ -2429,6 +2536,46 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Insertar nuevo valor...',
       'sl': 'Vstavi novo vrednost ...',
     },
+    'y5o5dbxu': {
+      'en': 'Good:  ',
+      'es': 'Bien:',
+      'sl': 'dobro:',
+    },
+    'olu8pg20': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '95hwmajy': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'df1xiv22': {
+      'en': 'Good description:  ',
+      'es': 'Buena descripción:',
+      'sl': 'Dober opis:',
+    },
+    '1dn5ocu9': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '3ymgthd8': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'aulaxeej': {
+      'en': 'Barcodes:  ',
+      'es': 'Códigos de barras:',
+      'sl': 'črtne kode:',
+    },
+    'fc2wnpy4': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
     'lbv650ew': {
       'en': 'Save new record',
       'es': 'Guardar nuevo registro',
@@ -2749,6 +2896,164 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sl': 'Iskanje predmeta ...',
     },
   },
+  // clientsTF
+  {
+    'tfcqb0zh': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+  },
+  // editClients
+  {
+    '2g5zhl8k': {
+      'en': 'Client details',
+      'es': 'Detalles del cliente',
+      'sl': 'Podrobnosti o stranki',
+    },
+    'j8d5n29t': {
+      'en': 'Client:  ',
+      'es': 'Cliente:',
+      'sl': 'Naročnik:',
+    },
+    '2d19wu1s': {
+      'en': 'Address:  ',
+      'es': 'DIRECCIÓN:',
+      'sl': 'Naslov:',
+    },
+    '8mh3bzf7': {
+      'en': 'City:  ',
+      'es': 'Ciudad:',
+      'sl': 'mesto:',
+    },
+    '0ybgfuw5': {
+      'en': 'Country:  ',
+      'es': 'País:',
+      'sl': 'Država:',
+    },
+    'm7pcjtgw': {
+      'en': 'Name aiss:  ',
+      'es': 'Nombre:',
+      'sl': 'Ime aiss:',
+    },
+    'jpkyman4': {
+      'en': 'Vat no:  ',
+      'es': 'N° IVA:',
+      'sl': 'DDV številka:',
+    },
+    'zp0khhb7': {
+      'en': 'Save changes',
+      'es': 'Guardar cambios',
+      'sl': 'Shrani spremembe',
+    },
+  },
+  // customsTF
+  {
+    'va0e7fje': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+  },
+  // goodsTF
+  {
+    '28p1yis3': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+  },
+  // goodsDescriptionsTF
+  {
+    'x40isfgi': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+  },
+  // editPackaging
+  {
+    'x0hs380u': {
+      'en': 'Packaging details',
+      'es': 'Detalles del empaque',
+      'sl': 'Podrobnosti pakiranja',
+    },
+    'mb8km6s7': {
+      'en': 'Packaging:  ',
+      'es': 'Embalaje:',
+      'sl': 'Pakiranje:',
+    },
+    'x6cs6pqp': {
+      'en': 'Abbreviation:  ',
+      'es': 'Abreviatura:',
+      'sl': 'Okrajšava:',
+    },
+    'wfvsoosu': {
+      'en': 'Save changes',
+      'es': 'Guardar cambios',
+      'sl': 'Shrani spremembe',
+    },
+  },
+  // warehouseDetails
+  {
+    'dcyr07l8': {
+      'en': 'Warehouse details',
+      'es': 'Detalles del almacén',
+      'sl': 'Podrobnosti o skladišču',
+    },
+    'cpabvyqv': {
+      'en': 'Warehouse positions',
+      'es': 'Posiciones de almacén',
+      'sl': 'Skladiščne pozicije',
+    },
+    'tffmk5em': {
+      'en': 'Position',
+      'es': 'Posición',
+      'sl': 'Položaj',
+    },
+    'j7v7zf4e': {
+      'en': 'Loading gates',
+      'es': 'Puertas de carga',
+      'sl': 'Nakladalna vrata',
+    },
+    'jiqtvl3p': {
+      'en': 'Ramp',
+      'es': 'Rampa',
+      'sl': 'Klančina',
+    },
+  },
+  // warehousePositionsTF
+  {
+    'bm78l3b3': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+  },
+  // loadingGatesTF
+  {
+    '2rk32fe5': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+  },
+  // manipulationsTF
+  {
+    '2adki1rz': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+  },
+  // pdfViewer
+  {
+    '044xi4wz': {
+      'en': 'Pdf viewer',
+      'es': 'Visor de PDF',
+      'sl': 'Pregledovalnik pdf',
+    },
+  },
   // Miscellaneous
   {
     'k5pc0j8z': {
@@ -2802,6 +3107,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sl': '',
     },
     '3kxbw6bg': {
+      'en': '',
+      'es': '',
+      'sl': '',
+    },
+    'srz7eazo': {
       'en': '',
       'es': '',
       'sl': '',

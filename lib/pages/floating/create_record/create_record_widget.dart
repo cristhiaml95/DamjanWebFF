@@ -4,7 +4,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
+import '/pages/floating/pdf_viewer/pdf_viewer_widget.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +16,12 @@ import 'create_record_model.dart';
 export 'create_record_model.dart';
 
 class CreateRecordWidget extends StatefulWidget {
-  const CreateRecordWidget({super.key});
+  const CreateRecordWidget({
+    super.key,
+    this.createRecordKey,
+  });
+
+  final String? createRecordKey;
 
   @override
   _CreateRecordWidgetState createState() => _CreateRecordWidgetState();
@@ -41,9 +49,6 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
 
     _model.internalAccTController ??= TextEditingController();
     _model.internalAccTFocusNode ??= FocusNode();
-
-    _model.documentTFController ??= TextEditingController();
-    _model.documentTFFocusNode ??= FocusNode();
 
     _model.sequenceController ??= TextEditingController();
     _model.sequenceFocusNode ??= FocusNode();
@@ -77,6 +82,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
 
     _model.loadRefDvhTController ??= TextEditingController();
     _model.loadRefDvhTFocusNode ??= FocusNode();
+
+    _model.barcodesTFController ??= TextEditingController();
+    _model.barcodesTFFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -113,7 +121,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
         }
         List<UsersRow> createRecordUsersRowList = snapshot.data!;
         return Align(
-          alignment: const AlignmentDirectional(0.00, 0.00),
+          alignment: const AlignmentDirectional(0.0, 0.0),
           child: Container(
             width: 800.0,
             height: 900.0,
@@ -157,7 +165,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    fontFamily: 'Roboto',
                                     color: FlutterFlowTheme.of(context).primary,
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.bold,
@@ -211,47 +219,12 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Roboto',
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                           elevation: 3.0,
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondary,
-                            width: 4.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                      FFButtonWidget(
-                        onPressed: () async {
-                          setState(() {
-                            _model.page = 1;
-                          });
-                          await _model.pageViewController?.animateToPage(
-                            1,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.ease,
-                          );
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          'bx2iudm8' /* Form 2 */,
-                        ),
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: const Color(0xFFD9EAD3),
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Color(0xFF74DA7F),
                             width: 4.0,
                           ),
                           borderRadius: BorderRadius.circular(12.0),
@@ -269,7 +242,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           );
                         },
                         text: FFLocalizations.of(context).getText(
-                          '5eb5bex3' /* Form 3 */,
+                          '5eb5bex3' /* Form 2 */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -281,12 +254,47 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Roboto',
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
                             color: Color(0xFF1F262A),
+                            width: 4.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                      FFButtonWidget(
+                        onPressed: () async {
+                          setState(() {
+                            _model.page = 1;
+                          });
+                          await _model.pageViewController?.animateToPage(
+                            1,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
+                        },
+                        text: FFLocalizations.of(context).getText(
+                          'bx2iudm8' /* Form 3 */,
+                        ),
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFFD9EAD3),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Roboto',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Color(0xFF74DA7F),
                             width: 4.0,
                           ),
                           borderRadius: BorderRadius.circular(12.0),
@@ -316,7 +324,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Roboto',
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                           elevation: 3.0,
@@ -351,7 +359,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Roboto',
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                           elevation: 3.0,
@@ -413,7 +421,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -460,9 +468,11 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Roboto',
                                                                         fontSize:
-                                                                            24.0,
+                                                                            16.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                       ),
                                                               hintStyle:
                                                                   FlutterFlowTheme.of(
@@ -568,7 +578,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -595,9 +605,20 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         ),
                                                         child: FutureBuilder<
                                                             List<ClientsRow>>(
-                                                          future: ClientsTable()
-                                                              .queryRows(
-                                                            queryFn: (q) => q,
+                                                          future: FFAppState()
+                                                              .clients(
+                                                            uniqueQueryKey:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              widget
+                                                                  .createRecordKey,
+                                                              'createRecordDefKey',
+                                                            ),
+                                                            requestFn: () =>
+                                                                ClientsTable()
+                                                                    .queryRows(
+                                                              queryFn: (q) => q,
+                                                            ),
                                                           ),
                                                           builder: (context,
                                                               snapshot) {
@@ -656,7 +677,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                       .labelMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Roboto',
                                                                         fontSize:
                                                                             14.0,
                                                                       ),
@@ -666,7 +687,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Readex Pro',
+                                                                            'Roboto',
                                                                         fontSize:
                                                                             24.0,
                                                                       ),
@@ -749,7 +770,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -805,7 +826,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Roboto',
                                                                     fontSize:
                                                                         24.0,
                                                                   ),
@@ -877,7 +898,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 24.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -931,7 +952,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -998,7 +1019,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           ),
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  -1.00, 0.00),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -1020,7 +1041,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Roboto',
                                                                     fontSize:
                                                                         24.0,
                                                                   ),
@@ -1060,7 +1081,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -1132,7 +1153,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Readex Pro',
+                                                                        'Roboto',
                                                                     fontSize:
                                                                         24.0,
                                                                   ),
@@ -1205,7 +1226,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -1232,10 +1253,20 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         child: FutureBuilder<
                                                             List<
                                                                 WarehousesRow>>(
-                                                          future:
-                                                              WarehousesTable()
-                                                                  .queryRows(
-                                                            queryFn: (q) => q,
+                                                          future: FFAppState()
+                                                              .warehouses(
+                                                            uniqueQueryKey:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              widget
+                                                                  .createRecordKey,
+                                                              'createRecordDefKey',
+                                                            ),
+                                                            requestFn: () =>
+                                                                WarehousesTable()
+                                                                    .queryRows(
+                                                              queryFn: (q) => q,
+                                                            ),
                                                           ),
                                                           builder: (context,
                                                               snapshot) {
@@ -1372,7 +1403,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -1425,7 +1456,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -1492,7 +1523,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           ),
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  -1.00, 0.00),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -1548,7 +1579,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -1681,7 +1712,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -1707,9 +1738,20 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         ),
                                                         child: FutureBuilder<
                                                             List<CustomsRow>>(
-                                                          future: CustomsTable()
-                                                              .queryRows(
-                                                            queryFn: (q) => q,
+                                                          future: FFAppState()
+                                                              .customs(
+                                                            uniqueQueryKey:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              widget
+                                                                  .createRecordKey,
+                                                              'createRecordDefKey',
+                                                            ),
+                                                            requestFn: () =>
+                                                                CustomsTable()
+                                                                    .queryRows(
+                                                              queryFn: (q) => q,
+                                                            ),
                                                           ),
                                                           builder: (context,
                                                               snapshot) {
@@ -1851,7 +1893,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 10.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -2002,7 +2044,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 12.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -2155,7 +2197,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 12.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -2172,105 +2214,185 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Container(
-                                                        width: 280.0,
-                                                        height: 50.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
-                                                        child: SizedBox(
-                                                          width:
-                                                              double.infinity,
-                                                          child: TextFormField(
-                                                            controller: _model
-                                                                .documentTFController,
-                                                            focusNode: _model
-                                                                .documentTFFocusNode,
-                                                            obscureText: false,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              labelText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                'asma1rh7' /* Insert new value... */,
-                                                              ),
-                                                              labelStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                              hintStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  width: 2.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                              ),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  width: 2.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                              ),
-                                                              errorBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .error,
-                                                                  width: 2.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                              ),
-                                                              focusedErrorBorder:
-                                                                  OutlineInputBorder(
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .error,
-                                                                  width: 2.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                              ),
-                                                            ),
-                                                            style: FlutterFlowTheme
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          final selectedFiles =
+                                                              await selectFiles(
+                                                            storageFolderPath:
+                                                                '/',
+                                                            allowedExtensions: [
+                                                              'pdf'
+                                                            ],
+                                                            multiFile: false,
+                                                          );
+                                                          if (selectedFiles !=
+                                                              null) {
+                                                            setState(() => _model
+                                                                    .isDataUploading =
+                                                                true);
+                                                            var selectedUploadedFiles =
+                                                                <FFUploadedFile>[];
+
+                                                            var downloadUrls =
+                                                                <String>[];
+                                                            try {
+                                                              selectedUploadedFiles =
+                                                                  selectedFiles
+                                                                      .map((m) =>
+                                                                          FFUploadedFile(
+                                                                            name:
+                                                                                m.storagePath.split('/').last,
+                                                                            bytes:
+                                                                                m.bytes,
+                                                                          ))
+                                                                      .toList();
+
+                                                              downloadUrls =
+                                                                  await uploadSupabaseStorageFiles(
+                                                                bucketName:
+                                                                    'documents',
+                                                                selectedFiles:
+                                                                    selectedFiles,
+                                                              );
+                                                            } finally {
+                                                              _model.isDataUploading =
+                                                                  false;
+                                                            }
+                                                            if (selectedUploadedFiles
+                                                                        .length ==
+                                                                    selectedFiles
+                                                                        .length &&
+                                                                downloadUrls
+                                                                        .length ==
+                                                                    selectedFiles
+                                                                        .length) {
+                                                              setState(() {
+                                                                _model.uploadedLocalFile =
+                                                                    selectedUploadedFiles
+                                                                        .first;
+                                                                _model.uploadedFileUrl =
+                                                                    downloadUrls
+                                                                        .first;
+                                                              });
+                                                            } else {
+                                                              setState(() {});
+                                                              return;
+                                                            }
+                                                          }
+                                                        },
+                                                        child: Container(
+                                                          width: 248.0,
+                                                          height: 50.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium,
-                                                            maxLines: 2,
-                                                            validator: _model
-                                                                .documentTFControllerValidator
-                                                                .asValidator(
-                                                                    context),
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondary,
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Align(
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    0.0, 0.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .upload_file_rounded,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 24.0,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Builder(
+                                                        builder: (context) =>
+                                                            Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              await showAlignedDialog(
+                                                                context:
+                                                                    context,
+                                                                isGlobal: true,
+                                                                avoidOverflow:
+                                                                    false,
+                                                                targetAnchor:
+                                                                    const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                followerAnchor:
+                                                                    const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Material(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    child:
+                                                                        PdfViewerWidget(
+                                                                      pdfLink:
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                        _model
+                                                                            .uploadedFileUrl,
+                                                                        'https://aaxptvfturwawmigxwgq.supabase.co/storage/v1/object/public/documents/noPdf.pdf',
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  setState(
+                                                                      () {}));
+                                                            },
+                                                            child: Icon(
+                                                              Icons
+                                                                  .remove_red_eye,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 24.0,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -2323,7 +2445,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -2454,7 +2576,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -2505,7 +2627,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -2575,7 +2697,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           ),
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  -1.00, 0.00),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -2631,7 +2753,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -2682,7 +2804,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -2752,7 +2874,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           ),
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  -1.00, 0.00),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -2808,7 +2930,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -2859,7 +2981,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -2929,7 +3051,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           ),
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  -1.00, 0.00),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -2985,7 +3107,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -3012,17 +3134,27 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         child: FutureBuilder<
                                                             List<
                                                                 LoadingGatesRow>>(
-                                                          future:
-                                                              LoadingGatesTable()
-                                                                  .queryRows(
-                                                            queryFn: (q) =>
-                                                                q.eq(
-                                                              'warehouse',
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                _model
-                                                                    .warehouseDDValue,
-                                                                'd120262d-c628-4411-8772-3a963f83bd86',
+                                                          future: FFAppState()
+                                                              .loadingGates(
+                                                            uniqueQueryKey:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              widget
+                                                                  .createRecordKey,
+                                                              'createRecordDefKey',
+                                                            ),
+                                                            requestFn: () =>
+                                                                LoadingGatesTable()
+                                                                    .queryRows(
+                                                              queryFn: (q) =>
+                                                                  q.eq(
+                                                                'warehouse',
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  _model
+                                                                      .warehouseDDValue,
+                                                                  'd120262d-c628-4411-8772-3a963f83bd86',
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -3185,7 +3317,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -3334,7 +3466,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -3385,7 +3517,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -3455,7 +3587,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           ),
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  -1.00, 0.00),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -3511,7 +3643,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -3562,7 +3694,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                                         .headlineLarge
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Outfit',
+                                                                              'Open Sans',
                                                                           fontSize:
                                                                               32.0,
                                                                           fontWeight:
@@ -3632,7 +3764,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           ),
                                                           alignment:
                                                               const AlignmentDirectional(
-                                                                  -1.00, 0.00),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -3705,7 +3837,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -3854,7 +3986,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -3995,7 +4127,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -4144,7 +4276,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -4300,7 +4432,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -4461,7 +4593,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -4622,7 +4754,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -4783,7 +4915,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -4963,7 +5095,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -5094,7 +5226,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -5215,7 +5347,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -5336,7 +5468,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -5476,7 +5608,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -5609,7 +5741,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -5742,7 +5874,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -5877,7 +6009,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 14.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -6012,7 +6144,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 14.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -6149,7 +6281,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontSize: 14.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -6276,6 +6408,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                 SingleChildScrollView(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -6303,7 +6436,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -6454,7 +6587,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -6603,7 +6736,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                'Readex Pro',
+                                                                'Roboto',
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -6728,6 +6861,510 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                           ],
                                         ),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 24.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'y5o5dbxu' /* Good:   */,
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Roboto',
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 8.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Container(
+                                                        width: 280.0,
+                                                        height: 50.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: FutureBuilder<
+                                                            List<GoodsRow>>(
+                                                          future: FFAppState()
+                                                              .goods(
+                                                            uniqueQueryKey:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              widget
+                                                                  .createRecordKey,
+                                                              'createRecordDefKey',
+                                                            ),
+                                                            requestFn: () =>
+                                                                GoodsTable()
+                                                                    .queryRows(
+                                                              queryFn: (q) => q,
+                                                            ),
+                                                          ),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                            List<GoodsRow>
+                                                                goodDDGoodsRowList =
+                                                                snapshot.data!;
+                                                            return FlutterFlowDropDown<
+                                                                String>(
+                                                              controller: _model
+                                                                      .goodDDValueController ??=
+                                                                  FormFieldController<
+                                                                      String>(
+                                                                _model.goodDDValue ??=
+                                                                    '',
+                                                              ),
+                                                              options: List<
+                                                                      String>.from(
+                                                                  goodDDGoodsRowList
+                                                                      .map((e) =>
+                                                                          e.id)
+                                                                      .toList()),
+                                                              optionLabels:
+                                                                  goodDDGoodsRowList
+                                                                      .map((e) =>
+                                                                          e.item)
+                                                                      .toList(),
+                                                              onChanged: (val) =>
+                                                                  setState(() =>
+                                                                      _model.goodDDValue =
+                                                                          val),
+                                                              width: 280.0,
+                                                              height: 40.0,
+                                                              searchHintTextStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium,
+                                                              hintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                'olu8pg20' /* Please select... */,
+                                                              ),
+                                                              searchHintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                '95hwmajy' /* Search for an item... */,
+                                                              ),
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_down_rounded,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 24.0,
+                                                              ),
+                                                              fillColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              elevation: 2.0,
+                                                              borderColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .warning,
+                                                              borderWidth: 2.0,
+                                                              borderRadius: 8.0,
+                                                              margin:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                              hidesUnderline:
+                                                                  true,
+                                                              isSearchable:
+                                                                  true,
+                                                              isMultiSelect:
+                                                                  false,
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'df1xiv22' /* Good description:   */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: 280.0,
+                                                  height: 50.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                  child: FutureBuilder<
+                                                      List<
+                                                          GoodDescriptionsRow>>(
+                                                    future: FFAppState()
+                                                        .goodDescription(
+                                                      uniqueQueryKey:
+                                                          valueOrDefault<
+                                                              String>(
+                                                        widget.createRecordKey,
+                                                        'createRecordDefKey',
+                                                      ),
+                                                      requestFn: () =>
+                                                          GoodDescriptionsTable()
+                                                              .queryRows(
+                                                        queryFn: (q) => q,
+                                                      ),
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              valueColor:
+                                                                  AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<GoodDescriptionsRow>
+                                                          goodDescriptionDDGoodDescriptionsRowList =
+                                                          snapshot.data!;
+                                                      return FlutterFlowDropDown<
+                                                          String>(
+                                                        controller: _model
+                                                                .goodDescriptionDDValueController ??=
+                                                            FormFieldController<
+                                                                String>(
+                                                          _model.goodDescriptionDDValue ??=
+                                                              '',
+                                                        ),
+                                                        options: List<
+                                                                String>.from(
+                                                            goodDescriptionDDGoodDescriptionsRowList
+                                                                .map(
+                                                                    (e) => e.id)
+                                                                .toList()),
+                                                        optionLabels:
+                                                            goodDescriptionDDGoodDescriptionsRowList
+                                                                .map((e) =>
+                                                                    e.opisBlaga)
+                                                                .toList(),
+                                                        onChanged: (val) =>
+                                                            setState(() => _model
+                                                                    .goodDescriptionDDValue =
+                                                                val),
+                                                        width: 280.0,
+                                                        height: 40.0,
+                                                        searchHintTextStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                        hintText:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                          '1dn5ocu9' /* Please select... */,
+                                                        ),
+                                                        searchHintText:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                          '3ymgthd8' /* Search for an item... */,
+                                                        ),
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_arrow_down_rounded,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        fillColor: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        elevation: 2.0,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .warning,
+                                                        borderWidth: 2.0,
+                                                        borderRadius: 8.0,
+                                                        margin:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        hidesUnderline: true,
+                                                        isSearchable: true,
+                                                        isMultiSelect: false,
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 24.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'aulaxeej' /* Barcodes:   */,
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Roboto',
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 8.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 280.0,
+                                                        height: 470.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: SizedBox(
+                                                          width:
+                                                              double.infinity,
+                                                          child: TextFormField(
+                                                            controller: _model
+                                                                .barcodesTFController,
+                                                            focusNode: _model
+                                                                .barcodesTFFocusNode,
+                                                            obscureText: false,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                'fc2wnpy4' /* Insert new value... */,
+                                                              ),
+                                                              labelStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                              hintStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium,
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .warning,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12.0),
+                                                              ),
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12.0),
+                                                              ),
+                                                              errorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12.0),
+                                                              ),
+                                                              focusedErrorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12.0),
+                                                              ),
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                            maxLines: 80,
+                                                            validator: _model
+                                                                .barcodesTFControllerValidator
+                                                                .asValidator(
+                                                                    context),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -6761,6 +7398,17 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                   color: Colors.transparent,
                                   child: SureQueryWidget(
                                     saveChangesP: () async {
+                                      setState(() {
+                                        _model.barcodesList =
+                                            _model.barcodesTFController
+                                                            .text !=
+                                                        ''
+                                                ? functions.splitBarcodes(_model
+                                                    .barcodesTFController.text)
+                                                : ['brez izbire']
+                                                    .toList()
+                                                    .cast<String>();
+                                      });
                                       await OrderLevelTable().insert({
                                         'inv_status': _model
                                                         .inventoryStatusDDValue !=
@@ -6931,11 +7579,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         ''
                                                 ? _model.loadType2DDValue
                                                 : 'brez izbire',
-                                        'document': _model.documentTFController
-                                                        .text !=
-                                                    ''
-                                            ? _model.documentTFController.text
-                                            : 'brez izbire',
+                                        'document': _model.uploadedFileUrl != ''
+                                            ? _model.uploadedFileUrl
+                                            : 'https://aaxptvfturwawmigxwgq.supabase.co/storage/v1/object/public/documents/noPdf.pdf',
                                         'internal_accounting': _model.internalAccTController
                                                         .text !=
                                                     ''
@@ -6970,6 +7616,18 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                         'eta_f': supaSerialize<PostgresTime>(
                                             PostgresTime(
                                                 _model.datePicked4 ?? getCurrentTimestamp)),
+                                        'good': _model.goodDDValue != null &&
+                                                _model.goodDDValue != ''
+                                            ? _model.goodDDValue
+                                            : '782b51e1-ef95-4a02-a52b-64173d396f0d',
+                                        'good_description': _model
+                                                        .goodDescriptionDDValue !=
+                                                    null &&
+                                                _model.goodDescriptionDDValue !=
+                                                    ''
+                                            ? _model.goodDescriptionDDValue
+                                            : '53a4144c-c413-4cb4-a951-b9c90ac94481',
+                                        'barcodes': _model.barcodesList,
                                       });
                                       await showDialog(
                                         context: context,
@@ -6992,7 +7650,14 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                   ),
                                 );
                               },
-                            ).then((value) => setState(() {}));
+                            ).then((value) =>
+                                safeSetState(() => _model.sureQueryOP = value));
+
+                            if (_model.sureQueryOP!) {
+                              Navigator.pop(context);
+                            }
+
+                            setState(() {});
                           },
                           text: FFLocalizations.of(context).getText(
                             'lbv650ew' /* Save new record */,
@@ -7007,7 +7672,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Roboto',
                                   color: Colors.white,
                                 ),
                             elevation: 3.0,

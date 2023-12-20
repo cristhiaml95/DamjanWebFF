@@ -91,7 +91,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: const AlignmentDirectional(0.00, -1.00),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -110,7 +110,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               topRight: Radius.circular(0.0),
                             ),
                           ),
-                          alignment: const AlignmentDirectional(-1.00, 0.00),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 0.0, 0.0),
@@ -121,14 +121,14 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .displaySmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Open Sans',
                                     color: FlutterFlowTheme.of(context).primary,
                                   ),
                             ),
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 32.0, 32.0),
@@ -304,7 +304,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Roboto',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
                                         ),
@@ -353,7 +353,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          fontFamily: 'Roboto',
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
                                         ),
@@ -480,7 +480,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.00, 0.00),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -490,15 +490,16 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                                   .getText(
                                                 '617idpiw' /* Photo */,
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                      ),
                                             ),
                                           ),
                                         ),
@@ -843,7 +844,9 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                         'job': _model.jobController.text,
                                         'password':
                                             _model.passwordController.text,
-                                        'image': _model.uploadedFileUrl,
+                                        'image': _model.uploadedFileUrl != ''
+                                            ? _model.uploadedFileUrl
+                                            : 'https://aaxptvfturwawmigxwgq.supabase.co/storage/v1/object/sign/assets/foto_perfil.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhc3NldHMvZm90b19wZXJmaWwucG5nIiwiaWF0IjoxNjk4MzQ1NjcyLCJleHAiOjIwMTM3MDU2NzJ9.FoYhK9NJfOryubxePyznBu9LmqED8L6QU__v3iQM2e4&t=2023-10-26T18%3A41%3A15.056Z',
                                       });
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -883,7 +886,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,
@@ -920,7 +923,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
+                                                fontFamily: 'Roboto',
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
@@ -956,8 +959,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                 Expanded(
                   flex: 6,
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Container(
                       width: double.infinity,
                       height: double.infinity,

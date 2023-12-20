@@ -14,6 +14,8 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   late LightModeModel lightModeModel;
   // Model for userDetail component.
   late UserDetailModel userDetailModel;
+  // State field(s) for Row widget.
+  ScrollController? rowController;
   // State field(s) for Switch widget.
   bool? switchValue;
   // Model for filters component.
@@ -33,6 +35,7 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   void initState(BuildContext context) {
     lightModeModel = createModel(context, () => LightModeModel());
     userDetailModel = createModel(context, () => UserDetailModel());
+    rowController = ScrollController();
     filtersModel = createModel(context, () => FiltersModel());
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
@@ -46,6 +49,7 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
     unfocusNode.dispose();
     lightModeModel.dispose();
     userDetailModel.dispose();
+    rowController?.dispose();
     filtersModel.dispose();
   }
 

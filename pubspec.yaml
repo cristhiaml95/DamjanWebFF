@@ -29,7 +29,9 @@ dependencies:
   app_links: 3.4.1
   auto_size_text: 3.0.0
   cached_network_image: 3.2.1
-  data_table_2: 2.3.12
+  data_table_2: ^2.5.9
+  device_info_plus: 9.1.0
+  device_info_plus_platform_interface: 7.0.0
   dropdown_button2: 2.3.9
   emoji_flag_converter: 1.1.0
   equatable: 2.0.5
@@ -49,7 +51,8 @@ dependencies:
   image_picker_for_web: 3.0.1
   image_picker_ios: 0.8.8+2
   image_picker_platform_interface: 2.9.1
-  intl: 0.18.1
+  internet_file: 1.2.0
+  intl: ^0.18.0
   json_path: 0.6.2
   mime_type: 1.0.0
   page_transition: 2.1.0
@@ -57,6 +60,7 @@ dependencies:
   path_provider_android: 2.0.25
   path_provider_foundation: 2.2.2
   path_provider_platform_interface: 2.0.6
+  pdfx: 2.3.0
   plugin_platform_interface: 2.1.6
   postgrest: 1.5.2
   provider: 6.0.5
@@ -74,6 +78,7 @@ dependencies:
   storage_client: 1.5.4
   supabase: 1.11.11
   supabase_flutter: 1.10.24
+  table_calendar: 3.0.9
   timeago: 3.2.2
   url_launcher: 6.1.10
   url_launcher_android: 6.0.27
@@ -95,6 +100,7 @@ dependencies:
   cupertino_icons: ^1.0.0
 
 dependency_overrides:
+  device_info_plus: 9.1.0
   rxdart: 0.27.7
 
 dev_dependencies:

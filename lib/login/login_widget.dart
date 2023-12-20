@@ -74,7 +74,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: const AlignmentDirectional(0.00, -1.00),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -93,7 +93,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               topRight: Radius.circular(0.0),
                             ),
                           ),
-                          alignment: const AlignmentDirectional(-1.00, 0.00),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 0.0, 0.0),
@@ -104,17 +104,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .displaySmall
                                   .override(
-                                    fontFamily: 'Outfit',
+                                    fontFamily: 'Open Sans',
                                     color: FlutterFlowTheme.of(context).primary,
                                   ),
                             ),
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.00, 0.00),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                32.0, 32.0, 32.0, 32.0),
+                            padding: const EdgeInsets.all(32.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +321,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,
@@ -367,7 +366,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily: 'Roboto',
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
                                         fontSize: 20.0,
@@ -391,8 +390,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 Expanded(
                   flex: 6,
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Container(
                       width: 100.0,
                       height: double.infinity,

@@ -77,7 +77,7 @@ class _UserDetailWidgetState extends State<UserDetailWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                alignment: const AlignmentDirectional(0.00, -1.00),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Container(
                   width: FFAppState().navOpen == true ? 50.0 : 40.0,
                   height: FFAppState().navOpen == true ? 50.0 : 40.0,
@@ -90,7 +90,7 @@ class _UserDetailWidgetState extends State<UserDetailWidget> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
+                    padding: const EdgeInsets.all(2.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: CachedNetworkImage(
@@ -124,7 +124,7 @@ class _UserDetailWidgetState extends State<UserDetailWidget> {
                         ),
                       if (FFAppState().navOpen == true)
                         Align(
-                          alignment: const AlignmentDirectional(1.00, 1.00),
+                          alignment: const AlignmentDirectional(1.0, 1.0),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 28.0, 0.0, 0.0),
@@ -147,7 +147,7 @@ class _UserDetailWidgetState extends State<UserDetailWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Roboto',
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       fontWeight: FontWeight.w600,

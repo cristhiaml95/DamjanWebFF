@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 
 
+export 'keep_alive_wrapper.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 export 'uploaded_file.dart';
@@ -312,7 +313,12 @@ dynamic getJsonField(
     return field.map((f) => f.value).toList();
   }
   final value = field.first.value;
-  return isForList && value is! Iterable ? [value] : value;
+  if (isForList) {
+    return value is! Iterable
+        ? [value]
+        : (value is List ? value : value.toList());
+  }
+  return value;
 }
 
 Rect? getWidgetBoundingBox(BuildContext context) {

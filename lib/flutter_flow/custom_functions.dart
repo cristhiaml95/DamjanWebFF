@@ -41,3 +41,8 @@ DateTime parsePostgresTimestamp(String timestamp) {
 List<String> splitBarcodes(String barcodesGroup) {
   return barcodesGroup.split(RegExp(r'\s|\n'));
 }
+
+DateTime parseSupabaseTimestamp(String timestampZ) {
+  DateTime dateTime = DateTime.parse(timestampZ);
+  return DateTime(dateTime.year, dateTime.month, dateTime.day);
+}

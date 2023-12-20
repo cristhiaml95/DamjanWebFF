@@ -8,6 +8,15 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
 
   int page = 0;
 
+  List<String> barcodesList = [];
+  void addToBarcodesList(String item) => barcodesList.add(item);
+  void removeFromBarcodesList(String item) => barcodesList.remove(item);
+  void removeAtIndexFromBarcodesList(int index) => barcodesList.removeAt(index);
+  void insertAtIndexInBarcodesList(int index, String item) =>
+      barcodesList.insert(index, item);
+  void updateBarcodesListAtIndex(int index, Function(String) updateFn) =>
+      barcodesList[index] = updateFn(barcodesList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   final formKey5 = GlobalKey<FormState>();
@@ -55,10 +64,11 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   FocusNode? internalAccTFocusNode;
   TextEditingController? internalAccTController;
   String? Function(BuildContext, String?)? internalAccTControllerValidator;
-  // State field(s) for documentTF widget.
-  FocusNode? documentTFFocusNode;
-  TextEditingController? documentTFController;
-  String? Function(BuildContext, String?)? documentTFControllerValidator;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for inventoryStatusDD widget.
   String? inventoryStatusDDValue;
   FormFieldController<String>? inventoryStatusDDValueController;
@@ -147,6 +157,18 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   FocusNode? loadRefDvhTFocusNode;
   TextEditingController? loadRefDvhTController;
   String? Function(BuildContext, String?)? loadRefDvhTControllerValidator;
+  // State field(s) for goodDD widget.
+  String? goodDDValue;
+  FormFieldController<String>? goodDDValueController;
+  // State field(s) for goodDescriptionDD widget.
+  String? goodDescriptionDDValue;
+  FormFieldController<String>? goodDescriptionDDValueController;
+  // State field(s) for barcodesTF widget.
+  FocusNode? barcodesTFFocusNode;
+  TextEditingController? barcodesTFController;
+  String? Function(BuildContext, String?)? barcodesTFControllerValidator;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  bool? sureQueryOP;
 
   /// Initialization and disposal methods.
 
@@ -163,9 +185,6 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
 
     internalAccTFocusNode?.dispose();
     internalAccTController?.dispose();
-
-    documentTFFocusNode?.dispose();
-    documentTFController?.dispose();
 
     sequenceFocusNode?.dispose();
     sequenceController?.dispose();
@@ -199,6 +218,9 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
 
     loadRefDvhTFocusNode?.dispose();
     loadRefDvhTController?.dispose();
+
+    barcodesTFFocusNode?.dispose();
+    barcodesTFController?.dispose();
   }
 
   /// Action blocks are added here.

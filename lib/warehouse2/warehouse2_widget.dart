@@ -97,7 +97,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
       future: FFAppState().tables(
         uniqueQueryKey: widget.warehouse2TablesKey,
         requestFn: () => VistaOrderLevelExtendedTable().queryRows(
-          queryFn: (q) => q,
+          queryFn: (q) => q.order('created_at'),
         ),
       ),
       builder: (context, snapshot) {
@@ -493,6 +493,69 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                       ),
                                     ),
                                   ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed('calendar');
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 200),
+                                        curve: Curves.easeInOut,
+                                        width: double.infinity,
+                                        height: 44.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          shape: BoxShape.rectangle,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 6.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Icon(
+                                                Icons.calendar_today_outlined,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                              if (FFAppState().navOpen == true)
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(12.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'abhnwadp' /* Calendar */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -581,47 +644,57 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    child: AnimatedContainer(
-                                      duration: const Duration(milliseconds: 200),
-                                      curve: Curves.easeInOut,
-                                      width: double.infinity,
-                                      height: 44.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        shape: BoxShape.rectangle,
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 6.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.wifi_tethering_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            if (FFAppState().navOpen == true)
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        12.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '5vf7vs5q' /* Explore */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
-                                                ),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed('explore');
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 200),
+                                        curve: Curves.easeInOut,
+                                        width: double.infinity,
+                                        height: 44.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          shape: BoxShape.rectangle,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 6.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Icon(
+                                                Icons.wifi_tethering_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
                                               ),
-                                          ],
+                                              if (FFAppState().navOpen == true)
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      '5vf7vs5q' /* Explore */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -629,14 +702,12 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                   Expanded(
                                     child: Container(
                                       width: 50.0,
-                                      height: 100.0,
                                       decoration: const BoxDecoration(),
                                     ),
                                   ),
                                   if (FFAppState().navOpen == true)
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: FlutterFlowLanguageSelector(
                                         width: 200.0,
                                         backgroundColor:
@@ -666,8 +737,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                     ),
                                   if (FFAppState().navOpen == true)
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.lightModeModel,
                                         updateCallback: () => setState(() {}),
@@ -753,7 +823,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                     ),
                   Expanded(
                     child: Align(
-                      alignment: const AlignmentDirectional(0.00, -1.00),
+                      alignment: const AlignmentDirectional(0.0, -1.0),
                       child: FutureBuilder<List<UsersRow>>(
                         future: FFAppState().users(
                           uniqueQueryKey: valueOrDefault<String>(
@@ -871,7 +941,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                     ),
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -892,7 +962,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Roboto',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryBackground,
@@ -931,10 +1001,9 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.00, -1.00),
+                                  alignment: const AlignmentDirectional(0.0, -1.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 16.0, 16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Container(
                                       width: double.infinity,
                                       constraints: const BoxConstraints(
@@ -965,7 +1034,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              fontFamily: 'Roboto',
                                               fontSize: 16.0,
                                             ),
                                       ),
@@ -1076,7 +1145,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                   ),
                                 Expanded(
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Builder(
                                       builder: (context) {
                                         final orderLevelVar =
@@ -1136,7 +1205,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1152,7 +1221,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1166,7 +1235,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1182,7 +1251,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1196,7 +1265,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1212,7 +1281,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1226,7 +1295,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1242,7 +1311,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 8.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1256,7 +1325,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1272,7 +1341,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 8.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1286,7 +1355,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1302,7 +1371,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1316,7 +1385,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1332,7 +1401,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                               ),
                                                       minFontSize: 6.0,
@@ -1346,7 +1415,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1362,7 +1431,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1376,7 +1445,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1392,7 +1461,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 12.0,
                                                               ),
                                                       minFontSize: 1.0,
@@ -1406,7 +1475,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1422,7 +1491,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                               ),
                                                       minFontSize: 6.0,
@@ -1436,7 +1505,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1452,7 +1521,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                               ),
                                                       minFontSize: 6.0,
@@ -1467,7 +1536,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1483,7 +1552,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                               ),
                                                       minFontSize: 6.0,
@@ -1498,7 +1567,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1514,7 +1583,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                               ),
                                                       minFontSize: 6.0,
@@ -1528,7 +1597,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1544,7 +1613,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .info,
@@ -1565,7 +1634,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1581,7 +1650,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .info,
@@ -1602,7 +1671,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: AutoSizeText(
                                                       FFLocalizations.of(
                                                               context)
@@ -1618,7 +1687,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .labelLarge
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .warning,
@@ -1641,7 +1710,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1654,7 +1723,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Readex Pro',
+                                                                    'Roboto',
                                                                 fontSize: 10.0,
                                                               ),
                                                           minFontSize: 6.0,
@@ -1663,7 +1732,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1681,7 +1750,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1699,13 +1768,13 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           dateTimeFormat(
                                                             'yMMMd',
                                                             functions.parsePostgresTimestamp(
                                                                 orderLevelVarItem
-                                                                    .etaDate!
+                                                                    .createdAt!
                                                                     .toString()),
                                                             locale: FFLocalizations
                                                                     .of(context)
@@ -1721,7 +1790,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           '${dateTimeFormat(
                                                             'Hm',
@@ -1752,7 +1821,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1770,7 +1839,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1790,7 +1859,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           dateTimeFormat(
                                                             'Hm',
@@ -1812,7 +1881,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1830,7 +1899,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1849,7 +1918,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           dateTimeFormat(
                                                             'Hm',
@@ -1871,7 +1940,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           valueOrDefault<
                                                               String>(
@@ -1889,7 +1958,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: AutoSizeText(
                                                           '${orderLevelVarItem.adminName} ${orderLevelVarItem.adminLastName}',
                                                           textAlign:
@@ -1904,7 +1973,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: Builder(
                                                           builder: (context) =>
                                                               InkWell(
@@ -1918,6 +1987,8 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              FFAppState()
+                                                                  .clearDetailsViewCache();
                                                               await showAlignedDialog(
                                                                 context:
                                                                     context,
@@ -1979,7 +2050,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: Builder(
                                                           builder: (context) =>
                                                               InkWell(
@@ -1993,6 +2064,8 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
+                                                              FFAppState()
+                                                                  .clearTablesCache();
                                                               await showAlignedDialog(
                                                                 context:
                                                                     context,
@@ -2050,7 +2123,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: Builder(
                                                           builder: (context) =>
                                                               InkWell(
@@ -2100,6 +2173,8 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                                           SureQueryWidget(
                                                                         saveChangesP:
                                                                             () async {
+                                                                          FFAppState()
+                                                                              .clearTablesCache();
                                                                           await OrderLevelTable()
                                                                               .delete(
                                                                             matchingRows: (rows) =>
@@ -2296,7 +2371,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Roboto',
                                                       color: Colors.white,
                                                     ),
                                             elevation: 3.0,

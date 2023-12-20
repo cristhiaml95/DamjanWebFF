@@ -18,7 +18,12 @@ import 'users_model.dart';
 export 'users_model.dart';
 
 class UsersWidget extends StatefulWidget {
-  const UsersWidget({super.key});
+  const UsersWidget({
+    super.key,
+    this.usersKey,
+  });
+
+  final String? usersKey;
 
   @override
   _UsersWidgetState createState() => _UsersWidgetState();
@@ -82,8 +87,14 @@ class _UsersWidgetState extends State<UsersWidget>
     context.watch<FFAppState>();
 
     return FutureBuilder<List<UsersRow>>(
-      future: UsersTable().queryRows(
-        queryFn: (q) => q,
+      future: FFAppState().users(
+        uniqueQueryKey: valueOrDefault<String>(
+          widget.usersKey,
+          'usersDefKey',
+        ),
+        requestFn: () => UsersTable().queryRows(
+          queryFn: (q) => q,
+        ),
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -478,10 +489,79 @@ class _UsersWidgetState extends State<UsersWidget>
                                       ),
                                     ),
                                   ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed('calendar');
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 200),
+                                        curve: Curves.easeInOut,
+                                        width: double.infinity,
+                                        height: 44.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          shape: BoxShape.rectangle,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 6.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Icon(
+                                                Icons.calendar_today_outlined,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                              if (FFAppState().navOpen == true)
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(12.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'cujche2h' /* Calendar */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      if (FFAppState().navOpen == true)
+                                        Container(
+                                          width: 24.0,
+                                          height: 14.0,
+                                          decoration: const BoxDecoration(),
+                                        ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 8.0, 0.0),
@@ -563,47 +643,57 @@ class _UsersWidgetState extends State<UsersWidget>
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    child: AnimatedContainer(
-                                      duration: const Duration(milliseconds: 200),
-                                      curve: Curves.easeInOut,
-                                      width: double.infinity,
-                                      height: 44.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        shape: BoxShape.rectangle,
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 6.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.wifi_tethering_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            if (FFAppState().navOpen == true)
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        12.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'xsvkgu9p' /* Explore */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
-                                                ),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed('explore');
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 200),
+                                        curve: Curves.easeInOut,
+                                        width: double.infinity,
+                                        height: 44.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          shape: BoxShape.rectangle,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 6.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Icon(
+                                                Icons.wifi_tethering_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
                                               ),
-                                          ],
+                                              if (FFAppState().navOpen == true)
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'xsvkgu9p' /* Explore */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -611,14 +701,12 @@ class _UsersWidgetState extends State<UsersWidget>
                                   Expanded(
                                     child: Container(
                                       width: 50.0,
-                                      height: 100.0,
                                       decoration: const BoxDecoration(),
                                     ),
                                   ),
                                   if (FFAppState().navOpen == true)
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: FlutterFlowLanguageSelector(
                                         width: 200.0,
                                         backgroundColor:
@@ -648,8 +736,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                     ),
                                   if (FFAppState().navOpen == true)
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.lightModeModel,
                                         updateCallback: () => setState(() {}),
@@ -735,7 +822,7 @@ class _UsersWidgetState extends State<UsersWidget>
                     ),
                   Expanded(
                     child: Align(
-                      alignment: const AlignmentDirectional(0.00, -1.00),
+                      alignment: const AlignmentDirectional(0.0, -1.0),
                       child: Container(
                         width: double.infinity,
                         constraints: const BoxConstraints(
@@ -818,7 +905,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                           8.0),
                                                 ),
                                                 alignment: const AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -832,8 +919,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBackground,
@@ -916,15 +1002,13 @@ class _UsersWidgetState extends State<UsersWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.white,
-                                                          ),
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        color: Colors.white,
+                                                      ),
                                                   elevation: 3.0,
                                                   borderSide: const BorderSide(
                                                     color: Colors.transparent,
@@ -956,10 +1040,9 @@ class _UsersWidgetState extends State<UsersWidget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.00, -1.00),
+                              alignment: const AlignmentDirectional(0.0, -1.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.0, 16.0, 16.0),
+                                padding: const EdgeInsets.all(16.0),
                                 child: Container(
                                   width: double.infinity,
                                   constraints: const BoxConstraints(
@@ -989,7 +1072,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1000,8 +1083,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1014,7 +1096,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1025,8 +1107,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1039,7 +1120,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1050,8 +1131,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1064,7 +1144,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1075,8 +1155,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1089,7 +1168,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1100,8 +1179,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1114,7 +1192,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1125,8 +1203,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1139,7 +1216,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1150,8 +1227,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1164,7 +1240,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1175,8 +1251,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1189,7 +1264,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                             softWrap: true,
                                             child: Align(
                                               alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
@@ -1200,8 +1275,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                 minFontSize: 6.0,
@@ -1217,7 +1291,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     usersVarItem.id,
                                                     textAlign: TextAlign.center,
@@ -1225,8 +1299,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                     minFontSize: 6.0,
@@ -1235,7 +1308,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     dateTimeFormat(
                                                       'relative',
@@ -1259,7 +1332,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     '${usersVarItem.name} ${usersVarItem.lastName}',
                                                     textAlign: TextAlign.center,
@@ -1267,8 +1340,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                     minFontSize: 6.0,
@@ -1277,7 +1349,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     usersVarItem.email,
                                                     textAlign: TextAlign.center,
@@ -1285,8 +1357,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                     minFontSize: 6.0,
@@ -1295,7 +1366,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     usersVarItem.userType,
                                                     textAlign: TextAlign.center,
@@ -1303,8 +1374,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 10.0,
                                                         ),
                                                     minFontSize: 6.0,
@@ -1313,7 +1383,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     usersVarItem.status,
                                                     textAlign: TextAlign.center,
@@ -1321,8 +1391,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                     minFontSize: 6.0,
@@ -1331,7 +1400,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     usersVarItem.job,
                                                     textAlign: TextAlign.center,
@@ -1344,7 +1413,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: AutoSizeText(
                                                     usersVarItem.password!,
                                                     textAlign: TextAlign.center,
@@ -1352,8 +1421,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          fontFamily: 'Roboto',
                                                           fontSize: 12.0,
                                                         ),
                                                     minFontSize: 6.0,
@@ -1362,7 +1430,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                 Align(
                                                   alignment:
                                                       const AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: ClipRRect(
                                                     borderRadius:
                                                         BorderRadius.circular(

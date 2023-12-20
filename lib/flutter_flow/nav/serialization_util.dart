@@ -219,8 +219,6 @@ dynamic deserializeParam<T>(
             return DetailsRow(data);
           case ClientsRow:
             return ClientsRow(data);
-          case TestRow:
-            return TestRow(data);
           case BarcodetestRow:
             return BarcodetestRow(data);
           case VistaOrderLevelExtendedRow:

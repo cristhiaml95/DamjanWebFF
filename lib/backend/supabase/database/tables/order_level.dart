@@ -149,4 +149,17 @@ class OrderLevelRow extends SupabaseDataRow {
   String get otherManipulation => getField<String>('other_manipulation')!;
   set otherManipulation(String value) =>
       setField<String>('other_manipulation', value);
+
+  String get good => getField<String>('good')!;
+  set good(String value) => setField<String>('good', value);
+
+  String get goodDescription => getField<String>('good_description')!;
+  set goodDescription(String value) =>
+      setField<String>('good_description', value);
+
+  List<String> get barcodes => getListField<String>('barcodes');
+  set barcodes(List<String> value) => setListField<String>('barcodes', value);
+
+  String get packaging => getField<String>('packaging')!;
+  set packaging(String value) => setField<String>('packaging', value);
 }

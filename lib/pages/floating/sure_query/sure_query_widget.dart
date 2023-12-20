@@ -47,7 +47,7 @@ class _SureQueryWidgetState extends State<SureQueryWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.00, 0.00),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Material(
         color: Colors.transparent,
         elevation: 4.0,
@@ -85,7 +85,7 @@ class _SureQueryWidgetState extends State<SureQueryWidget> {
                       '2b7kj1vi' /* Are you sure? */,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Roboto',
                           fontSize: 24.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -119,7 +119,7 @@ class _SureQueryWidgetState extends State<SureQueryWidget> {
                                 FlutterFlowTheme.of(context).secondary,
                           ),
                         );
-                        Navigator.pop(context);
+                        Navigator.pop(context, true);
                       },
                       text: FFLocalizations.of(context).getText(
                         'd0fh7lyk' /* Yes */,
@@ -133,7 +133,7 @@ class _SureQueryWidgetState extends State<SureQueryWidget> {
                         color: FlutterFlowTheme.of(context).success,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Roboto',
                                   color: Colors.white,
                                 ),
                         elevation: 3.0,
@@ -146,7 +146,7 @@ class _SureQueryWidgetState extends State<SureQueryWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        Navigator.pop(context);
+                        Navigator.pop(context, false);
                       },
                       text: FFLocalizations.of(context).getText(
                         'wb1becmn' /* No */,
@@ -160,7 +160,7 @@ class _SureQueryWidgetState extends State<SureQueryWidget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Roboto',
                                   color: Colors.white,
                                 ),
                         elevation: 3.0,

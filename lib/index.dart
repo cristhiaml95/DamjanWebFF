@@ -5,3 +5,5 @@ export '/order_warehouse/order_warehouse_widget.dart' show OrderWarehouseWidget;
 export '/users/users_widget.dart' show UsersWidget;
 export '/warehouse2/warehouse2_widget.dart' show Warehouse2Widget;
 export '/order_overview/order_overview_widget.dart' show OrderOverviewWidget;
+export '/explore/explore_widget.dart' show ExploreWidget;
+export '/calendar/calendar_widget.dart' show CalendarWidget;
