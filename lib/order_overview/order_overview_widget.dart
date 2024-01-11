@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,13 +8,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/filters/filters_widget.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
-import '/pages/components/user_detail/user_detail_widget.dart';
+import '/pages/components/user_details/user_details_widget.dart';
 import '/pages/floating/create_record/create_record_widget.dart';
 import '/pages/floating/details/details_widget.dart';
+import '/pages/floating/documents/documents_widget.dart';
 import '/pages/floating/forms/forms_widget.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -92,14 +93,14 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
 
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<VistaOrderLevelExtendedRow>>(
-      future: FFAppState().tables(
+    return FutureBuilder<List<UsersRow>>(
+      future: FFAppState().users2(
         uniqueQueryKey: valueOrDefault<String>(
           widget.orderOverviewTableKey,
-          'orderOverviewTableDefKey',
+          'orderOverviewUsersDefKey',
         ),
-        requestFn: () => VistaOrderLevelExtendedTable().queryRows(
-          queryFn: (q) => q.order('created_at'),
+        requestFn: () => UsersTable().queryRows(
+          queryFn: (q) => q,
         ),
       ),
       builder: (context, snapshot) {
@@ -120,8 +121,7 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
             ),
           );
         }
-        List<VistaOrderLevelExtendedRow>
-            orderOverviewVistaOrderLevelExtendedRowList = snapshot.data!;
+        List<UsersRow> orderOverviewUsersRowList = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -755,9 +755,14 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             wrapWithModel(
-                              model: _model.userDetailModel,
+                              model: _model.userDetailsModel,
                               updateCallback: () => setState(() {}),
-                              child: const UserDetailWidget(),
+                              child: UserDetailsWidget(
+                                userDetail: orderOverviewUsersRowList
+                                    .where((e) => e.id == currentUserUid)
+                                    .toList()
+                                    .first,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -826,14 +831,15 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                   Expanded(
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, -1.0),
-                      child: FutureBuilder<List<UsersRow>>(
+                      child: FutureBuilder<List<VistaOrderLevelExtendedRow>>(
                         future: FFAppState().users(
                           uniqueQueryKey: valueOrDefault<String>(
                             widget.orderOverviewTableKey,
                             'orderOverviewUsersDefKey',
                           ),
-                          requestFn: () => UsersTable().queryRows(
-                            queryFn: (q) => q,
+                          requestFn: () =>
+                              VistaOrderLevelExtendedTable().queryRows(
+                            queryFn: (q) => q.order('created_at'),
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -851,7 +857,9 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                               ),
                             );
                           }
-                          List<UsersRow> maxWidthUsersRowList = snapshot.data!;
+                          List<VistaOrderLevelExtendedRow>
+                              maxWidthVistaOrderLevelExtendedRowList =
+                              snapshot.data!;
                           return Container(
                             width: double.infinity,
                             constraints: const BoxConstraints(
@@ -1107,6 +1115,12 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                             _model.filtersModel
                                                 .assistant5DDFValueController
                                                 ?.reset();
+                                            _model.filtersModel
+                                                .barcodesDDFValueController
+                                                ?.reset();
+                                            _model.filtersModel
+                                                .containerDDFValueController
+                                                ?.reset();
                                           });
                                         },
                                         child: Icon(
@@ -1129,10 +1143,10 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                         widget.orderOverviewTableKey,
                                         'orderOverviewCustomDefKey',
                                       ),
-                                      parameter2: maxWidthUsersRowList
+                                      parameter2: orderOverviewUsersRowList
                                           .map((e) => e.id)
                                           .toList(),
-                                      parameter3: maxWidthUsersRowList
+                                      parameter3: orderOverviewUsersRowList
                                           .map((e) => e.lastName)
                                           .toList(),
                                       parameter4: valueOrDefault<String>(
@@ -1143,6 +1157,8 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                         widget.orderOverviewTableKey,
                                         'orderOverviewCustomsDefKey',
                                       ),
+                                      orderLevelView:
+                                          maxWidthVistaOrderLevelExtendedRowList,
                                     ),
                                   ),
                                 Expanded(
@@ -1151,7 +1167,7 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                     child: Builder(
                                       builder: (context) {
                                         final orderLevelVar =
-                                            orderOverviewVistaOrderLevelExtendedRowList
+                                            maxWidthVistaOrderLevelExtendedRowList
                                                 .where((e) =>
                                                     valueOrDefault<bool>(
                                                       (_model.filtersModel.clientDDFValue != null && _model.filtersModel.clientDDFValue != '' ? (e.client == _model.filtersModel.clientDDFValue) : true) &&
@@ -1193,7 +1209,9 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                           (_model.filtersModel.assistant3DDFValue != null && _model.filtersModel.assistant3DDFValue != '' ? (e.assistant3 == _model.filtersModel.assistant3DDFValue) : true) &&
                                                           (_model.filtersModel.assistant5DDFValue != null && _model.filtersModel.assistant5DDFValue != '' ? (e.assistant5 == _model.filtersModel.assistant5DDFValue) : true) &&
                                                           (_model.filtersModel.assistant4DDFValue != null && _model.filtersModel.assistant4DDFValue != '' ? (e.assistant4 == _model.filtersModel.assistant4DDFValue) : true) &&
-                                                          (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true),
+                                                          (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true) &&
+                                                          (_model.filtersModel.barcodesDDFValue != null && _model.filtersModel.barcodesDDFValue != '' ? (e.id == _model.filtersModel.barcodesDDFValue) : true) &&
+                                                          (_model.filtersModel.containerDDFValue != null && _model.filtersModel.containerDDFValue != '' ? (e.id == _model.filtersModel.containerDDFValue) : true),
                                                       true,
                                                     ))
                                                 .toList();
@@ -1502,7 +1520,7 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        '4ud2i6wv' /* Document */,
+                                                        '4ud2i6wv' /* Documents */,
                                                       ),
                                                       textAlign:
                                                           TextAlign.center,
@@ -1520,7 +1538,6 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                     ),
                                                   ),
                                                 ),
-                                                fixedWidth: 50.0,
                                               ),
                                               DataColumn2(
                                                 label: DefaultTextStyle.merge(
@@ -1551,7 +1568,6 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                     ),
                                                   ),
                                                 ),
-                                                fixedWidth: 50.0,
                                               ),
                                               DataColumn2(
                                                 label: DefaultTextStyle.merge(
@@ -1701,268 +1717,585 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .orderNo,
-                                                            'brez izbire',
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                fontSize: 10.0,
-                                                              ),
-                                                          minFontSize: 6.0,
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .clientName,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .flow,
-                                                            'brez izbire',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          dateTimeFormat(
-                                                            'yMMMd',
-                                                            functions.parsePostgresTimestamp(
-                                                                orderLevelVarItem
-                                                                    .createdAt!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: AutoSizeText(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .orderNo,
+                                                              'brez izbire',
+                                                            ),
+                                                            style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .languageCode,
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontSize:
+                                                                      10.0,
+                                                                ),
+                                                            minFontSize: 6.0,
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: Text(
-                                                          '${dateTimeFormat(
-                                                            'Hm',
-                                                            functions.parsePostgresTimestamp(
-                                                                orderLevelVarItem
-                                                                    .etaI!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .clientName,
+                                                              'brez izbire',
+                                                            ),
+                                                            style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .languageCode,
-                                                          )} - ${dateTimeFormat(
-                                                            'Hm',
-                                                            functions.parsePostgresTimestamp(
-                                                                orderLevelVarItem
-                                                                    .etaF!
-                                                                    .toString()),
-                                                            locale: FFLocalizations
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .flow,
+                                                              'brez izbire',
+                                                            ),
+                                                            style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .languageCode,
-                                                          )}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .orderStatus,
-                                                            'brez izbire',
+                                                                .bodyMedium,
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: Text(
-                                                          '${orderLevelVarItem.adminName} ${orderLevelVarItem.adminLastName}',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .warehouseName,
-                                                            'brez izbire',
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            dateTimeFormat(
+                                                              'yMMMd',
+                                                              functions.parsePostgresTimestamp(
+                                                                  orderLevelVarItem
+                                                                      .createdAt!
+                                                                      .toString()),
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .quantity
-                                                                ?.toString(),
-                                                            '-1',
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            '${dateTimeFormat(
+                                                              'Hm',
+                                                              functions.parsePostgresTimestamp(
+                                                                  orderLevelVarItem
+                                                                      .etaI!
+                                                                      .toString()),
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            )} - ${dateTimeFormat(
+                                                              'Hm',
+                                                              functions.parsePostgresTimestamp(
+                                                                  orderLevelVarItem
+                                                                      .etaF!
+                                                                      .toString()),
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            )}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .customName,
-                                                            'brez izbire',
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          maxLines: 2,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                fontSize: 12.0,
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .orderStatus,
+                                                              'brez izbire',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            '${orderLevelVarItem.adminName} ${orderLevelVarItem.adminLastName}',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .warehouseName,
+                                                              'brez izbire',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .quantity
+                                                                  ?.toString(),
+                                                              '-1',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: AutoSizeText(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .customName,
+                                                              'brez izbire',
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontSize:
+                                                                      12.0,
+                                                                ),
+                                                            minFontSize: 6.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
+                                                          ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    await showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (dialogContext) {
+                                                                        return Dialog(
+                                                                          insetPadding:
+                                                                              EdgeInsets.zero,
+                                                                          backgroundColor:
+                                                                              Colors.transparent,
+                                                                          alignment:
+                                                                              const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                          child:
+                                                                              GestureDetector(
+                                                                            onTap: () => _model.unfocusNode.canRequestFocus
+                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                                : FocusScope.of(context).unfocus(),
+                                                                            child:
+                                                                                DocumentsWidget(
+                                                                              orderId: orderLevelVarItem.id!,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        setState(
+                                                                            () {}));
+                                                                  },
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .picture_as_pdf_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 24.0,
+                                                                  ),
+                                                                ),
                                                               ),
-                                                          minFontSize: 6.0,
+                                                              Text(
+                                                                orderLevelVarItem
+                                                                    .documents
+                                                                    .length
+                                                                    .toString(),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium,
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .document,
-                                                            'brez izbire',
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          maxLines: 1,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                fontSize: 12.0,
-                                                              ),
-                                                          minFontSize: 6.0,
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: AutoSizeText(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .internalAccounting,
+                                                              'brez izbire',
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            maxLines: 1,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontSize:
+                                                                      12.0,
+                                                                ),
+                                                            minFontSize: 6.0,
+                                                          ),
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .internalAccounting,
-                                                            'brez izbire',
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: orderLevelVarIndex %
+                                                                        2 ==
+                                                                    0
+                                                                ? const Color(
+                                                                    0x00000000)
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent4,
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          maxLines: 1,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                fontSize: 12.0,
-                                                              ),
-                                                          minFontSize: 6.0,
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            orderLevelVarItem
-                                                                .internalRefCustom
-                                                                ?.toString(),
-                                                            'brez izbire',
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: AutoSizeText(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              orderLevelVarItem
+                                                                  .internalRefCustom
+                                                                  ?.toString(),
+                                                              'brez izbire',
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            maxLines: 1,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontSize:
+                                                                      12.0,
+                                                                ),
+                                                            minFontSize: 6.0,
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          maxLines: 1,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                fontSize: 12.0,
-                                                              ),
-                                                          minFontSize: 6.0,
                                                         ),
                                                       ),
                                                       Align(
@@ -1984,29 +2317,23 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                             onTap: () async {
                                                               FFAppState()
                                                                   .clearDetailsViewCache();
-                                                              await showAlignedDialog(
+                                                              await showDialog(
                                                                 context:
                                                                     context,
-                                                                isGlobal: true,
-                                                                avoidOverflow:
-                                                                    false,
-                                                                targetAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                followerAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
                                                                 builder:
                                                                     (dialogContext) {
-                                                                  return Material(
-                                                                    color: Colors
-                                                                        .transparent,
+                                                                  return Dialog(
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
                                                                     child:
                                                                         GestureDetector(
                                                                       onTap: () => _model
@@ -2061,29 +2388,23 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                             onTap: () async {
                                                               FFAppState()
                                                                   .clearTablesCache();
-                                                              await showAlignedDialog(
+                                                              await showDialog(
                                                                 context:
                                                                     context,
-                                                                isGlobal: true,
-                                                                avoidOverflow:
-                                                                    false,
-                                                                targetAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                followerAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
                                                                 builder:
                                                                     (dialogContext) {
-                                                                  return Material(
-                                                                    color: Colors
-                                                                        .transparent,
+                                                                  return Dialog(
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
                                                                     child:
                                                                         GestureDetector(
                                                                       onTap: () => _model
@@ -2132,29 +2453,23 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              await showAlignedDialog(
+                                                              await showDialog(
                                                                 context:
                                                                     context,
-                                                                isGlobal: true,
-                                                                avoidOverflow:
-                                                                    false,
-                                                                targetAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                followerAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
                                                                 builder:
                                                                     (dialogContext) {
-                                                                  return Material(
-                                                                    color: Colors
-                                                                        .transparent,
+                                                                  return Dialog(
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
                                                                     child:
                                                                         GestureDetector(
                                                                       onTap: () => _model
@@ -2237,7 +2552,7 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                                   BorderRadius.circular(0.0),
                                             ),
                                             dividerThickness: 2.0,
-                                            columnSpacing: 2.0,
+                                            columnSpacing: 0.0,
                                             showBottomBorder: true,
                                             minWidth: 49.0,
                                           ),
@@ -2316,23 +2631,19 @@ class _OrderOverviewWidgetState extends State<OrderOverviewWidget>
                                       Builder(
                                         builder: (context) => FFButtonWidget(
                                           onPressed: () async {
-                                            await showAlignedDialog(
+                                            await showDialog(
                                               context: context,
-                                              isGlobal: true,
-                                              avoidOverflow: false,
-                                              targetAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              followerAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
                                               builder: (dialogContext) {
-                                                return Material(
-                                                  color: Colors.transparent,
+                                                return Dialog(
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
                                                   child: GestureDetector(
                                                     onTap: () => _model
                                                             .unfocusNode

@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'edit_clients_model.dart';
@@ -1033,17 +1032,14 @@ class _EditClientsWidgetState extends State<EditClientsWidget> {
                       Builder(
                         builder: (context) => FFButtonWidget(
                           onPressed: () async {
-                            await showAlignedDialog(
+                            await showDialog(
                               context: context,
-                              isGlobal: true,
-                              avoidOverflow: false,
-                              targetAnchor: const AlignmentDirectional(0.0, 0.0)
-                                  .resolve(Directionality.of(context)),
-                              followerAnchor: const AlignmentDirectional(0.0, 0.0)
-                                  .resolve(Directionality.of(context)),
                               builder: (dialogContext) {
-                                return Material(
-                                  color: Colors.transparent,
+                                return Dialog(
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
                                   child: SureQueryWidget(
                                     saveChangesP: () async {
                                       await ClientsTable().update(

@@ -40,6 +40,9 @@ class DetailsViewRow extends SupabaseDataRow {
   String? get barcode => getField<String>('barcode');
   set barcode(String? value) => setField<String>('barcode', value);
 
+  bool? get check => getField<bool>('check');
+  set check(bool? value) => setField<bool>('check', value);
+
   String? get item => getField<String>('item');
   set item(String? value) => setField<String>('item', value);
 

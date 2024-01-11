@@ -16,6 +16,7 @@ class FiltersWidget extends StatefulWidget {
     this.parameter3,
     this.parameter4,
     this.parameter5,
+    required this.orderLevelView,
   });
 
   final String? parameter1;
@@ -23,6 +24,7 @@ class FiltersWidget extends StatefulWidget {
   final List<String>? parameter3;
   final String? parameter4;
   final String? parameter5;
+  final List<VistaOrderLevelExtendedRow>? orderLevelView;
 
   @override
   _FiltersWidgetState createState() => _FiltersWidgetState();
@@ -104,7 +106,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                             .toList(),
                         onChanged: (val) =>
                             setState(() => _model.clientDDFValue = val),
-                        width: 300.0,
+                        width: 200.0,
                         height: 50.0,
                         searchHintTextStyle:
                             FlutterFlowTheme.of(context).labelMedium,
@@ -154,7 +156,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     ],
                     onChanged: (val) =>
                         setState(() => _model.flowDDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -199,7 +201,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     ],
                     onChanged: (val) =>
                         setState(() => _model.orderStatusDDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -234,7 +236,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.adminDDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -297,7 +299,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                             .toList(),
                         onChanged: (val) =>
                             setState(() => _model.warehouseDDFValue = val),
-                        width: 300.0,
+                        width: 200.0,
                         height: 50.0,
                         textStyle: FlutterFlowTheme.of(context).bodyMedium,
                         hintText: FFLocalizations.of(context).getText(
@@ -361,7 +363,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                             .toList(),
                         onChanged: (val) =>
                             setState(() => _model.customDDFValue = val),
-                        width: 300.0,
+                        width: 200.0,
                         height: 50.0,
                         textStyle: FlutterFlowTheme.of(context).bodyMedium,
                         hintText: FFLocalizations.of(context).getText(
@@ -383,6 +385,79 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                         hidesUnderline: true,
                         isOverButton: true,
                         isSearchable: false,
+                        isMultiSelect: false,
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+                  child: FutureBuilder<List<DetailsViewRow>>(
+                    future: FFAppState().detailsView(
+                      uniqueQueryKey: widget.parameter5,
+                      requestFn: () => DetailsViewTable().queryRows(
+                        queryFn: (q) => q,
+                      ),
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<DetailsViewRow> barcodesDDFDetailsViewRowList =
+                          snapshot.data!;
+                      return FlutterFlowDropDown<String>(
+                        controller: _model.barcodesDDFValueController ??=
+                            FormFieldController<String>(
+                          _model.barcodesDDFValue ??= '',
+                        ),
+                        options: List<String>.from(barcodesDDFDetailsViewRowList
+                            .map((e) => e.orderId)
+                            .withoutNulls
+                            .toList()),
+                        optionLabels: barcodesDDFDetailsViewRowList
+                            .map((e) => e.barcode)
+                            .withoutNulls
+                            .toList(),
+                        onChanged: (val) =>
+                            setState(() => _model.barcodesDDFValue = val),
+                        width: 200.0,
+                        height: 50.0,
+                        searchHintTextStyle:
+                            FlutterFlowTheme.of(context).labelMedium,
+                        textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                        hintText: FFLocalizations.of(context).getText(
+                          'k1w7p134' /* Select barcode... */,
+                        ),
+                        searchHintText: FFLocalizations.of(context).getText(
+                          '75bemxhw' /* Search for an item... */,
+                        ),
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 2.0,
+                        borderColor: FlutterFlowTheme.of(context).alternate,
+                        borderWidth: 2.0,
+                        borderRadius: 8.0,
+                        margin: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 4.0, 16.0, 4.0),
+                        hidesUnderline: true,
+                        isOverButton: true,
+                        isSearchable: true,
                         isMultiSelect: false,
                       );
                     },
@@ -411,7 +486,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.responsibleDDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -446,7 +521,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.assistant1DDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -481,7 +556,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.assistant2DDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -516,7 +591,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.assistant3DDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -551,7 +626,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.assistant4DDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -586,7 +661,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.assistant5DDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -621,7 +696,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     optionLabels: widget.parameter3!,
                     onChanged: (val) =>
                         setState(() => _model.assistant6DDFValue = val),
-                    width: 300.0,
+                    width: 200.0,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
@@ -642,6 +717,52 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     hidesUnderline: true,
                     isOverButton: false,
                     isSearchable: false,
+                    isMultiSelect: false,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+                  child: FlutterFlowDropDown<String>(
+                    controller: _model.containerDDFValueController ??=
+                        FormFieldController<String>(
+                      _model.containerDDFValue ??= '',
+                    ),
+                    options: List<String>.from(widget.orderLevelView!
+                        .map((e) => e.id)
+                        .withoutNulls
+                        .toList()),
+                    optionLabels: widget.orderLevelView!
+                        .map((e) => e.containerNo)
+                        .withoutNulls
+                        .toList(),
+                    onChanged: (val) =>
+                        setState(() => _model.containerDDFValue = val),
+                    width: 200.0,
+                    height: 50.0,
+                    searchHintTextStyle:
+                        FlutterFlowTheme.of(context).labelMedium,
+                    textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                    hintText: FFLocalizations.of(context).getText(
+                      'tf7wjto0' /* Select container... */,
+                    ),
+                    searchHintText: FFLocalizations.of(context).getText(
+                      'wwh1a5q5' /* Search for an item... */,
+                    ),
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 24.0,
+                    ),
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 2.0,
+                    borderColor: FlutterFlowTheme.of(context).alternate,
+                    borderWidth: 2.0,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                    hidesUnderline: true,
+                    isOverButton: false,
+                    isSearchable: true,
                     isMultiSelect: false,
                   ),
                 ),

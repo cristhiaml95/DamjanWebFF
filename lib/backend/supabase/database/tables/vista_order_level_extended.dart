@@ -162,6 +162,19 @@ class VistaOrderLevelExtendedRow extends SupabaseDataRow {
   String? get packaging => getField<String>('packaging');
   set packaging(String? value) => setField<String>('packaging', value);
 
+  List<String> get documents => getListField<String>('documents');
+  set documents(List<String>? value) =>
+      setListField<String>('documents', value);
+
+  bool? get acepted => getField<bool>('acepted');
+  set acepted(bool? value) => setField<bool>('acepted', value);
+
+  bool? get checked => getField<bool>('checked');
+  set checked(bool? value) => setField<bool>('checked', value);
+
+  List<String> get barcodes => getListField<String>('barcodes');
+  set barcodes(List<String>? value) => setListField<String>('barcodes', value);
+
   String? get adminName => getField<String>('admin_name');
   set adminName(String? value) => setField<String>('admin_name', value);
 
@@ -259,4 +272,11 @@ class VistaOrderLevelExtendedRow extends SupabaseDataRow {
 
   String? get packagingName => getField<String>('packaging_name');
   set packagingName(String? value) => setField<String>('packaging_name', value);
+
+  int? get details => getField<int>('details');
+  set details(int? value) => setField<int>('details', value);
+
+  List<String> get barcodeList => getListField<String>('barcode_list');
+  set barcodeList(List<String>? value) =>
+      setListField<String>('barcode_list', value);
 }

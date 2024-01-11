@@ -8,6 +8,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
@@ -39,10 +40,33 @@ DateTime parsePostgresTimestamp(String timestamp) {
 }
 
 List<String> splitBarcodes(String barcodesGroup) {
-  return barcodesGroup.split(RegExp(r'\s|\n'));
+  // Primero se reemplaza 'brez izbire' con un marcador único
+  var tempString = barcodesGroup.trim().replaceAll('brez izbire', '\u{FFFF}');
+
+  // Se dividen los elementos por espacios y saltos de línea
+  var splitList = tempString.split(RegExp(r'\s+|\n+'));
+
+  // Se reemplaza de nuevo el marcador único con 'brez izbire'
+  return splitList.map((s) => s.replaceAll('\u{FFFF}', 'brez izbire')).toList();
 }
 
 DateTime parseSupabaseTimestamp(String timestampZ) {
   DateTime dateTime = DateTime.parse(timestampZ);
   return DateTime(dateTime.year, dateTime.month, dateTime.day);
+}
+
+int sumList(List<int> integerList) {
+  int suma = 0;
+  for (int numero in integerList) {
+    suma += numero;
+  }
+  return suma;
+}
+
+String joinStrings(List<String> strings) {
+  return strings.join(' ');
+}
+
+String formatDateTimeForPostgres(DateTime dateTime) {
+  return dateTime.toUtc().toIso8601String();
 }

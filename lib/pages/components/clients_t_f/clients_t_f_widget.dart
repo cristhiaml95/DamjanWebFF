@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
 import '/pages/floating/warehouse_details/warehouse_details_widget.dart';
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'clients_t_f_model.dart';
@@ -122,17 +121,14 @@ class _ClientsTFWidgetState extends State<ClientsTFWidget> {
                     onTap: () async {
                       FFAppState().clearWarehousePositionsCache();
                       FFAppState().clearLoadingGatesCache();
-                      await showAlignedDialog(
+                      await showDialog(
                         context: context,
-                        isGlobal: true,
-                        avoidOverflow: false,
-                        targetAnchor: const AlignmentDirectional(0.0, 0.0)
-                            .resolve(Directionality.of(context)),
-                        followerAnchor: const AlignmentDirectional(0.0, 0.0)
-                            .resolve(Directionality.of(context)),
                         builder: (dialogContext) {
-                          return Material(
-                            color: Colors.transparent,
+                          return Dialog(
+                            insetPadding: EdgeInsets.zero,
+                            backgroundColor: Colors.transparent,
+                            alignment: const AlignmentDirectional(0.0, 0.0)
+                                .resolve(Directionality.of(context)),
                             child: WarehouseDetailsWidget(
                               warehouseId: widget.rowId!,
                             ),
@@ -213,17 +209,14 @@ class _ClientsTFWidgetState extends State<ClientsTFWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    await showAlignedDialog(
+                    await showDialog(
                       context: context,
-                      isGlobal: true,
-                      avoidOverflow: false,
-                      targetAnchor: const AlignmentDirectional(0.0, 0.0)
-                          .resolve(Directionality.of(context)),
-                      followerAnchor: const AlignmentDirectional(0.0, 0.0)
-                          .resolve(Directionality.of(context)),
                       builder: (dialogContext) {
-                        return Material(
-                          color: Colors.transparent,
+                        return Dialog(
+                          insetPadding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent,
+                          alignment: const AlignmentDirectional(0.0, 0.0)
+                              .resolve(Directionality.of(context)),
                           child: SureQueryWidget(
                             saveChangesP: () async {
                               await WarehousesTable().delete(

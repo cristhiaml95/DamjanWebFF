@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,7 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
-import '/pages/components/user_detail/user_detail_widget.dart';
+import '/pages/components/user_details/user_details_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:data_table_2/data_table_2.dart';
@@ -87,7 +88,7 @@ class _UsersWidgetState extends State<UsersWidget>
     context.watch<FFAppState>();
 
     return FutureBuilder<List<UsersRow>>(
-      future: FFAppState().users(
+      future: FFAppState().users2(
         uniqueQueryKey: valueOrDefault<String>(
           widget.usersKey,
           'usersDefKey',
@@ -752,9 +753,14 @@ class _UsersWidgetState extends State<UsersWidget>
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             wrapWithModel(
-                              model: _model.userDetailModel,
+                              model: _model.userDetailsModel,
                               updateCallback: () => setState(() {}),
-                              child: const UserDetailWidget(),
+                              child: UserDetailsWidget(
+                                userDetail: usersUsersRowList
+                                    .where((e) => e.id == currentUserUid)
+                                    .toList()
+                                    .first,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(

@@ -98,11 +98,12 @@ class FFAppState extends ChangeNotifier {
   void clearCustomsCacheKey(String? uniqueKey) =>
       _customsManager.clearRequest(uniqueKey);
 
-  final _usersManager = FutureRequestManager<List<UsersRow>>();
-  Future<List<UsersRow>> users({
+  final _usersManager =
+      FutureRequestManager<List<VistaOrderLevelExtendedRow>>();
+  Future<List<VistaOrderLevelExtendedRow>> users({
     String? uniqueQueryKey,
     bool? overrideCache,
-    required Future<List<UsersRow>> Function() requestFn,
+    required Future<List<VistaOrderLevelExtendedRow>> Function() requestFn,
   }) =>
       _usersManager.performRequest(
         uniqueQueryKey: uniqueQueryKey,
@@ -219,6 +220,21 @@ class FFAppState extends ChangeNotifier {
   void clearWarehousePositionsCache() => _warehousePositionsManager.clear();
   void clearWarehousePositionsCacheKey(String? uniqueKey) =>
       _warehousePositionsManager.clearRequest(uniqueKey);
+
+  final _users2Manager = FutureRequestManager<List<UsersRow>>();
+  Future<List<UsersRow>> users2({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<List<UsersRow>> Function() requestFn,
+  }) =>
+      _users2Manager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearUsers2Cache() => _users2Manager.clear();
+  void clearUsers2CacheKey(String? uniqueKey) =>
+      _users2Manager.clearRequest(uniqueKey);
 }
 
 LatLng? _latLngFromString(String? val) {

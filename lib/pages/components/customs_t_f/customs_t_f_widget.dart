@@ -2,7 +2,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'customs_t_f_model.dart';
@@ -172,17 +171,14 @@ class _CustomsTFWidgetState extends State<CustomsTFWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    await showAlignedDialog(
+                    await showDialog(
                       context: context,
-                      isGlobal: true,
-                      avoidOverflow: false,
-                      targetAnchor: const AlignmentDirectional(0.0, 0.0)
-                          .resolve(Directionality.of(context)),
-                      followerAnchor: const AlignmentDirectional(0.0, 0.0)
-                          .resolve(Directionality.of(context)),
                       builder: (dialogContext) {
-                        return Material(
-                          color: Colors.transparent,
+                        return Dialog(
+                          insetPadding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent,
+                          alignment: const AlignmentDirectional(0.0, 0.0)
+                              .resolve(Directionality.of(context)),
                           child: SureQueryWidget(
                             saveChangesP: () async {
                               await CustomsTable().delete(

@@ -17,13 +17,26 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   void updateBarcodesListAtIndex(int index, Function(String) updateFn) =>
       barcodesList[index] = updateFn(barcodesList[index]);
 
+  List<String> pdfLinks = [];
+  void addToPdfLinks(String item) => pdfLinks.add(item);
+  void removeFromPdfLinks(String item) => pdfLinks.remove(item);
+  void removeAtIndexFromPdfLinks(int index) => pdfLinks.removeAt(index);
+  void insertAtIndexInPdfLinks(int index, String item) =>
+      pdfLinks.insert(index, item);
+  void updatePdfLinksAtIndex(int index, Function(String) updateFn) =>
+      pdfLinks[index] = updateFn(pdfLinks[index]);
+
+  int unitLast = 0;
+
+  int numberOfBarcodes = 0;
+
   ///  State fields for stateful widgets in this component.
 
-  final formKey5 = GlobalKey<FormState>();
-  final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
-  final formKey3 = GlobalKey<FormState>();
   final formKey4 = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
+  final formKey5 = GlobalKey<FormState>();
+  final formKey3 = GlobalKey<FormState>();
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -50,9 +63,9 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   String? warehouseDDValue;
   FormFieldController<String>? warehouseDDValueController;
   DateTime? datePicked2;
-  // State field(s) for reponsibleDD widget.
-  String? reponsibleDDValue;
-  FormFieldController<String>? reponsibleDDValueController;
+  // State field(s) for adminDD widget.
+  String? adminDDValue;
+  FormFieldController<String>? adminDDValueController;
   // State field(s) for customDD widget.
   String? customDDValue;
   FormFieldController<String>? customDDValueController;
@@ -157,12 +170,15 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   FocusNode? loadRefDvhTFocusNode;
   TextEditingController? loadRefDvhTController;
   String? Function(BuildContext, String?)? loadRefDvhTControllerValidator;
-  // State field(s) for goodDD widget.
-  String? goodDDValue;
-  FormFieldController<String>? goodDDValueController;
-  // State field(s) for goodDescriptionDD widget.
-  String? goodDescriptionDDValue;
-  FormFieldController<String>? goodDescriptionDDValueController;
+  // State field(s) for goodsDD widget.
+  String? goodsDDValue;
+  FormFieldController<String>? goodsDDValueController;
+  // State field(s) for goodDescriptionsDD widget.
+  String? goodDescriptionsDDValue;
+  FormFieldController<String>? goodDescriptionsDDValueController;
+  // State field(s) for packagingDD widget.
+  String? packagingDDValue;
+  FormFieldController<String>? packagingDDValueController;
   // State field(s) for barcodesTF widget.
   FocusNode? barcodesTFFocusNode;
   TextEditingController? barcodesTFController;

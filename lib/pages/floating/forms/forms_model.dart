@@ -8,6 +8,10 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
 
   int page = 0;
 
+  int unitLast = 0;
+
+  int numberOfBarcodes = 0;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey2 = GlobalKey<FormState>();
@@ -41,9 +45,9 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   String? warehouseDDValue;
   FormFieldController<String>? warehouseDDValueController;
   DateTime? datePicked2;
-  // State field(s) for reponsibleDD widget.
-  String? reponsibleDDValue;
-  FormFieldController<String>? reponsibleDDValueController;
+  // State field(s) for adminDD widget.
+  String? adminDDValue;
+  FormFieldController<String>? adminDDValueController;
   // State field(s) for customDD widget.
   String? customDDValue;
   FormFieldController<String>? customDDValueController;
@@ -55,11 +59,6 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   FocusNode? internalAccTFocusNode;
   TextEditingController? internalAccTController;
   String? Function(BuildContext, String?)? internalAccTControllerValidator;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
-
   // State field(s) for inventoryStatusDD widget.
   String? inventoryStatusDDValue;
   FormFieldController<String>? inventoryStatusDDValueController;
@@ -98,6 +97,8 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   FocusNode? palletPositionTFocusNode;
   TextEditingController? palletPositionTController;
   String? Function(BuildContext, String?)? palletPositionTControllerValidator;
+  // State field(s) for Switch widget.
+  bool? switchValue;
   // State field(s) for unitT widget.
   FocusNode? unitTFocusNode;
   TextEditingController? unitTController;
@@ -131,8 +132,8 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   String? assistant4DDValue;
   FormFieldController<String>? assistant4DDValueController;
   // State field(s) for assistant5DD widget.
-  String? assistant5DDValue1;
-  FormFieldController<String>? assistant5DDValueController1;
+  String? assistant5DDValue;
+  FormFieldController<String>? assistant5DDValueController;
   // State field(s) for assistant6DD widget.
   String? assistant6DDValue;
   FormFieldController<String>? assistant6DDValueController;
@@ -148,12 +149,19 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   FocusNode? loadRefDvhTFocusNode;
   TextEditingController? loadRefDvhTController;
   String? Function(BuildContext, String?)? loadRefDvhTControllerValidator;
-  // State field(s) for assistant5DD widget.
-  String? assistant5DDValue2;
-  FormFieldController<String>? assistant5DDValueController2;
-  // State field(s) for assistant5DD widget.
-  String? assistant5DDValue3;
-  FormFieldController<String>? assistant5DDValueController3;
+  // State field(s) for goodsDD widget.
+  String? goodsDDValue;
+  FormFieldController<String>? goodsDDValueController;
+  // State field(s) for goodDescriptionsDD widget.
+  String? goodDescriptionsDDValue;
+  FormFieldController<String>? goodDescriptionsDDValueController;
+  // State field(s) for packagingDD widget.
+  String? packagingDDValue;
+  FormFieldController<String>? packagingDDValueController;
+  // State field(s) for barcodesTF widget.
+  FocusNode? barcodesTFFocusNode;
+  TextEditingController? barcodesTFController;
+  String? Function(BuildContext, String?)? barcodesTFControllerValidator;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   bool? sureQueryOP;
 
@@ -205,6 +213,9 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
 
     loadRefDvhTFocusNode?.dispose();
     loadRefDvhTController?.dispose();
+
+    barcodesTFFocusNode?.dispose();
+    barcodesTFController?.dispose();
   }
 
   /// Action blocks are added here.

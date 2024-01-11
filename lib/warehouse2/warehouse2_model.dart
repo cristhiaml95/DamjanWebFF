@@ -1,7 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/filters/filters_widget.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
-import '/pages/components/user_detail/user_detail_widget.dart';
+import '/pages/components/user_details/user_details_widget.dart';
 import 'warehouse2_widget.dart' show Warehouse2Widget;
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +12,8 @@ class Warehouse2Model extends FlutterFlowModel<Warehouse2Widget> {
   final unfocusNode = FocusNode();
   // Model for lightMode component.
   late LightModeModel lightModeModel;
-  // Model for userDetail component.
-  late UserDetailModel userDetailModel;
+  // Model for userDetails component.
+  late UserDetailsModel userDetailsModel;
   // State field(s) for Switch widget.
   bool? switchValue;
   // Model for filters component.
@@ -24,7 +24,7 @@ class Warehouse2Model extends FlutterFlowModel<Warehouse2Widget> {
   @override
   void initState(BuildContext context) {
     lightModeModel = createModel(context, () => LightModeModel());
-    userDetailModel = createModel(context, () => UserDetailModel());
+    userDetailsModel = createModel(context, () => UserDetailsModel());
     filtersModel = createModel(context, () => FiltersModel());
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
   }
@@ -33,7 +33,7 @@ class Warehouse2Model extends FlutterFlowModel<Warehouse2Widget> {
   void dispose() {
     unfocusNode.dispose();
     lightModeModel.dispose();
-    userDetailModel.dispose();
+    userDetailsModel.dispose();
     filtersModel.dispose();
   }
 

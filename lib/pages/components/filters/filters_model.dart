@@ -24,6 +24,9 @@ class FiltersModel extends FlutterFlowModel<FiltersWidget> {
   // State field(s) for customDDF widget.
   String? customDDFValue;
   FormFieldController<String>? customDDFValueController;
+  // State field(s) for barcodesDDF widget.
+  String? barcodesDDFValue;
+  FormFieldController<String>? barcodesDDFValueController;
   // State field(s) for responsibleDDF widget.
   String? responsibleDDFValue;
   FormFieldController<String>? responsibleDDFValueController;
@@ -45,6 +48,9 @@ class FiltersModel extends FlutterFlowModel<FiltersWidget> {
   // State field(s) for assistant6DDF widget.
   String? assistant6DDFValue;
   FormFieldController<String>? assistant6DDFValueController;
+  // State field(s) for containerDDF widget.
+  String? containerDDFValue;
+  FormFieldController<String>? containerDDFValueController;
 
   /// Initialization and disposal methods.
 

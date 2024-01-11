@@ -131,6 +131,9 @@ class _WarehouseDetailsWidgetState extends State<WarehouseDetailsWidget>
                         ),
                       ],
                       controller: _model.tabBarController,
+                      onTap: (i) async {
+                        [() async {}, () async {}][i]();
+                      },
                     ),
                   ),
                   Expanded(

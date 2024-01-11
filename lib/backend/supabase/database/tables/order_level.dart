@@ -162,4 +162,13 @@ class OrderLevelRow extends SupabaseDataRow {
 
   String get packaging => getField<String>('packaging')!;
   set packaging(String value) => setField<String>('packaging', value);
+
+  List<String> get documents => getListField<String>('documents');
+  set documents(List<String> value) => setListField<String>('documents', value);
+
+  bool get acepted => getField<bool>('acepted')!;
+  set acepted(bool value) => setField<bool>('acepted', value);
+
+  bool get checked => getField<bool>('checked')!;
+  set checked(bool value) => setField<bool>('checked', value);
 }

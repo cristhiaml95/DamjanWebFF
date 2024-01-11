@@ -1,3 +1,5 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,16 +9,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/filters/filters_widget.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
-import '/pages/components/user_detail/user_detail_widget.dart';
+import '/pages/components/user_details/user_details_widget.dart';
 import '/pages/floating/create_record/create_record_widget.dart';
 import '/pages/floating/details/details_widget.dart';
+import '/pages/floating/documents/documents_widget.dart';
 import '/pages/floating/forms/forms_widget.dart';
-import '/pages/floating/pdf_viewer/pdf_viewer_widget.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -96,11 +95,14 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
 
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<VistaOrderLevelExtendedRow>>(
-      future: FFAppState().tables(
-        uniqueQueryKey: widget.orderWarehouseTablesKey,
-        requestFn: () => VistaOrderLevelExtendedTable().queryRows(
-          queryFn: (q) => q.order('created_at'),
+    return FutureBuilder<List<UsersRow>>(
+      future: FFAppState().users2(
+        uniqueQueryKey: valueOrDefault<String>(
+          widget.orderWarehouseTablesKey,
+          'orderWarehouseUsersDefKey',
+        ),
+        requestFn: () => UsersTable().queryRows(
+          queryFn: (q) => q,
         ),
       ),
       builder: (context, snapshot) {
@@ -121,8 +123,7 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
             ),
           );
         }
-        List<VistaOrderLevelExtendedRow>
-            orderWarehouseVistaOrderLevelExtendedRowList = snapshot.data!;
+        List<UsersRow> orderWarehouseUsersRowList = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -758,9 +759,14 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                             wrapWithModel(
-                              model: _model.userDetailModel,
+                              model: _model.userDetailsModel,
                               updateCallback: () => setState(() {}),
-                              child: const UserDetailWidget(),
+                              child: UserDetailsWidget(
+                                userDetail: orderWarehouseUsersRowList
+                                    .where((e) => e.id == currentUserUid)
+                                    .toList()
+                                    .first,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -829,14 +835,15 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                   Expanded(
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, -1.0),
-                      child: FutureBuilder<List<UsersRow>>(
-                        future: FFAppState().users(
+                      child: FutureBuilder<List<VistaOrderLevelExtendedRow>>(
+                        future: FFAppState().tables(
                           uniqueQueryKey: valueOrDefault<String>(
                             widget.orderWarehouseTablesKey,
                             'orderWarehouseUsersDefKey',
                           ),
-                          requestFn: () => UsersTable().queryRows(
-                            queryFn: (q) => q,
+                          requestFn: () =>
+                              VistaOrderLevelExtendedTable().queryRows(
+                            queryFn: (q) => q.order('created_at'),
                           ),
                         ),
                         builder: (context, snapshot) {
@@ -854,7 +861,9 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                               ),
                             );
                           }
-                          List<UsersRow> maxWidthUsersRowList = snapshot.data!;
+                          List<VistaOrderLevelExtendedRow>
+                              maxWidthVistaOrderLevelExtendedRowList =
+                              snapshot.data!;
                           return Container(
                             width: double.infinity,
                             constraints: const BoxConstraints(
@@ -870,6 +879,7 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                               children: [
                                 Column(
                                   mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
                                       width: double.infinity,
@@ -894,8 +904,6 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                                               child: SingleChildScrollView(
                                                 scrollDirection:
                                                     Axis.horizontal,
-                                                controller:
-                                                    _model.rowController,
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1004,29 +1012,306 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'o4ob2bw1' /* Movements */,
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineSmall,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 4.0, 0.0, 0.0),
-                                            child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'ite7542o' /* Below are the details of your ... */,
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium,
+                                                    0.0, 0.0, 28.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'o4ob2bw1' /* Movements */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmall,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'ite7542o' /* Below are the details of your ... */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Builder(
+                                                    builder: (context) {
+                                                      final fixedColumnsVar =
+                                                          _model.fixedColumns
+                                                              .toList();
+                                                      return SingleChildScrollView(
+                                                        scrollDirection:
+                                                            Axis.horizontal,
+                                                        child: SizedBox(
+                                                          width: 300.0,
+                                                          height: 68.0,
+                                                          child: DataTable2(
+                                                            columns: [
+                                                              DataColumn2(
+                                                                label:
+                                                                    DefaultTextStyle
+                                                                        .merge(
+                                                                  softWrap:
+                                                                      true,
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        AutoSizeText(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        '8hbwbaea' /* Inventory status */,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      maxLines:
+                                                                          2,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            fontSize:
+                                                                                10.0,
+                                                                          ),
+                                                                      minFontSize:
+                                                                          1.0,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              DataColumn2(
+                                                                label:
+                                                                    DefaultTextStyle
+                                                                        .merge(
+                                                                  softWrap:
+                                                                      true,
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        AutoSizeText(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        '2edqbygl' /* Order No. */,
+                                                                      ),
+                                                                      maxLines:
+                                                                          2,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            fontSize:
+                                                                                10.0,
+                                                                          ),
+                                                                      minFontSize:
+                                                                          1.0,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              DataColumn2(
+                                                                label:
+                                                                    DefaultTextStyle
+                                                                        .merge(
+                                                                  softWrap:
+                                                                      true,
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        AutoSizeText(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'wf2m2don' /* Client */,
+                                                                      ),
+                                                                      maxLines:
+                                                                          2,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            fontSize:
+                                                                                12.0,
+                                                                          ),
+                                                                      minFontSize:
+                                                                          1.0,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                            rows:
+                                                                fixedColumnsVar
+                                                                    .mapIndexed((fixedColumnsVarIndex,
+                                                                            fixedColumnsVarItem) =>
+                                                                        [
+                                                                          Align(
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0),
+                                                                            child:
+                                                                                AutoSizeText(
+                                                                              valueOrDefault<String>(
+                                                                                fixedColumnsVarItem.invStatus,
+                                                                                'brez izbire',
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                              maxLines: 2,
+                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 10.0,
+                                                                                  ),
+                                                                              minFontSize: 1.0,
+                                                                            ),
+                                                                          ),
+                                                                          Align(
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0),
+                                                                            child:
+                                                                                AutoSizeText(
+                                                                              valueOrDefault<String>(
+                                                                                fixedColumnsVarItem.orderNo,
+                                                                                'brez izbire',
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                              maxLines: 2,
+                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 10.0,
+                                                                                  ),
+                                                                              minFontSize: 1.0,
+                                                                            ),
+                                                                          ),
+                                                                          Align(
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0),
+                                                                            child:
+                                                                                AutoSizeText(
+                                                                              valueOrDefault<String>(
+                                                                                fixedColumnsVarItem.client,
+                                                                                'brez izbire',
+                                                                              ).maybeHandleOverflow(
+                                                                                maxChars: 20,
+                                                                                replacement: '…',
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                              maxLines: 2,
+                                                                              style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 12.0,
+                                                                                  ),
+                                                                              minFontSize: 1.0,
+                                                                            ),
+                                                                          ),
+                                                                        ]
+                                                                            .map((c) => DataCell(
+                                                                                c))
+                                                                            .toList())
+                                                                    .map((e) =>
+                                                                        DataRow(
+                                                                            cells:
+                                                                                e))
+                                                                    .toList(),
+                                                            headingRowColor:
+                                                                MaterialStateProperty
+                                                                    .all(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBackground,
+                                                            ),
+                                                            headingRowHeight:
+                                                                40.0,
+                                                            dataRowColor:
+                                                                MaterialStateProperty
+                                                                    .all(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryBackground,
+                                                            ),
+                                                            dataRowHeight: 28.0,
+                                                            border: TableBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0.0),
+                                                            ),
+                                                            dividerThickness:
+                                                                2.0,
+                                                            columnSpacing: 0.0,
+                                                            showBottomBorder:
+                                                                true,
+                                                            minWidth: 49.0,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
@@ -1144,6 +1429,12 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                                                 _model.filtersModel
                                                     .assistant5DDFValueController
                                                     ?.reset();
+                                                _model.filtersModel
+                                                    .barcodesDDFValueController
+                                                    ?.reset();
+                                                _model.filtersModel
+                                                    .containerDDFValueController
+                                                    ?.reset();
                                               });
                                             },
                                             child: Icon(
@@ -1167,10 +1458,10 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                                             widget.orderWarehouseTablesKey,
                                             'orderWarehouseDefKey',
                                           ),
-                                          parameter2: maxWidthUsersRowList
+                                          parameter2: orderWarehouseUsersRowList
                                               .map((e) => e.id)
                                               .toList(),
-                                          parameter3: maxWidthUsersRowList
+                                          parameter3: orderWarehouseUsersRowList
                                               .map((e) => e.lastName)
                                               .toList(),
                                           parameter4: valueOrDefault<String>(
@@ -1181,27 +1472,30 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                                             widget.orderWarehouseTablesKey,
                                             'orderOverviewCustomsDefKey',
                                           ),
+                                          orderLevelView:
+                                              maxWidthVistaOrderLevelExtendedRowList,
                                         ),
                                       ),
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.0, -1.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final orderLevelVar =
-                                                    orderWarehouseVistaOrderLevelExtendedRowList
-                                                        .where(
-                                                            (e) =>
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 8.0),
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Builder(
+                                                  builder: (context) {
+                                                    final orderLevelVar4 =
+                                                        maxWidthVistaOrderLevelExtendedRowList
+                                                            .where((e) =>
                                                                 valueOrDefault<
                                                                     bool>(
                                                                   (_model.filtersModel.clientDDFValue != null && _model.filtersModel.clientDDFValue != '' ? (e.client == _model.filtersModel.clientDDFValue) : true) &&
@@ -1243,2965 +1537,5280 @@ class _OrderWarehouseWidgetState extends State<OrderWarehouseWidget>
                                                                       (_model.filtersModel.assistant3DDFValue != null && _model.filtersModel.assistant3DDFValue != '' ? (e.assistant3 == _model.filtersModel.assistant3DDFValue) : true) &&
                                                                       (_model.filtersModel.assistant5DDFValue != null && _model.filtersModel.assistant5DDFValue != '' ? (e.assistant5 == _model.filtersModel.assistant5DDFValue) : true) &&
                                                                       (_model.filtersModel.assistant4DDFValue != null && _model.filtersModel.assistant4DDFValue != '' ? (e.assistant4 == _model.filtersModel.assistant4DDFValue) : true) &&
-                                                                      (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true),
+                                                                      (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true) &&
+                                                                      (_model.filtersModel.containerDDFValue != null && _model.filtersModel.containerDDFValue != '' ? (e.id == _model.filtersModel.containerDDFValue) : true) &&
+                                                                      (_model.filtersModel.barcodesDDFValue != null && _model.filtersModel.barcodesDDFValue != '' ? (e.id == _model.filtersModel.barcodesDDFValue) : true),
                                                                   true,
                                                                 ))
-                                                        .toList();
-                                                return SizedBox(
-                                                  width: 440.0,
-                                                  height: _model.switchValue!
-                                                      ? (MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height -
-                                                          418)
-                                                      : (MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height -
-                                                          268),
-                                                  child: DataTable2(
-                                                    columns: [
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: AutoSizeText(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                '4gvv10bv' /* Delete */,
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              maxLines: 1,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto',
-                                                                    color: FlutterFlowTheme.of(
+                                                            .toList();
+                                                    return SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: SizedBox(
+                                                        width: 4600.0,
+                                                        height: _model
+                                                                .switchValue!
+                                                            ? (MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height -
+                                                                480)
+                                                            : (MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height -
+                                                                344),
+                                                        child: DataTable2(
+                                                          columns: [
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
                                                                             context)
-                                                                        .warning,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                              minFontSize: 6.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        fixedWidth: 50.0,
-                                                      ),
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: AutoSizeText(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'vv1dc6qz' /* Edit */,
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto',
-                                                                    color: FlutterFlowTheme.of(
+                                                                        .getText(
+                                                                      'k6lov7ww' /* Delete */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 1,
+                                                                    style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .info,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                              minFontSize: 6.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        fixedWidth: 40.0,
-                                                      ),
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: AutoSizeText(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                '4ob5746w' /* Details */,
-                                                              ),
-                                                              maxLines: 1,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .info,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                              minFontSize: 6.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        fixedWidth: 50.0,
-                                                      ),
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: AutoSizeText(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'a85e7y4b' /* Inventory status */,
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto',
-                                                                    fontSize:
-                                                                        10.0,
-                                                                  ),
-                                                              minFontSize: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: AutoSizeText(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                '384h2osu' /* Order No. */,
-                                                              ),
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto',
-                                                                    fontSize:
-                                                                        10.0,
-                                                                  ),
-                                                              minFontSize: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: AutoSizeText(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                '0qc3thun' /* Client */,
-                                                              ),
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto',
-                                                                    fontSize:
-                                                                        12.0,
-                                                                  ),
-                                                              minFontSize: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                    rows: orderLevelVar
-                                                        .mapIndexed(
-                                                            (orderLevelVarIndex,
-                                                                    orderLevelVarItem) =>
-                                                                [
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Builder(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          FFAppState()
-                                                                              .clearTablesCache();
-                                                                          await showAlignedDialog(
-                                                                            context:
-                                                                                context,
-                                                                            isGlobal:
-                                                                                true,
-                                                                            avoidOverflow:
-                                                                                false,
-                                                                            targetAnchor:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            followerAnchor:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            builder:
-                                                                                (dialogContext) {
-                                                                              return Material(
-                                                                                color: Colors.transparent,
-                                                                                child: GestureDetector(
-                                                                                  onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                                  child: SureQueryWidget(
-                                                                                    saveChangesP: () async {
-                                                                                      await OrderLevelTable().delete(
-                                                                                        matchingRows: (rows) => rows.eq(
-                                                                                          'id',
-                                                                                          orderLevelVarItem.id,
-                                                                                        ),
-                                                                                      );
-                                                                                      await showDialog(
-                                                                                        context: context,
-                                                                                        builder: (alertDialogContext) {
-                                                                                          return AlertDialog(
-                                                                                            title: const Text('Elimination'),
-                                                                                            content: const Text('Row deleted successfully.'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                child: const Text('Ok'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      );
-                                                                                    },
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            },
-                                                                          ).then((value) =>
-                                                                              setState(() {}));
-                                                                        },
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .delete_forever,
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).warning,
-                                                                          size:
-                                                                              24.0,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
                                                                         ),
-                                                                      ),
-                                                                    ),
+                                                                    minFontSize:
+                                                                        6.0,
                                                                   ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Builder(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          FFAppState()
-                                                                              .clearTablesCache();
-                                                                          await showAlignedDialog(
-                                                                            context:
-                                                                                context,
-                                                                            isGlobal:
-                                                                                true,
-                                                                            avoidOverflow:
-                                                                                false,
-                                                                            targetAnchor:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            followerAnchor:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            builder:
-                                                                                (dialogContext) {
-                                                                              return Material(
-                                                                                color: Colors.transparent,
-                                                                                child: GestureDetector(
-                                                                                  onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                                  child: FormsWidget(
-                                                                                    orderId: orderLevelVarItem.id!,
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            },
-                                                                          ).then((value) =>
-                                                                              setState(() {}));
-                                                                        },
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .edit_square,
+                                                                ),
+                                                              ),
+                                                              fixedWidth: 50.0,
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'evi9in41' /* Edit */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).info,
-                                                                          size:
-                                                                              24.0,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
                                                                         ),
-                                                                      ),
-                                                                    ),
+                                                                    minFontSize:
+                                                                        6.0,
                                                                   ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Builder(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          FFAppState()
-                                                                              .clearDetailsViewCache();
-                                                                          await showAlignedDialog(
-                                                                            context:
-                                                                                context,
-                                                                            isGlobal:
-                                                                                true,
-                                                                            avoidOverflow:
-                                                                                false,
-                                                                            targetAnchor:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            followerAnchor:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            builder:
-                                                                                (dialogContext) {
-                                                                              return Material(
-                                                                                color: Colors.transparent,
-                                                                                child: GestureDetector(
-                                                                                  onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                                  child: DetailsWidget(
-                                                                                    orderId: orderLevelVarItem.id!,
-                                                                                    orderNo: orderLevelVarItem.orderNo!,
-                                                                                    warehouseIdDetails: orderLevelVarItem.warehouse!,
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            },
-                                                                          ).then((value) =>
-                                                                              setState(() {}));
-                                                                        },
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .more_vert,
+                                                                ),
+                                                              ),
+                                                              fixedWidth: 40.0,
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'hoy7rlp0' /* Details */,
+                                                                    ),
+                                                                    maxLines: 1,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).info,
-                                                                          size:
-                                                                              24.0,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
                                                                         ),
-                                                                      ),
-                                                                    ),
+                                                                    minFontSize:
+                                                                        6.0,
                                                                   ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onDoubleTap:
-                                                                          () async {
-                                                                        await _model
-                                                                            .rowController
-                                                                            ?.animateTo(
-                                                                          _model
-                                                                              .rowController!
-                                                                              .position
-                                                                              .maxScrollExtent,
-                                                                          duration:
-                                                                              const Duration(milliseconds: 100),
-                                                                          curve:
-                                                                              Curves.ease,
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        orderLevelVarItem
-                                                                            .invStatus!,
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 10.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            6.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        AutoSizeText(
-                                                                      orderLevelVarItem
-                                                                          .orderNo!,
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Roboto',
-                                                                            fontSize:
-                                                                                10.0,
-                                                                          ),
-                                                                      minFontSize:
-                                                                          6.0,
-                                                                    ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        AutoSizeText(
-                                                                      orderLevelVarItem
-                                                                          .clientName!,
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Roboto',
-                                                                            fontSize:
-                                                                                10.0,
-                                                                          ),
-                                                                      minFontSize:
-                                                                          6.0,
-                                                                    ),
-                                                                  ),
-                                                                ]
-                                                                    .map((c) =>
-                                                                        DataCell(
-                                                                            c))
-                                                                    .toList())
-                                                        .map((e) =>
-                                                            DataRow(cells: e))
-                                                        .toList(),
-                                                    headingRowColor:
-                                                        MaterialStateProperty
-                                                            .all(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                    ),
-                                                    headingRowHeight: 40.0,
-                                                    dataRowColor:
-                                                        MaterialStateProperty
-                                                            .all(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                    ),
-                                                    dataRowHeight: 28.0,
-                                                    border: TableBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0.0),
-                                                    ),
-                                                    dividerThickness: 2.0,
-                                                    columnSpacing: 2.0,
-                                                    showBottomBorder: true,
-                                                    minWidth: 49.0,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: SizedBox(
-                                              width: double.infinity,
-                                              height: _model.switchValue!
-                                                  ? (MediaQuery.sizeOf(context)
-                                                          .height -
-                                                      418)
-                                                  : (MediaQuery.sizeOf(context)
-                                                          .height -
-                                                      268),
-                                              child: Stack(
-                                                children: [
-                                                  PageView(
-                                                    controller: _model
-                                                            .pageViewController ??=
-                                                        PageController(
-                                                            initialPage: 0),
-                                                    onPageChanged: (_) =>
-                                                        setState(() {}),
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            final orderLevelVar4 =
-                                                                orderWarehouseVistaOrderLevelExtendedRowList
-                                                                    .where((e) =>
-                                                                        valueOrDefault<
-                                                                            bool>(
-                                                                          (_model.filtersModel.clientDDFValue != null && _model.filtersModel.clientDDFValue != '' ? (e.client == _model.filtersModel.clientDDFValue) : true) &&
-                                                                              (_model.filtersModel.flowDDFValue != null && _model.filtersModel.flowDDFValue != '' ? (e.flow == _model.filtersModel.flowDDFValue) : true) &&
-                                                                              (_model.filtersModel.orderStatusDDFValue != null && _model.filtersModel.orderStatusDDFValue != '' ? (e.orderStatus == _model.filtersModel.orderStatusDDFValue) : true) &&
-                                                                              (_model.filtersModel.adminDDFValue != null && _model.filtersModel.adminDDFValue != '' ? (e.admin == _model.filtersModel.adminDDFValue) : true) &&
-                                                                              (_model.filtersModel.warehouseDDFValue != null && _model.filtersModel.warehouseDDFValue != '' ? (e.warehouse == _model.filtersModel.warehouseDDFValue) : true) &&
-                                                                              (_model.filtersModel.customDDFValue != null && _model.filtersModel.customDDFValue != '' ? (e.custom == _model.filtersModel.customDDFValue) : true) &&
-                                                                              (_model.filtersModel.responsibleDDFValue != null && _model.filtersModel.responsibleDDFValue != '' ? (e.responsible == _model.filtersModel.responsibleDDFValue) : true) &&
-                                                                              (_model.filtersModel.assistant1DDFValue != null && _model.filtersModel.assistant1DDFValue != '' ? (e.assistant1 == _model.filtersModel.assistant1DDFValue) : true) &&
-                                                                              (_model.filtersModel.assistant2DDFValue != null && _model.filtersModel.assistant2DDFValue != '' ? (e.assistant2 == _model.filtersModel.assistant2DDFValue) : true) &&
-                                                                              (_model.filtersModel.assistant3DDFValue != null && _model.filtersModel.assistant3DDFValue != '' ? (e.assistant3 == _model.filtersModel.assistant3DDFValue) : true) &&
-                                                                              (_model.filtersModel.assistant5DDFValue != null && _model.filtersModel.assistant5DDFValue != '' ? (e.assistant5 == _model.filtersModel.assistant5DDFValue) : true) &&
-                                                                              (_model.filtersModel.assistant4DDFValue != null && _model.filtersModel.assistant4DDFValue != '' ? (e.assistant4 == _model.filtersModel.assistant4DDFValue) : true) &&
-                                                                              (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true),
-                                                                          true,
-                                                                        ))
-                                                                    .toList();
-                                                            return SizedBox(
-                                                              width: double
-                                                                  .infinity,
-                                                              child: DataTable2(
-                                                                columns: [
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'sry4l4s2' /* Date (order creation) */,
-                                                                          ),
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 8.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'h2zp4prd' /* Flow */,
-                                                                          ),
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'gickv2pq' /* Order Status */,
-                                                                          ),
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            '4wmpcw6p' /* Admin name */,
-                                                                          ),
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'o2eoprgs' /* Warehouse */,
-                                                                          ),
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'okurx3sq' /* Arrival Date */,
-                                                                          ),
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'er3rci37' /* Time (Approx.) */,
-                                                                          ),
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'y2nnzux4' /* Arrival */,
-                                                                          ),
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn2(
-                                                                    label: DefaultTextStyle
-                                                                        .merge(
-                                                                      softWrap:
-                                                                          true,
-                                                                      child:
-                                                                          Align(
-                                                                        alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            AutoSizeText(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            '107jplnv' /* Loading Gate */,
-                                                                          ),
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 12.0,
-                                                                              ),
-                                                                          minFontSize:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                                rows: orderLevelVar4
-                                                                    .mapIndexed((orderLevelVar4Index, orderLevelVar4Item) => [
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              dateTimeFormat(
-                                                                                'yMMMd',
-                                                                                functions.parsePostgresTimestamp(orderLevelVar4Item.createdAt!.toString()),
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                              minFontSize: 6.0,
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              orderLevelVar4Item.flow!,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                              minFontSize: 6.0,
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              orderLevelVar4Item.orderStatus!,
-                                                                              textAlign: TextAlign.center,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              '${orderLevelVar4Item.adminName} ${orderLevelVar4Item.adminLastName}',
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                              minFontSize: 6.0,
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              orderLevelVar4Item.warehouseName!,
-                                                                              textAlign: TextAlign.center,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                              minFontSize: 6.0,
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              dateTimeFormat(
-                                                                                'yMMMd',
-                                                                                functions.parsePostgresTimestamp(orderLevelVar4Item.etaDate!.toString()),
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              ),
-                                                                              textAlign: TextAlign.center,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                              minFontSize: 6.0,
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              '${dateTimeFormat(
-                                                                                'Hm',
-                                                                                functions.parsePostgresTimestamp(orderLevelVar4Item.etaI!.toString()),
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              )} - ${dateTimeFormat(
-                                                                                'Hm',
-                                                                                functions.parsePostgresTimestamp(orderLevelVar4Item.etaF!.toString()),
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              )}',
-                                                                              maxLines: 2,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                              minFontSize: 6.0,
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              dateTimeFormat(
-                                                                                'Hm',
-                                                                                functions.parsePostgresTimestamp(orderLevelVar4Item.arrival!.toString()),
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              ),
-                                                                              maxLines: 2,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                              minFontSize: 1.0,
-                                                                            ),
-                                                                          ),
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                AutoSizeText(
-                                                                              valueOrDefault<String>(
-                                                                                orderLevelVar4Item.loadingGateRamp,
-                                                                                'brez izbire',
-                                                                              ),
-                                                                              textAlign: TextAlign.center,
-                                                                              maxLines: 2,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 11.0,
-                                                                                  ),
-                                                                              minFontSize: 1.0,
-                                                                            ),
-                                                                          ),
-                                                                        ].map((c) => DataCell(c)).toList())
-                                                                    .map((e) => DataRow(cells: e))
-                                                                    .toList(),
-                                                                headingRowColor:
-                                                                    MaterialStateProperty
-                                                                        .all(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
                                                                 ),
-                                                                headingRowHeight:
-                                                                    40.0,
-                                                                dataRowColor:
-                                                                    MaterialStateProperty
-                                                                        .all(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                dataRowHeight:
-                                                                    28.0,
-                                                                border:
-                                                                    TableBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              0.0),
-                                                                ),
-                                                                dividerThickness:
-                                                                    2.0,
-                                                                columnSpacing:
-                                                                    2.0,
-                                                                showBottomBorder:
-                                                                    true,
-                                                                minWidth: 49.0,
                                                               ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                      Builder(
-                                                        builder: (context) {
-                                                          final orderLevelVar1 =
-                                                              orderWarehouseVistaOrderLevelExtendedRowList
-                                                                  .where((e) =>
-                                                                      valueOrDefault<
-                                                                          bool>(
-                                                                        (_model.filtersModel.clientDDFValue != null && _model.filtersModel.clientDDFValue != '' ? (e.client == _model.filtersModel.clientDDFValue) : true) &&
-                                                                            (_model.filtersModel.flowDDFValue != null && _model.filtersModel.flowDDFValue != ''
-                                                                                ? (e.flow == _model.filtersModel.flowDDFValue)
-                                                                                : true) &&
-                                                                            (_model.filtersModel.orderStatusDDFValue != null && _model.filtersModel.orderStatusDDFValue != '' ? (e.orderStatus == _model.filtersModel.orderStatusDDFValue) : true) &&
-                                                                            (_model.filtersModel.adminDDFValue != null && _model.filtersModel.adminDDFValue != '' ? (e.admin == _model.filtersModel.adminDDFValue) : true) &&
-                                                                            (_model.filtersModel.warehouseDDFValue != null && _model.filtersModel.warehouseDDFValue != '' ? (e.warehouse == _model.filtersModel.warehouseDDFValue) : true) &&
-                                                                            (_model.filtersModel.customDDFValue != null && _model.filtersModel.customDDFValue != '' ? (e.custom == _model.filtersModel.customDDFValue) : true) &&
-                                                                            (_model.filtersModel.responsibleDDFValue != null && _model.filtersModel.responsibleDDFValue != '' ? (e.responsible == _model.filtersModel.responsibleDDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant1DDFValue != null && _model.filtersModel.assistant1DDFValue != '' ? (e.assistant1 == _model.filtersModel.assistant1DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant2DDFValue != null && _model.filtersModel.assistant2DDFValue != '' ? (e.assistant2 == _model.filtersModel.assistant2DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant3DDFValue != null && _model.filtersModel.assistant3DDFValue != '' ? (e.assistant3 == _model.filtersModel.assistant3DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant5DDFValue != null && _model.filtersModel.assistant5DDFValue != '' ? (e.assistant5 == _model.filtersModel.assistant5DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant4DDFValue != null && _model.filtersModel.assistant4DDFValue != '' ? (e.assistant4 == _model.filtersModel.assistant4DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true),
-                                                                        true,
-                                                                      ))
-                                                                  .toList();
-                                                          return SizedBox(
-                                                            width:
-                                                                double.infinity,
-                                                            child: DataTable2(
-                                                              columns: [
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'twdqlob4' /* Loading Gate Sequence */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 10.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'k0zz51q8' /* Start (upload/unload) */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 10.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'u3ijaewz' /* Stop (upload/unload) */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 10.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '6n9rbllc' /* Licence plate No. */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 10.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'pny2c3gb' /* Quantity */,
-                                                                        ),
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'p5k27kxl' /* Pallet position */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'wfso9jfw' /* Unit */,
-                                                                        ),
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '5rw12nca' /* Weight */,
-                                                                        ),
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '1t7u18tt' /* Container No. */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'oh3dt4i6' /* Improvement */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              rows:
-                                                                  orderLevelVar1
-                                                                      .mapIndexed((orderLevelVar1Index,
-                                                                              orderLevelVar1Item) =>
-                                                                          [
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar1Item.loadingSequence?.toString(),
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                dateTimeFormat(
-                                                                                  'Hm',
-                                                                                  functions.parsePostgresTimestamp(orderLevelVar1Item.start!.toString()),
-                                                                                  locale: FFLocalizations.of(context).languageCode,
-                                                                                ),
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                dateTimeFormat(
-                                                                                  'Hm',
-                                                                                  functions.parsePostgresTimestamp(orderLevelVar1Item.stop!.toString()),
-                                                                                  locale: FFLocalizations.of(context).languageCode,
-                                                                                ),
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar1Item.licencePlate,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 6.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar1Item.quantity?.toString(),
-                                                                                  '-1',
-                                                                                ),
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 6.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar1Item.palletPosition?.toString(),
-                                                                                  '-1',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar1Item.unit?.toString(),
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 6.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: Row(
-                                                                                mainAxisSize: MainAxisSize.min,
-                                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                                children: [
-                                                                                  Align(
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                    child: AutoSizeText(
-                                                                                      valueOrDefault<String>(
-                                                                                        orderLevelVar1Item.weight?.toString(),
-                                                                                        '-1',
-                                                                                      ),
-                                                                                      maxLines: 2,
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Roboto',
-                                                                                            fontSize: 12.0,
-                                                                                          ),
-                                                                                      minFontSize: 1.0,
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar1Item.containerNo,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar1Item.improvement,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                          ]
-                                                                              .map((c) => DataCell(
-                                                                                  c))
-                                                                              .toList())
-                                                                      .map((e) =>
-                                                                          DataRow(
-                                                                              cells: e))
-                                                                      .toList(),
-                                                              headingRowColor:
-                                                                  MaterialStateProperty
-                                                                      .all(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                              ),
-                                                              headingRowHeight:
-                                                                  40.0,
-                                                              dataRowColor:
-                                                                  MaterialStateProperty
-                                                                      .all(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                              ),
-                                                              dataRowHeight:
-                                                                  28.0,
-                                                              border:
-                                                                  TableBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            0.0),
-                                                              ),
-                                                              dividerThickness:
-                                                                  2.0,
-                                                              columnSpacing:
-                                                                  2.0,
-                                                              showBottomBorder:
-                                                                  true,
-                                                              minWidth: 49.0,
+                                                              fixedWidth: 40.0,
                                                             ),
-                                                          );
-                                                        },
-                                                      ),
-                                                      Builder(
-                                                        builder: (context) {
-                                                          final orderLevelVar2 =
-                                                              orderWarehouseVistaOrderLevelExtendedRowList
-                                                                  .where((e) =>
-                                                                      valueOrDefault<
-                                                                          bool>(
-                                                                        (_model.filtersModel.clientDDFValue != null && _model.filtersModel.clientDDFValue != '' ? (e.client == _model.filtersModel.clientDDFValue) : true) &&
-                                                                            (_model.filtersModel.flowDDFValue != null && _model.filtersModel.flowDDFValue != ''
-                                                                                ? (e.flow == _model.filtersModel.flowDDFValue)
-                                                                                : true) &&
-                                                                            (_model.filtersModel.orderStatusDDFValue != null && _model.filtersModel.orderStatusDDFValue != '' ? (e.orderStatus == _model.filtersModel.orderStatusDDFValue) : true) &&
-                                                                            (_model.filtersModel.adminDDFValue != null && _model.filtersModel.adminDDFValue != '' ? (e.admin == _model.filtersModel.adminDDFValue) : true) &&
-                                                                            (_model.filtersModel.warehouseDDFValue != null && _model.filtersModel.warehouseDDFValue != '' ? (e.warehouse == _model.filtersModel.warehouseDDFValue) : true) &&
-                                                                            (_model.filtersModel.customDDFValue != null && _model.filtersModel.customDDFValue != '' ? (e.custom == _model.filtersModel.customDDFValue) : true) &&
-                                                                            (_model.filtersModel.responsibleDDFValue != null && _model.filtersModel.responsibleDDFValue != '' ? (e.responsible == _model.filtersModel.responsibleDDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant1DDFValue != null && _model.filtersModel.assistant1DDFValue != '' ? (e.assistant1 == _model.filtersModel.assistant1DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant2DDFValue != null && _model.filtersModel.assistant2DDFValue != '' ? (e.assistant2 == _model.filtersModel.assistant2DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant3DDFValue != null && _model.filtersModel.assistant3DDFValue != '' ? (e.assistant3 == _model.filtersModel.assistant3DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant5DDFValue != null && _model.filtersModel.assistant5DDFValue != '' ? (e.assistant5 == _model.filtersModel.assistant5DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant4DDFValue != null && _model.filtersModel.assistant4DDFValue != '' ? (e.assistant4 == _model.filtersModel.assistant4DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true),
-                                                                        true,
-                                                                      ))
-                                                                  .toList();
-                                                          return SizedBox(
-                                                            width:
-                                                                double.infinity,
-                                                            child: DataTable2(
-                                                              columns: [
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '3u4edcpm' /* Customs */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'pxvuiyu1' /* Inventory status */,
                                                                     ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              10.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
                                                                   ),
                                                                 ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'qc2c841j' /* Responsible */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'drgh0quh' /* Assistant 1 */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'phc78vbh' /* Assistant 2 */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'ewtsb710' /* Assistant 3 */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'm8f7rl8o' /* Assistant 4 */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'mey6rg8c' /* Assistant 5 */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'lbqpqfz8' /* Assistant 6 */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            6.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'utcyzk8v' /* FMS ref */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'zixsjgyz' /* Load ref/dvh */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              rows:
-                                                                  orderLevelVar2
-                                                                      .mapIndexed((orderLevelVar2Index,
-                                                                              orderLevelVar2Item) =>
-                                                                          [
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar2Item.customName,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                '${orderLevelVar2Item.responsibleName} ${orderLevelVar2Item.responsibleLastName}',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                '${orderLevelVar2Item.assistant1Name} ${orderLevelVar2Item.assistant1LastName}',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                '${orderLevelVar2Item.assistant2Name} ${orderLevelVar2Item.assistant2LastName}',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                '${orderLevelVar2Item.assistant3Name} ${orderLevelVar2Item.assistant3LastName}',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 6.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                '${orderLevelVar2Item.assistant4Name} ${orderLevelVar2Item.assistant4LastName}',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                '${orderLevelVar2Item.assistant5Name} ${orderLevelVar2Item.assistant5LastName}',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                '${orderLevelVar2Item.assistant6Name} ${orderLevelVar2Item.assistant6LastName}',
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar2Item.fmsRef,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar2Item.loadRefDvh,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                          ]
-                                                                              .map((c) => DataCell(
-                                                                                  c))
-                                                                              .toList())
-                                                                      .map((e) =>
-                                                                          DataRow(
-                                                                              cells: e))
-                                                                      .toList(),
-                                                              headingRowColor:
-                                                                  MaterialStateProperty
-                                                                      .all(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
                                                               ),
-                                                              headingRowHeight:
-                                                                  40.0,
-                                                              dataRowColor:
-                                                                  MaterialStateProperty
-                                                                      .all(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                              ),
-                                                              dataRowHeight:
-                                                                  28.0,
-                                                              border:
-                                                                  TableBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            0.0),
-                                                              ),
-                                                              dividerThickness:
-                                                                  2.0,
-                                                              columnSpacing:
-                                                                  2.0,
-                                                              showBottomBorder:
-                                                                  true,
-                                                              minWidth: 49.0,
                                                             ),
-                                                          );
-                                                        },
-                                                      ),
-                                                      Builder(
-                                                        builder: (context) {
-                                                          final orderLevelVar3 =
-                                                              orderWarehouseVistaOrderLevelExtendedRowList
-                                                                  .where((e) =>
-                                                                      valueOrDefault<
-                                                                          bool>(
-                                                                        (_model.filtersModel.clientDDFValue != null && _model.filtersModel.clientDDFValue != '' ? (e.client == _model.filtersModel.clientDDFValue) : true) &&
-                                                                            (_model.filtersModel.flowDDFValue != null && _model.filtersModel.flowDDFValue != ''
-                                                                                ? (e.flow == _model.filtersModel.flowDDFValue)
-                                                                                : true) &&
-                                                                            (_model.filtersModel.orderStatusDDFValue != null && _model.filtersModel.orderStatusDDFValue != '' ? (e.orderStatus == _model.filtersModel.orderStatusDDFValue) : true) &&
-                                                                            (_model.filtersModel.adminDDFValue != null && _model.filtersModel.adminDDFValue != '' ? (e.admin == _model.filtersModel.adminDDFValue) : true) &&
-                                                                            (_model.filtersModel.warehouseDDFValue != null && _model.filtersModel.warehouseDDFValue != '' ? (e.warehouse == _model.filtersModel.warehouseDDFValue) : true) &&
-                                                                            (_model.filtersModel.customDDFValue != null && _model.filtersModel.customDDFValue != '' ? (e.custom == _model.filtersModel.customDDFValue) : true) &&
-                                                                            (_model.filtersModel.responsibleDDFValue != null && _model.filtersModel.responsibleDDFValue != '' ? (e.responsible == _model.filtersModel.responsibleDDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant1DDFValue != null && _model.filtersModel.assistant1DDFValue != '' ? (e.assistant1 == _model.filtersModel.assistant1DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant2DDFValue != null && _model.filtersModel.assistant2DDFValue != '' ? (e.assistant2 == _model.filtersModel.assistant2DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant3DDFValue != null && _model.filtersModel.assistant3DDFValue != '' ? (e.assistant3 == _model.filtersModel.assistant3DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant5DDFValue != null && _model.filtersModel.assistant5DDFValue != '' ? (e.assistant5 == _model.filtersModel.assistant5DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant4DDFValue != null && _model.filtersModel.assistant4DDFValue != '' ? (e.assistant4 == _model.filtersModel.assistant4DDFValue) : true) &&
-                                                                            (_model.filtersModel.assistant6DDFValue != null && _model.filtersModel.assistant6DDFValue != '' ? (e.assistant6 == _model.filtersModel.assistant6DDFValue) : true),
-                                                                        true,
-                                                                      ))
-                                                                  .toList();
-                                                          return SizedBox(
-                                                            width:
-                                                                double.infinity,
-                                                            child: DataTable2(
-                                                              columns: [
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'tghe35n9' /* Order No. */,
+                                                                    ),
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              10.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '37v95s8b' /* Client */,
+                                                                    ),
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '7cfdxw7v' /* Date (order creation) */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              8.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '362j0z0g' /* Flow */,
+                                                                    ),
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'izhpwrxj' /* Order Status */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'ln2y397n' /* Admin name */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'xmg7zwn5' /* Warehouse */,
+                                                                    ),
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'q1kjrcmj' /* Arrival Date */,
+                                                                    ),
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'zo61oimc' /* Time (Approx.) */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '87lyugkn' /* Arrival */,
+                                                                    ),
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      't2l2tgqf' /* Loading Gate */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'wynd7o4m' /* Loading Gate Sequence */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              10.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '9rupi34m' /* Start (upload/unload) */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              10.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'tfjbdg35' /* Stop (upload/unload) */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              10.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '78nwxrxm' /* Licence plate No. */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              10.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    'Quantity (${(valueOrDefault<int>(
+                                                                          functions.sumList(orderLevelVar4
+                                                                              .where((e) => e.flow == 'in-razklad')
+                                                                              .toList()
+                                                                              .map((e) => e.quantity)
+                                                                              .withoutNulls
+                                                                              .toList()),
+                                                                          0,
+                                                                        ) - valueOrDefault<int>(
+                                                                          functions.sumList(orderLevelVar4
+                                                                              .where((e) => e.flow == 'out-naklad')
+                                                                              .toList()
+                                                                              .map((e) => e.quantity)
+                                                                              .withoutNulls
+                                                                              .toList()),
+                                                                          0,
+                                                                        )).toString()})',
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      's4nv5obe' /* Pallet position */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    'Unit (${(valueOrDefault<int>(
+                                                                          functions.sumList(orderLevelVar4
+                                                                              .where((e) => e.flow == 'in-razklad')
+                                                                              .toList()
+                                                                              .map((e) => e.details)
+                                                                              .withoutNulls
+                                                                              .toList()),
+                                                                          0,
+                                                                        ) - valueOrDefault<int>(
+                                                                          functions.sumList(orderLevelVar4
+                                                                              .where((e) => e.flow == 'out-naklad')
+                                                                              .toList()
+                                                                              .map((e) => e.details)
+                                                                              .withoutNulls
+                                                                              .toList()),
+                                                                          0,
+                                                                        )).toString()})',
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'c50ronqu' /* Weight */,
+                                                                    ),
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'qgfx5ohx' /* Container No. */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '5di4kkue' /* Improvement */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '7lkmhc1b' /* Customs */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'g3kg3sk1' /* Responsible */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'qz66zov7' /* Assistant 1 */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'hrc2588q' /* Assistant 2 */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'yrivlfzz' /* Assistant 3 */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'yjdj5d4r' /* Assistant 4 */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '3nfn13bc' /* Assistant 5 */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'dcwk132h' /* Assistant 6 */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        6.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '7k6n66x4' /* FMS ref */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'wos8cyhk' /* Load ref/dvh */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'bex7bc4y' /* Damaged mark */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '3f0syzqb' /* Universal ref num */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'pe99gmv3' /* Comment */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '6cz8z47r' /* Other manipulations */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'qeakur9m' /* Type of un/upload */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'ops5ccfv' /* Type of un/upload 2 */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      't82p55cn' /* Documents */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '51b3fyix' /* Internal number - accounting */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        6.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'cozt0vbw' /* Internal ref */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        6.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'mb17zifq' /* Good */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '5ftjx6mq' /* Good description */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'iwzfnl86' /* Packaging */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'cmb3a9gm' /* Acceptance */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '5mwbawa3' /* Check */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        1.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '3b2vk55x' /* Details */,
+                                                                    ),
+                                                                    maxLines: 1,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).info,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        6.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              fixedWidth: 40.0,
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'ur3b8sl2' /* Edit */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).info,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        6.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              fixedWidth: 40.0,
+                                                            ),
+                                                            DataColumn2(
+                                                              label:
+                                                                  DefaultTextStyle
+                                                                      .merge(
+                                                                softWrap: true,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      AutoSizeText(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'i7th2khe' /* Delete */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 1,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelLarge
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).warning,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        6.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              fixedWidth: 50.0,
+                                                            ),
+                                                          ],
+                                                          rows: orderLevelVar4
+                                                              .mapIndexed((orderLevelVar4Index,
+                                                                      orderLevelVar4Item) =>
+                                                                  [
+                                                                    Align(
                                                                       alignment:
                                                                           const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '562co4jx' /* Damaged mark */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '1hc1vf7y' /* Universal ref num */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'iazw9p52' /* Comment */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '3p6jbq5v' /* Other manipulations */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'ud48yked' /* Type of un/upload */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'um0q5laq' /* Type of un/upload 2 */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'k01662rj' /* Documents */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        maxLines:
-                                                                            2,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            1.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'dysnvqy2' /* Internal number - accounting */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            6.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn2(
-                                                                  label:
-                                                                      DefaultTextStyle
-                                                                          .merge(
-                                                                    softWrap:
-                                                                        true,
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          AutoSizeText(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'qzslen50' /* Internal reference number - cu... */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 12.0,
-                                                                            ),
-                                                                        minFontSize:
-                                                                            6.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              rows:
-                                                                  orderLevelVar3
-                                                                      .mapIndexed((orderLevelVar3Index,
-                                                                              orderLevelVar3Item) =>
-                                                                          [
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.damageMark,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.universalRefNo,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.comment,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.otherManipulation,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.loadingType,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.loadingType2,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
-                                                                                    ),
-                                                                                minFontSize: 1.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: Builder(
-                                                                                builder: (context) => InkWell(
-                                                                                  splashColor: Colors.transparent,
-                                                                                  focusColor: Colors.transparent,
-                                                                                  hoverColor: Colors.transparent,
-                                                                                  highlightColor: Colors.transparent,
-                                                                                  onTap: () async {
-                                                                                    await showAlignedDialog(
-                                                                                      context: context,
-                                                                                      isGlobal: true,
-                                                                                      avoidOverflow: false,
-                                                                                      targetAnchor: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      followerAnchor: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      builder: (dialogContext) {
-                                                                                        return Material(
-                                                                                          color: Colors.transparent,
-                                                                                          child: GestureDetector(
-                                                                                            onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                                            child: PdfViewerWidget(
-                                                                                              pdfLink: valueOrDefault<String>(
-                                                                                                orderLevelVar3Item.document,
-                                                                                                'https://aaxptvfturwawmigxwgq.supabase.co/storage/v1/object/public/documents/noPdf.pdf',
-                                                                                              ),
-                                                                                            ),
+                                                                          Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            FFAppState().clearTablesCache();
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    child: SureQueryWidget(
+                                                                                      saveChangesP: () async {
+                                                                                        await OrderLevelTable().delete(
+                                                                                          matchingRows: (rows) => rows.eq(
+                                                                                            'id',
+                                                                                            orderLevelVar4Item.id,
                                                                                           ),
                                                                                         );
+                                                                                        await showDialog(
+                                                                                          context: context,
+                                                                                          builder: (alertDialogContext) {
+                                                                                            return AlertDialog(
+                                                                                              title: const Text('Elimination'),
+                                                                                              content: const Text('Row deleted successfully.'),
+                                                                                              actions: [
+                                                                                                TextButton(
+                                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                  child: const Text('Ok'),
+                                                                                                ),
+                                                                                              ],
+                                                                                            );
+                                                                                          },
+                                                                                        );
                                                                                       },
-                                                                                    ).then((value) => setState(() {}));
-                                                                                  },
-                                                                                  child: Icon(
-                                                                                    Icons.picture_as_pdf_rounded,
-                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                    size: 24.0,
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.internalAccounting,
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Roboto',
-                                                                                      fontSize: 12.0,
                                                                                     ),
-                                                                                minFontSize: 6.0,
-                                                                              ),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: Text(
-                                                                                valueOrDefault<String>(
-                                                                                  orderLevelVar3Item.internalRefCustom?.toString(),
-                                                                                  'brez izbire',
-                                                                                ),
-                                                                                textAlign: TextAlign.center,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                              ),
-                                                                            ),
-                                                                          ]
-                                                                              .map((c) => DataCell(
-                                                                                  c))
-                                                                              .toList())
-                                                                      .map((e) =>
-                                                                          DataRow(
-                                                                              cells: e))
-                                                                      .toList(),
-                                                              headingRowColor:
-                                                                  MaterialStateProperty
-                                                                      .all(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                              ),
-                                                              headingRowHeight:
-                                                                  40.0,
-                                                              dataRowColor:
-                                                                  MaterialStateProperty
-                                                                      .all(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                              ),
-                                                              dataRowHeight:
-                                                                  28.0,
-                                                              border:
-                                                                  TableBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.delete_forever,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).warning,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            FFAppState().clearTablesCache();
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    child: FormsWidget(
+                                                                                      orderId: orderLevelVar4Item.id!,
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.edit_square,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).info,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            FFAppState().clearDetailsViewCache();
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    child: DetailsWidget(
+                                                                                      orderId: orderLevelVar4Item.id!,
+                                                                                      orderNo: orderLevelVar4Item.orderNo!,
+                                                                                      warehouseIdDetails: orderLevelVar4Item.warehouse!,
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.more_vert,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).info,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
                                                                             0.0),
-                                                              ),
-                                                              dividerThickness:
-                                                                  2.0,
-                                                              columnSpacing:
-                                                                  2.0,
-                                                              showBottomBorder:
-                                                                  true,
-                                                              minWidth: 49.0,
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
-                                                      child: smooth_page_indicator
-                                                          .SmoothPageIndicator(
-                                                        controller: _model
-                                                                .pageViewController ??=
-                                                            PageController(
-                                                                initialPage: 0),
-                                                        count: 4,
-                                                        axisDirection:
-                                                            Axis.horizontal,
-                                                        onDotClicked:
-                                                            (i) async {
-                                                          await _model
-                                                              .pageViewController!
-                                                              .animateToPage(
-                                                            i,
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    500),
-                                                            curve: Curves.ease,
-                                                          );
-                                                        },
-                                                        effect: smooth_page_indicator
-                                                            .ExpandingDotsEffect(
-                                                          expansionFactor: 3.0,
-                                                          spacing: 8.0,
-                                                          radius: 16.0,
-                                                          dotWidth: 16.0,
-                                                          dotHeight: 8.0,
-                                                          dotColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .accent1,
-                                                          activeDotColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          paintStyle:
-                                                              PaintingStyle
-                                                                  .fill,
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            orderLevelVar4Item.invStatus!,
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 10.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            orderLevelVar4Item.orderNo!,
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 10.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            orderLevelVar4Item.clientName!.maybeHandleOverflow(
+                                                                              maxChars: 20,
+                                                                              replacement: '…',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 10.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            dateTimeFormat(
+                                                                              'yMMMd',
+                                                                              functions.parsePostgresTimestamp(orderLevelVar4Item.createdAt!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            orderLevelVar4Item.flow!,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              Text(
+                                                                            orderLevelVar4Item.orderStatus!,
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.adminName} ${orderLevelVar4Item.adminLastName}',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            orderLevelVar4Item.warehouseName!,
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            dateTimeFormat(
+                                                                              'yMMMd',
+                                                                              functions.parsePostgresTimestamp(orderLevelVar4Item.etaDate!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyMedium,
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${dateTimeFormat(
+                                                                              'Hm',
+                                                                              functions.parsePostgresTimestamp(orderLevelVar4Item.etaI!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )} - ${dateTimeFormat(
+                                                                              'Hm',
+                                                                              functions.parsePostgresTimestamp(orderLevelVar4Item.etaF!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            )}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            dateTimeFormat(
+                                                                              'Hm',
+                                                                              functions.parsePostgresTimestamp(orderLevelVar4Item.arrival!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.loadingGateRamp,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 11.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.loadingSequence?.toString(),
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            dateTimeFormat(
+                                                                              'Hm',
+                                                                              functions.parsePostgresTimestamp(orderLevelVar4Item.start!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            dateTimeFormat(
+                                                                              'Hm',
+                                                                              functions.parsePostgresTimestamp(orderLevelVar4Item.stop!.toString()),
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.licencePlate,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            orderLevelVar4Item.flow == 'out-naklad'
+                                                                                ? '-${valueOrDefault<String>(
+                                                                                    orderLevelVar4Item.quantity?.toString(),
+                                                                                    '0',
+                                                                                  )}'
+                                                                                : valueOrDefault<String>(
+                                                                                    orderLevelVar4Item.quantity?.toString(),
+                                                                                    '0',
+                                                                                  ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.palletPosition?.toString(),
+                                                                              '-1',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            orderLevelVar4Item.flow == 'out-naklad'
+                                                                                ? '-${valueOrDefault<String>(
+                                                                                    orderLevelVar4Item.details?.toString(),
+                                                                                    '0',
+                                                                                  )}'
+                                                                                : valueOrDefault<String>(
+                                                                                    orderLevelVar4Item.details?.toString(),
+                                                                                    '0',
+                                                                                  ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.weight?.toString(),
+                                                                              '-1',
+                                                                            ),
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.containerNo,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.improvement,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.customName,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.responsibleName} ${orderLevelVar4Item.responsibleLastName}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.assistant1Name} ${orderLevelVar4Item.assistant1LastName}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.assistant2Name} ${orderLevelVar4Item.assistant2LastName}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.assistant3Name} ${orderLevelVar4Item.assistant3LastName}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.assistant4Name} ${orderLevelVar4Item.assistant4LastName}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.assistant5Name} ${orderLevelVar4Item.assistant5LastName}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            '${orderLevelVar4Item.assistant6Name} ${orderLevelVar4Item.assistant6LastName}',
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.fmsRef,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.loadRefDvh,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.damageMark,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.universalRefNo,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.comment,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.otherManipulation,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.loadingType,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.loadingType2,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                1.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            Builder(
+                                                                              builder: (context) => InkWell(
+                                                                                splashColor: Colors.transparent,
+                                                                                focusColor: Colors.transparent,
+                                                                                hoverColor: Colors.transparent,
+                                                                                highlightColor: Colors.transparent,
+                                                                                onTap: () async {
+                                                                                  await showDialog(
+                                                                                    context: context,
+                                                                                    builder: (dialogContext) {
+                                                                                      return Dialog(
+                                                                                        insetPadding: EdgeInsets.zero,
+                                                                                        backgroundColor: Colors.transparent,
+                                                                                        alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        child: GestureDetector(
+                                                                                          onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                          child: DocumentsWidget(
+                                                                                            orderId: orderLevelVar4Item.id!,
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    },
+                                                                                  ).then((value) => setState(() {}));
+                                                                                },
+                                                                                child: Icon(
+                                                                                  Icons.picture_as_pdf_rounded,
+                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                  size: 24.0,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Text(
+                                                                              orderLevelVar4Item.documents.length.toString(),
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.internalAccounting,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              Text(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.internalRefCustom?.toString(),
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyMedium,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.item,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.opisBlaga,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onDoubleTap:
+                                                                              () async {
+                                                                            setState(() {
+                                                                              _model.fixedColumns = [];
+                                                                            });
+                                                                            setState(() {
+                                                                              _model.addToFixedColumns(FixedColumnsStruct(
+                                                                                invStatus: orderLevelVar4Item.invStatus,
+                                                                                orderNo: orderLevelVar4Item.orderNo,
+                                                                                client: orderLevelVar4Item.clientName,
+                                                                              ));
+                                                                              _model.selectedIndex = orderLevelVar4Index;
+                                                                            });
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              orderLevelVar4Item.packagingName,
+                                                                              'brez izbire',
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 12.0,
+                                                                                ),
+                                                                            minFontSize:
+                                                                                6.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        child:
+                                                                            Stack(
+                                                                          alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                          children: [
+                                                                            if (!orderLevelVar4Item.acepted!)
+                                                                              Icon(
+                                                                                Icons.close_outlined,
+                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                size: 24.0,
+                                                                              ),
+                                                                            if (orderLevelVar4Item.acepted ??
+                                                                                true)
+                                                                              Icon(
+                                                                                Icons.check_circle_outline,
+                                                                                color: FlutterFlowTheme.of(context).secondary,
+                                                                                size: 24.0,
+                                                                              ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: orderLevelVar4Index == _model.selectedIndex
+                                                                              ? FlutterFlowTheme.of(context).tertiary
+                                                                              : (orderLevelVar4Index % 2 == 0 ? const Color(0x00000000) : FlutterFlowTheme.of(context).accent4),
+                                                                        ),
+                                                                        child:
+                                                                            Stack(
+                                                                          alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                          children: [
+                                                                            if (!orderLevelVar4Item.checked!)
+                                                                              Icon(
+                                                                                Icons.close_outlined,
+                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                size: 24.0,
+                                                                              ),
+                                                                            if (orderLevelVar4Item.checked ??
+                                                                                true)
+                                                                              Icon(
+                                                                                Icons.check_circle,
+                                                                                color: FlutterFlowTheme.of(context).success,
+                                                                                size: 24.0,
+                                                                              ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            FFAppState().clearDetailsViewCache();
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    child: DetailsWidget(
+                                                                                      orderId: orderLevelVar4Item.id!,
+                                                                                      orderNo: orderLevelVar4Item.orderNo!,
+                                                                                      warehouseIdDetails: orderLevelVar4Item.warehouse!,
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.more_vert,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).info,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            FFAppState().clearTablesCache();
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    child: FormsWidget(
+                                                                                      orderId: orderLevelVar4Item.id!,
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.edit_square,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).info,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Builder(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            FFAppState().clearTablesCache();
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: GestureDetector(
+                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                    child: SureQueryWidget(
+                                                                                      saveChangesP: () async {
+                                                                                        await OrderLevelTable().delete(
+                                                                                          matchingRows: (rows) => rows.eq(
+                                                                                            'id',
+                                                                                            orderLevelVar4Item.id,
+                                                                                          ),
+                                                                                        );
+                                                                                        await showDialog(
+                                                                                          context: context,
+                                                                                          builder: (alertDialogContext) {
+                                                                                            return AlertDialog(
+                                                                                              title: const Text('Elimination'),
+                                                                                              content: const Text('Row deleted successfully.'),
+                                                                                              actions: [
+                                                                                                TextButton(
+                                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                  child: const Text('Ok'),
+                                                                                                ),
+                                                                                              ],
+                                                                                            );
+                                                                                          },
+                                                                                        );
+                                                                                      },
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.delete_forever,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).warning,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ]
+                                                                      .map((c) =>
+                                                                          DataCell(
+                                                                              c))
+                                                                      .toList())
+                                                              .map((e) =>
+                                                                  DataRow(
+                                                                      cells: e))
+                                                              .toList(),
+                                                          headingRowColor:
+                                                              MaterialStateProperty
+                                                                  .all(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryBackground,
+                                                          ),
+                                                          headingRowHeight:
+                                                              40.0,
+                                                          dataRowColor:
+                                                              MaterialStateProperty
+                                                                  .all(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryBackground,
+                                                          ),
+                                                          dataRowHeight: 28.0,
+                                                          border: TableBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0.0),
+                                                          ),
+                                                          dividerThickness: 2.0,
+                                                          columnSpacing: 0.0,
+                                                          showBottomBorder:
+                                                              true,
+                                                          minWidth: 49.0,
                                                         ),
                                                       ),
-                                                    ),
+                                                    );
+                                                  },
+                                                ),
+                                                Container(
+                                                  width: 4600.0,
+                                                  height: 50.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                        ]
-                                            .addToStart(const SizedBox(width: 0.0))
-                                            .addToEnd(const SizedBox(width: 0.0)),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 28.0, 28.0),
+                                      28.0, 0.0, 28.0, 28.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 28.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            FFAppState().clearTablesCache();
-                                            setState(() {
-                                              _model.filtersModel
-                                                  .clientDDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .flowDDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .orderStatusDDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .assistant6DDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .adminDDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .warehouseDDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .customDDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .responsibleDDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .assistant1DDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .assistant2DDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .assistant3DDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .assistant4DDFValueController
-                                                  ?.reset();
-                                              _model.filtersModel
-                                                  .assistant5DDFValueController
-                                                  ?.reset();
-                                            });
-                                          },
-                                          child: Icon(
-                                            Icons.restore_page_sharp,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 40.0,
-                                          ),
-                                        ),
-                                      ),
-                                      Builder(
-                                        builder: (context) => FFButtonWidget(
-                                          onPressed: () async {
-                                            await showAlignedDialog(
-                                              context: context,
-                                              isGlobal: true,
-                                              avoidOverflow: false,
-                                              targetAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              followerAnchor:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              builder: (dialogContext) {
-                                                return Material(
-                                                  color: Colors.transparent,
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: const CreateRecordWidget(),
-                                                  ),
-                                                );
-                                              },
-                                            ).then((value) => setState(() {}));
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            'gzx8lf20' /* Create new record */,
-                                          ),
-                                          options: FFButtonOptions(
-                                            height: 40.0,
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily: 'Roboto',
-                                                      color: Colors.white,
-                                                    ),
-                                            elevation: 3.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                                    0.0, 0.0, 28.0, 0.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                FFAppState().clearTablesCache();
+                                                setState(() {
+                                                  _model.filtersModel
+                                                      .clientDDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .flowDDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .orderStatusDDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .assistant6DDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .adminDDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .warehouseDDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .customDDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .responsibleDDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .assistant1DDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .assistant2DDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .assistant3DDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .assistant4DDFValueController
+                                                      ?.reset();
+                                                  _model.filtersModel
+                                                      .assistant5DDFValueController
+                                                      ?.reset();
+                                                });
+                                              },
+                                              child: Icon(
+                                                Icons.restore_page_sharp,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 40.0,
+                                              ),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
                                           ),
-                                        ),
+                                          Builder(
+                                            builder: (context) =>
+                                                FFButtonWidget(
+                                              onPressed: () async {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: GestureDetector(
+                                                        onTap: () => _model
+                                                                .unfocusNode
+                                                                .canRequestFocus
+                                                            ? FocusScope.of(
+                                                                    context)
+                                                                .requestFocus(_model
+                                                                    .unfocusNode)
+                                                            : FocusScope.of(
+                                                                    context)
+                                                                .unfocus(),
+                                                        child:
+                                                            const CreateRecordWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then(
+                                                    (value) => setState(() {}));
+                                              },
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                'gzx8lf20' /* Create new record */,
+                                              ),
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          color: Colors.white,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),

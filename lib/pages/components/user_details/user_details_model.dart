@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'user_detail_widget.dart' show UserDetailWidget;
+import 'user_details_widget.dart' show UserDetailsWidget;
 import 'package:flutter/material.dart';
 
-class UserDetailModel extends FlutterFlowModel<UserDetailWidget> {
+class UserDetailsModel extends FlutterFlowModel<UserDetailsWidget> {
   /// Initialization and disposal methods.
 
   @override

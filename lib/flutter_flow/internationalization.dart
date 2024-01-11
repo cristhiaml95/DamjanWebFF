@@ -330,230 +330,275 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'A continuación se muestran los detalles de sus movimientos de inventario.',
       'sl': 'Spodaj so podrobnosti o gibanju vašega inventarja.',
     },
+    '8hbwbaea': {
+      'en': 'Inventory status',
+      'es': 'Estado de inventario',
+      'sl': 'Stanje zalog',
+    },
+    '2edqbygl': {
+      'en': 'Order No.',
+      'es': 'N º de pedido.',
+      'sl': 'Številka naročila.',
+    },
+    'wf2m2don': {
+      'en': 'Client',
+      'es': 'Cliente',
+      'sl': 'Stranka',
+    },
     'c21jfo2s': {
       'en': 'Filters',
       'es': 'Filtros',
       'sl': 'Filtri',
     },
-    '4gvv10bv': {
+    'k6lov7ww': {
       'en': 'Delete',
       'es': 'Borrar',
       'sl': 'Izbriši',
     },
-    'vv1dc6qz': {
+    'evi9in41': {
       'en': 'Edit',
       'es': 'Editar',
       'sl': 'Uredi',
     },
-    '4ob5746w': {
+    'hoy7rlp0': {
       'en': 'Details',
       'es': 'Detalles',
       'sl': 'Podrobnosti',
     },
-    'a85e7y4b': {
+    'pxvuiyu1': {
       'en': 'Inventory status',
       'es': 'Estado de inventario',
       'sl': 'Stanje zalog',
     },
-    '384h2osu': {
+    'tghe35n9': {
       'en': 'Order No.',
       'es': 'N º de pedido.',
       'sl': 'Številka naročila.',
     },
-    '0qc3thun': {
+    '37v95s8b': {
       'en': 'Client',
       'es': 'Cliente',
       'sl': 'Stranka',
     },
-    'sry4l4s2': {
+    '7cfdxw7v': {
       'en': 'Date (order creation)',
       'es': 'Fecha (creación del pedido)',
       'sl': 'Datum (izdelava naročila)',
     },
-    'h2zp4prd': {
+    '362j0z0g': {
       'en': 'Flow',
       'es': 'Fluir',
       'sl': 'Tok',
     },
-    'gickv2pq': {
+    'izhpwrxj': {
       'en': 'Order Status',
       'es': 'Estado del pedido',
       'sl': 'Status naročila',
     },
-    '4wmpcw6p': {
+    'ln2y397n': {
       'en': 'Admin name',
       'es': 'Nombre del administrador',
       'sl': 'Ime skrbnika',
     },
-    'o2eoprgs': {
+    'xmg7zwn5': {
       'en': 'Warehouse',
       'es': 'Depósito',
       'sl': 'Skladišče',
     },
-    'okurx3sq': {
+    'q1kjrcmj': {
       'en': 'Arrival Date',
       'es': 'Fecha de llegada',
       'sl': 'Datum prihoda',
     },
-    'er3rci37': {
+    'zo61oimc': {
       'en': 'Time (Approx.)',
       'es': 'Tiempo (aprox.)',
       'sl': 'Čas (pribl.)',
     },
-    'y2nnzux4': {
+    '87lyugkn': {
       'en': 'Arrival',
       'es': 'Llegada',
       'sl': 'Prihod',
     },
-    '107jplnv': {
+    't2l2tgqf': {
       'en': 'Loading Gate',
       'es': 'Puerta de carga',
       'sl': 'Nakladalna vrata',
     },
-    'twdqlob4': {
+    'wynd7o4m': {
       'en': 'Loading Gate Sequence',
       'es': 'Secuencia de puerta de carga',
       'sl': 'Zaporedje vrat za nalaganje',
     },
-    'k0zz51q8': {
+    '9rupi34m': {
       'en': 'Start (upload/unload)',
       'es': 'Iniciar (cargar/descargar)',
       'sl': 'Začetek (nalaganje/razlaganje)',
     },
-    'u3ijaewz': {
+    'tfjbdg35': {
       'en': 'Stop (upload/unload)',
       'es': 'Detener (cargar/descargar)',
       'sl': 'Ustavi (naloži/razloži)',
     },
-    '6n9rbllc': {
+    '78nwxrxm': {
       'en': 'Licence plate No.',
       'es': 'Matrícula No.',
       'sl': 'registrska tablica št.',
     },
-    'pny2c3gb': {
-      'en': 'Quantity',
-      'es': 'Cantidad',
-      'sl': 'Količina',
-    },
-    'p5k27kxl': {
+    's4nv5obe': {
       'en': 'Pallet position',
       'es': 'Posición del palet',
       'sl': 'Položaj palete',
     },
-    'wfso9jfw': {
-      'en': 'Unit',
-      'es': 'Unidad',
-      'sl': 'Enota',
-    },
-    '5rw12nca': {
+    'c50ronqu': {
       'en': 'Weight',
       'es': 'Peso',
       'sl': 'Utež',
     },
-    '1t7u18tt': {
+    'qgfx5ohx': {
       'en': 'Container No.',
       'es': 'No contenedor.',
       'sl': 'posoda št.',
     },
-    'oh3dt4i6': {
+    '5di4kkue': {
       'en': 'Improvement',
       'es': 'Mejora',
       'sl': 'Izboljšava',
     },
-    '3u4edcpm': {
+    '7lkmhc1b': {
       'en': 'Customs',
       'es': 'Aduanas',
       'sl': 'Carina',
     },
-    'qc2c841j': {
+    'g3kg3sk1': {
       'en': 'Responsible',
       'es': 'Responsable',
       'sl': 'Odgovorno',
     },
-    'drgh0quh': {
+    'qz66zov7': {
       'en': 'Assistant 1',
       'es': 'Asistente 1',
       'sl': 'Pomočnik 1',
     },
-    'phc78vbh': {
+    'hrc2588q': {
       'en': 'Assistant 2',
       'es': 'Asistente 2',
       'sl': 'Pomočnik 2',
     },
-    'ewtsb710': {
+    'yrivlfzz': {
       'en': 'Assistant 3',
       'es': 'Asistente 3',
       'sl': 'Pomočnik 3',
     },
-    'm8f7rl8o': {
+    'yjdj5d4r': {
       'en': 'Assistant 4',
       'es': 'Asistente 4',
       'sl': 'Pomočnik 4',
     },
-    'mey6rg8c': {
+    '3nfn13bc': {
       'en': 'Assistant 5',
       'es': 'Asistente 5',
       'sl': 'Pomočnik 5',
     },
-    'lbqpqfz8': {
+    'dcwk132h': {
       'en': 'Assistant 6',
       'es': 'Asistente 6',
       'sl': 'Pomočnik 6',
     },
-    'utcyzk8v': {
+    '7k6n66x4': {
       'en': 'FMS ref',
       'es': 'referencia FMS',
       'sl': 'FMS ref',
     },
-    'zixsjgyz': {
+    'wos8cyhk': {
       'en': 'Load ref/dvh',
       'es': 'Cargar ref/dvh',
       'sl': 'Naloži ref/dvh',
     },
-    '562co4jx': {
+    'bex7bc4y': {
       'en': 'Damaged mark',
       'es': 'marca dañada',
       'sl': 'Poškodovana oznaka',
     },
-    '1hc1vf7y': {
+    '3f0syzqb': {
       'en': 'Universal ref num',
       'es': 'Número de referencia universal',
       'sl': 'Univerzalna refer. št',
     },
-    'iazw9p52': {
+    'pe99gmv3': {
       'en': 'Comment',
       'es': 'Comentario',
       'sl': 'Komentiraj',
     },
-    '3p6jbq5v': {
+    '6cz8z47r': {
       'en': 'Other manipulations',
       'es': 'Otras manipulaciones',
       'sl': 'Druge manipulacije',
     },
-    'ud48yked': {
+    'qeakur9m': {
       'en': 'Type of un/upload',
       'es': 'Tipo de descarga/descarga',
       'sl': 'Vrsta razveljavitve/nalaganja',
     },
-    'um0q5laq': {
+    'ops5ccfv': {
       'en': 'Type of un/upload 2',
       'es': 'Tipo de descarga/descarga 2',
       'sl': 'Vrsta razveljavitve/nalaganja 2',
     },
-    'k01662rj': {
+    't82p55cn': {
       'en': 'Documents',
       'es': 'Documentos',
       'sl': 'Dokumenti',
     },
-    'dysnvqy2': {
+    '51b3fyix': {
       'en': 'Internal number - accounting',
       'es': 'Número interno - contabilidad',
       'sl': 'Interna številka - računovodstvo',
     },
-    'qzslen50': {
-      'en': 'Internal reference number - customs',
-      'es': 'Número de referencia interno - aduanas',
-      'sl': 'Interna referenčna številka - carina',
+    'cozt0vbw': {
+      'en': 'Internal ref',
+      'es': 'Árbitro interno',
+      'sl': 'Notranja ref',
+    },
+    'mb17zifq': {
+      'en': 'Good',
+      'es': 'Bien',
+      'sl': 'Dobro',
+    },
+    '5ftjx6mq': {
+      'en': 'Good description',
+      'es': 'Buena descripción',
+      'sl': 'Dober opis',
+    },
+    'iwzfnl86': {
+      'en': 'Packaging',
+      'es': 'embalaje',
+      'sl': 'Pakiranje',
+    },
+    'cmb3a9gm': {
+      'en': 'Acceptance',
+      'es': 'Aceptación',
+      'sl': 'Sprejemanje',
+    },
+    '5mwbawa3': {
+      'en': 'Check',
+      'es': 'Controlar',
+      'sl': 'Preverite',
+    },
+    '3b2vk55x': {
+      'en': 'Details',
+      'es': 'Detalles',
+      'sl': 'Podrobnosti',
+    },
+    'ur3b8sl2': {
+      'en': 'Edit',
+      'es': 'Editar',
+      'sl': 'Uredi',
+    },
+    'i7th2khe': {
+      'en': 'Delete',
+      'es': 'Borrar',
+      'sl': 'Izbriši',
     },
     'gzx8lf20': {
       'en': 'Create new record',
@@ -978,9 +1023,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sl': 'Po meri',
     },
     '4ud2i6wv': {
-      'en': 'Document',
-      'es': 'Documento',
-      'sl': 'Dokument',
+      'en': 'Documents',
+      'es': 'Documentos',
+      'sl': 'Dokumenti',
     },
     'zr1r30z4': {
       'en': 'Int. num. acc.',
@@ -1135,16 +1180,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'IVA no',
       'sl': 'DDV št',
     },
-    '6jh8jvmt': {
-      'en': 'Edit',
-      'es': 'Editar',
-      'sl': 'Uredi',
-    },
-    'q9z0b3rk': {
-      'en': 'Delete',
-      'es': 'Borrar',
-      'sl': 'Izbriši',
-    },
     'l681o904': {
       'en': 'Customs',
       'es': 'Aduanas',
@@ -1189,16 +1224,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Abreviation',
       'es': 'Abreviatura',
       'sl': 'Okrajšava',
-    },
-    '297p1nq7': {
-      'en': 'Edit',
-      'es': 'Editar',
-      'sl': 'Uredi',
-    },
-    'ls13m4pm': {
-      'en': 'Delete',
-      'es': 'Borrar',
-      'sl': 'Izbriši',
     },
     'vfgoswxs': {
       'en': 'Manipulations',
@@ -1305,9 +1330,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sl': 'Tok',
     },
     '8pd9kjkx': {
-      'en': 'Date (order creation)',
-      'es': 'Fecha (creación del pedido)',
-      'sl': 'Datum (izdelava naročila)',
+      'en': 'Est. arrival',
+      'es': 'Est. llegada',
+      'sl': 'Ocena prihod',
     },
     'pjfdjawp': {
       'en': 'Time',
@@ -1445,12 +1470,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Formulario 5',
       'sl': 'Obrazec 5',
     },
-    'xhi20m6b': {
+    '2fq4wgnt': {
       'en': 'Order No:  ',
       'es': 'N º de pedido:',
       'sl': 'Številka naročila:',
     },
-    '5puhm8fn': {
+    'ej4ffm0k': {
       'en': 'Client:  ',
       'es': 'Cliente:',
       'sl': 'Naročnik:',
@@ -1460,7 +1485,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'umgbs7tb': {
+    'iaur83ra': {
       'en': 'Input/output:  ',
       'es': 'De entrada y salida:',
       'sl': 'Vhod/izhod:',
@@ -1480,12 +1505,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    't4x9tkxa': {
+    '0pln6r7m': {
       'en': 'Estimated arrival:  ',
       'es': 'Llegada estimada:',
       'sl': 'Predviden prihod:',
     },
-    'fg1xc0cp': {
+    'er1iflkk': {
       'en': 'Order status:  ',
       'es': 'Estado del pedido:',
       'sl': 'Status naročila:',
@@ -1499,11 +1524,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'novo naročilo',
       'es': 'nuevo naročilo',
       'sl': 'novo naročilo',
-    },
-    'h7tc0t10': {
-      'en': 'priprava',
-      'es': 'priprava',
-      'sl': 'priprava',
     },
     'q8evheu3': {
       'en': 'izvajanje',
@@ -1520,7 +1540,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'm8504ht5': {
+    'rvm1e9wy': {
       'en': 'Warehouse:  ',
       'es': 'Depósito:',
       'sl': 'Skladišče:',
@@ -1530,22 +1550,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'ncrspa6v': {
+    '3s4hp8em': {
       'en': 'Creation date:  ',
       'es': 'Fecha de creación:',
       'sl': 'Datum nastanka:',
     },
-    'dtcz3z81': {
-      'en': 'Responsible:  ',
-      'es': 'Responsable:',
-      'sl': 'Odgovorni:',
+    'n2o8wfi4': {
+      'en': 'Admin:  ',
+      'es': 'Administración:',
+      'sl': 'skrbnik:',
     },
     'uh5dxl5p': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    '2vbwap0s': {
+    'x6to0e7v': {
       'en': 'Custom:  ',
       'es': 'Costumbre:',
       'sl': 'Po meri:',
@@ -1555,22 +1575,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'le5vzwe0': {
+    'p7usehyk': {
       'en': 'Internal reference number - customs:  ',
       'es': 'Número de referencia interna - aduanas:',
       'sl': 'Interna referenčna številka - carina:',
     },
-    'egsqs1qd': {
+    'jruby3lr': {
       'en': 'Internal number - accounting:  ',
       'es': 'Número interno - contabilidad:',
       'sl': 'Interna številka - računovodstvo:',
     },
-    '5d3u0131': {
+    '52lqeszm': {
       'en': 'Documents:  ',
       'es': 'Documentos:',
       'sl': 'Dokumenti:',
     },
-    '4a40qnn5': {
+    '51d0v2pi': {
       'en': 'Inventory status:  ',
       'es': 'Estado de inventario:',
       'sl': 'Stanje inventarja:',
@@ -1600,22 +1620,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    '15e72e6y': {
+    'g5m6fbuf': {
       'en': 'Announced time 1:  ',
       'es': 'Hora anunciada 1:',
       'sl': 'Napovedan čas 1:',
     },
-    '2eukvlfl': {
+    'uoxtbao7': {
       'en': 'Announced time 2:  ',
       'es': 'Hora anunciada 2:',
       'sl': 'Napovedan čas 2:',
     },
-    'llj5tej8': {
+    'b63594nl': {
       'en': 'Arrival:  ',
       'es': 'Llegada:',
       'sl': 'Prihod:',
     },
-    'na2qlw6i': {
+    '7pkfn8ib': {
       'en': 'Loading gate:  ',
       'es': 'Puerta de carga:',
       'sl': 'Vrata za nakladanje:',
@@ -1625,270 +1645,295 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'jd1nxnxr': {
+    'ggnfr75d': {
       'en': 'Loading gate sequence:  ',
       'es': 'Secuencia de puerta de carga:',
       'sl': 'Zaporedje vrat za nalaganje:',
     },
-    'qq1wd08x': {
+    '5b3d3y3h': {
       'en': 'Start (upload/unload):  ',
       'es': 'Iniciar (cargar/descargar):',
       'sl': 'Začetek (nalaganje/razlaganje):',
     },
-    'gbdut9aq': {
+    'p0vxwlax': {
       'en': 'Stop (upload/unload):  ',
       'es': 'Detener (cargar/descargar):',
       'sl': 'Ustavi (nalaganje/odlaganje):',
     },
-    'w9npb5la': {
+    'jsq2xkyk': {
       'en': 'Licence plate No:  ',
       'es': 'Número de matrícula:',
       'sl': 'Številka registrske tablice:',
     },
-    '42rr8l7b': {
+    'e0d8yka2': {
       'en': 'Improvement:  ',
       'es': 'Mejora:',
       'sl': 'Izboljšava:',
     },
-    'yemivd25': {
+    'l8k0xuaf': {
       'en': 'kont.-20"',
       'es': 'conector-20"',
       'sl': 'kont.-20"',
     },
-    'hrq9kto7': {
+    '4citue3o': {
       'en': 'kont.-40"',
       'es': 'conector-40"',
       'sl': 'kont.-40"',
     },
-    '0tsg0nv8': {
+    '4y1sq1d7': {
       'en': 'kont.-45"',
       'es': 'conector-45"',
       'sl': 'kont.-45"',
     },
-    'nsvmoq8j': {
+    '2572s363': {
       'en': 'cerada',
       'es': 'cerada',
       'sl': 'cerada',
     },
-    'hj1mnzao': {
+    'aj0w8yyo': {
       'en': 'hladilnik',
       'es': 'hladilnik',
       'sl': 'hladilnik',
     },
-    'tbwirq02': {
+    'onw3427g': {
       'en': 'silos',
       'es': 'silos',
       'sl': 'silosi',
     },
-    '06x3pud7': {
+    '9c8qpw3n': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'dz8pmec2': {
+    '241xgsk0': {
       'en': 'Container No:  ',
       'es': 'No contenedor:',
       'sl': 'Št. zabojnika:',
     },
-    'v22y7evv': {
+    '1luorh6t': {
       'en': 'Comment:  ',
       'es': 'Comentario:',
       'sl': 'komentar:',
     },
-    'sfnu9hsh': {
+    '6v4a337z': {
       'en': 'Quantity:  ',
       'es': 'Cantidad:',
       'sl': 'Količina:',
     },
-    've5lecs6': {
+    'n93uyp2z': {
       'en': 'Pallet position:  ',
       'es': 'Posición del palet:',
       'sl': 'Položaj palete:',
     },
-    '7bxazwwv': {
+    'bbrh0h2w': {
+      'en': 'Check:  ',
+      'es': 'Controlar:',
+      'sl': 'Preverite:',
+    },
+    'x7scfgzz': {
       'en': 'Unit:  ',
       'es': 'Unidad:',
       'sl': 'Enota:',
     },
-    'nbxsam7i': {
+    '3lpe3obr': {
       'en': 'Weight:  ',
       'es': 'Peso:',
       'sl': 'Utež:',
     },
-    'xg5td71o': {
+    'swxjzyjy': {
       'en': 'Other manipulations:  ',
       'es': 'Otras manipulaciones:',
       'sl': 'Druge manipulacije:',
     },
-    't602reun': {
+    '1nhh5v4p': {
       'en': 'paletiranje',
       'es': 'paletiranje',
       'sl': 'paletiranje',
     },
-    'y6y27gjf': {
+    '0hdkxipi': {
       'en': 'čiščenje',
       'es': 'ciščenje',
       'sl': 'čiščenje',
     },
-    'av72bxme': {
+    'dicagqab': {
       'en': 'ovijanje-folija',
       'es': 'ovijanje-folija',
       'sl': 'ovijanje-folija',
     },
-    'ycapl6g3': {
+    'jvt03f0c': {
       'en': 'povezovanje',
       'es': 'povezovanje',
       'sl': 'povezovanje',
     },
-    'mfssgox9': {
+    'iep49uhs': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'mitkqu7r': {
+    'k3bvaxvd': {
       'en': 'Type of un/upload:  ',
       'es': 'Tipo de descarga/descarga:',
       'sl': 'Vrsta odstranitve/nalaganja:',
     },
-    'gjfstrkq': {
+    'c1g1mv1p': {
       'en': 'viličar',
       'es': 'vilicar',
       'sl': 'viličar',
     },
-    'wbicjeby': {
+    'xt5iyzud': {
       'en': 'ročno',
       'es': 'ročno',
       'sl': 'ročno',
     },
-    '6ag5u2ug': {
+    'gc8cy7x7': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'rw7l8p93': {
+    '4ys80k7p': {
       'en': 'Type of un/upload 2:  ',
       'es': 'Tipo de descarga/descarga 2:',
       'sl': 'Vrsta razveljavitve/nalaganja 2:',
     },
-    'm6npubl6': {
+    'dfdjkscf': {
       'en': 'viličar',
       'es': 'vilicar',
       'sl': 'viličar',
     },
-    'jscrx0ez': {
+    'gaxkwc6b': {
       'en': 'ročno',
       'es': 'ročno',
       'sl': 'ročno',
     },
-    'l18w26s5': {
+    'qxb7w2sx': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    '3ks2s4ek': {
-      'en': 'Responsible  ',
-      'es': 'Responsable',
-      'sl': 'Odgovorno',
+    'nnew7c7t': {
+      'en': 'Responsible: ',
+      'es': 'Responsable:',
+      'sl': 'Odgovorni:',
     },
-    'grcxnp49': {
+    '5j26f3oh': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'bifdy4ti': {
+    'rxkrrxst': {
       'en': 'Assistant 1:  ',
       'es': 'Asistente 1:',
       'sl': 'Pomočnik 1:',
     },
-    '3kgownwn': {
+    'w00it0yk': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'j1zndiok': {
+    'odfaa90q': {
       'en': 'Assistant 2:  ',
       'es': 'Asistente 2:',
       'sl': 'Pomočnik 2:',
     },
-    '24xpxxd3': {
+    '86gnzb1r': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    '0ximh46t': {
+    '42o4cwkv': {
       'en': 'Assistant 3:  ',
       'es': 'Asistente 3:',
       'sl': 'Pomočnik 3:',
     },
-    'qyo1rr3d': {
+    'y9wemh7m': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    '3dc2my4g': {
+    'uxlc78ll': {
       'en': 'Assistant 4:  ',
       'es': 'Asistente 4:',
       'sl': 'Pomočnik 4:',
     },
-    'p5m1vzod': {
+    'cyhz6mld': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'yx3kdv8b': {
+    'dh2jv6vo': {
       'en': 'Assistant 5:  ',
       'es': 'Asistente 5:',
       'sl': 'Pomočnik 5:',
     },
-    '1a084wws': {
+    '2rezj3dd': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'xgdb8lbr': {
+    'iigw54yp': {
       'en': 'Assistant 6:  ',
       'es': 'Asistente 6:',
       'sl': 'Pomočnik 6:',
     },
-    'pj37fydl': {
+    'gvqo5j88': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'z202ytb9': {
+    '27brn9o8': {
       'en': 'Universal ref num:  ',
       'es': 'Número de referencia universal:',
       'sl': 'Univerzalna referenčna številka:',
     },
-    'fbd2vk8f': {
+    'w2vc2fpp': {
       'en': 'FMS ref:  ',
       'es': 'Referencia FMS:',
       'sl': 'Ref. FMS:',
     },
-    'hmxvey7w': {
+    'qx5ac8t1': {
       'en': 'Load ref/dvh:  ',
       'es': 'Cargar ref/dvh:',
       'sl': 'Naloži ref/dvh:',
     },
-    'e8m9gut8': {
+    'xcuhjh74': {
       'en': 'Good:  ',
       'es': 'Bien:',
       'sl': 'dobro:',
     },
-    'zc13fj1i': {
+    'nstuvhay': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
-    'bt3p1muw': {
+    '6f042ri4': {
       'en': 'Good description:  ',
       'es': 'Buena descripción:',
       'sl': 'Dober opis:',
     },
-    '69e8wsns': {
+    '4wmarb3r': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
+    },
+    '18qvpp0q': {
+      'en': 'Packaging:  ',
+      'es': 'Embalaje:',
+      'sl': 'Pakiranje:',
+    },
+    '2gywf2o3': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'spunb0qj': {
+      'en': 'Barcodes:  ',
+      'es': 'Códigos de barras:',
+      'sl': 'črtne kode:',
+    },
+    'x1apz81p': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
     },
     'kgb68azj': {
       'en': 'Save changes',
@@ -1912,682 +1957,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'No',
       'es': 'No',
       'sl': 'št',
-    },
-  },
-  // createRecord
-  {
-    '23zmfaww': {
-      'en': 'Create new record',
-      'es': 'Crear nuevo registro',
-      'sl': 'Ustvari nov zapis',
-    },
-    'h7vbjo07': {
-      'en': 'Form 1',
-      'es': 'Formulario 1',
-      'sl': 'obrazec 1',
-    },
-    '5eb5bex3': {
-      'en': 'Form 2',
-      'es': 'Formulario 2',
-      'sl': 'obrazec 2',
-    },
-    'bx2iudm8': {
-      'en': 'Form 3',
-      'es': 'Formulario 3',
-      'sl': 'Obrazec 3',
-    },
-    'u5dt95hk': {
-      'en': 'Form 4',
-      'es': 'Formulario 4',
-      'sl': 'Obrazec 4',
-    },
-    'rrkm5stu': {
-      'en': 'Form 5',
-      'es': 'Formulario 5',
-      'sl': 'Obrazec 5',
-    },
-    '6mfgt7mc': {
-      'en': 'Order No:  ',
-      'es': 'N º de pedido:',
-      'sl': 'Številka naročila:',
-    },
-    'j40vtkdj': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'euinr59i': {
-      'en': 'Client:  ',
-      'es': 'Cliente:',
-      'sl': 'Naročnik:',
-    },
-    'afi6o3c8': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '60k8kqff': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'j7bqmgtq': {
-      'en': 'Input/output:  ',
-      'es': 'De entrada y salida:',
-      'sl': 'Vhod/izhod:',
-    },
-    'xt37sfxi': {
-      'en': 'in-razklad',
-      'es': 'en razklad',
-      'sl': 'in-razklad',
-    },
-    'l7h6zijm': {
-      'en': 'out-naklad',
-      'es': 'fuera-naklad',
-      'sl': 'izven-naklad',
-    },
-    '96l7zg13': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'qq14wb9c': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'pq8br4eg': {
-      'en': 'Estimated arrival:  ',
-      'es': 'Llegada estimada:',
-      'sl': 'Predviden prihod:',
-    },
-    'vh4y1b12': {
-      'en': 'Order status:  ',
-      'es': 'Estado del pedido:',
-      'sl': 'Status naročila:',
-    },
-    '34df8vp6': {
-      'en': 'novo naročilo',
-      'es': 'nuevo naročilo',
-      'sl': 'novo naročilo',
-    },
-    'uwqalsj9': {
-      'en': 'novo naročilo',
-      'es': 'nuevo naročilo',
-      'sl': 'novo naročilo',
-    },
-    'kwbxr9gr': {
-      'en': 'priprava',
-      'es': 'priprava',
-      'sl': 'priprava',
-    },
-    '2fpw9er3': {
-      'en': 'izvajanje',
-      'es': 'izvajanje',
-      'sl': 'izvajanje',
-    },
-    'b7linal4': {
-      'en': 'zaključeno',
-      'es': 'zaključeno',
-      'sl': 'zaključeno',
-    },
-    '2agy3euu': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '73rqfl34': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'jt0y29bm': {
-      'en': 'Warehouse:  ',
-      'es': 'Depósito:',
-      'sl': 'Skladišče:',
-    },
-    '9l3iqen0': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'cn3rvnn4': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'sp20ocl7': {
-      'en': 'Creation date:  ',
-      'es': 'Fecha de creación:',
-      'sl': 'Datum nastanka:',
-    },
-    'kd5fj3gq': {
-      'en': 'Responsible:  ',
-      'es': 'Responsable:',
-      'sl': 'Odgovorni:',
-    },
-    'fr1c6bst': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'mg4proq2': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'shq7bpjq': {
-      'en': 'Custom:  ',
-      'es': 'Costumbre:',
-      'sl': 'Po meri:',
-    },
-    'ks8ytv69': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'fk8zqwbc': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'hizc9aop': {
-      'en': 'Internal reference number - customs:  ',
-      'es': 'Número de referencia interna - aduanas:',
-      'sl': 'Interna referenčna številka - carina:',
-    },
-    '9e4ao90g': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'pdmhp45l': {
-      'en': 'Internal number - accounting:  ',
-      'es': 'Número interno - contabilidad:',
-      'sl': 'Interna številka - računovodstvo:',
-    },
-    'l02sr68n': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'c0f7xjx8': {
-      'en': 'Documents:  ',
-      'es': 'Documentos:',
-      'sl': 'Dokumenti:',
-    },
-    'mh5ueire': {
-      'en': 'Inventory status:  ',
-      'es': 'Estado de inventario:',
-      'sl': 'Stanje inventarja:',
-    },
-    'kl4m50xq': {
-      'en': 'najava',
-      'es': 'najavá',
-      'sl': 'najava',
-    },
-    'ng8aum7g': {
-      'en': 'obdelava',
-      'es': 'obdelava',
-      'sl': 'obdelava',
-    },
-    'r9645k11': {
-      'en': 'izdano',
-      'es': 'izdano',
-      'sl': 'izdano',
-    },
-    'agvh52ox': {
-      'en': 'zaloga',
-      'es': 'zaloga',
-      'sl': 'zaloga',
-    },
-    '57lpd5gz': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'nikezb59': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    '1ec7y7ge': {
-      'en': 'Announced time 1:  ',
-      'es': 'Hora anunciada 1:',
-      'sl': 'Napovedan čas 1:',
-    },
-    'v5pxyfc3': {
-      'en': 'Announced time 2:  ',
-      'es': 'Hora anunciada 2:',
-      'sl': 'Napovedan čas 2:',
-    },
-    '9lql71ou': {
-      'en': 'Arrival:  ',
-      'es': 'Llegada:',
-      'sl': 'Prihod:',
-    },
-    '1aeho4yq': {
-      'en': 'Loading gate:  ',
-      'es': 'Puerta de carga:',
-      'sl': 'Vrata za nakladanje:',
-    },
-    '59713mh4': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'qcrsnkhc': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'orirvxt3': {
-      'en': 'Loading gate sequence:  ',
-      'es': 'Secuencia de puerta de carga:',
-      'sl': 'Zaporedje vrat za nalaganje:',
-    },
-    '6x3tbknn': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'zszsu74t': {
-      'en': 'Start (upload/unload):  ',
-      'es': 'Iniciar (cargar/descargar):',
-      'sl': 'Začetek (nalaganje/razlaganje):',
-    },
-    'zgklrmo0': {
-      'en': 'Stop (upload/unload):  ',
-      'es': 'Detener (cargar/descargar):',
-      'sl': 'Ustavi (nalaganje/odlaganje):',
-    },
-    'zaxjnjwx': {
-      'en': 'Licence plate No:  ',
-      'es': 'Número de matrícula:',
-      'sl': 'Številka registrske tablice:',
-    },
-    'qahvq5ai': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'ptqqkls5': {
-      'en': 'Improvement:  ',
-      'es': 'Mejora:',
-      'sl': 'Izboljšava:',
-    },
-    'z96264l9': {
-      'en': 'kont.-20"',
-      'es': 'conector-20"',
-      'sl': 'kont.-20"',
-    },
-    '6c7proun': {
-      'en': 'kont.-40"',
-      'es': 'conector-40"',
-      'sl': 'kont.-40"',
-    },
-    'pg62sq1k': {
-      'en': 'kont.-45"',
-      'es': 'conector-45"',
-      'sl': 'kont.-45"',
-    },
-    'wsz0rhr4': {
-      'en': 'cerada',
-      'es': 'cerada',
-      'sl': 'cerada',
-    },
-    'v0qiv97z': {
-      'en': 'hladilnik',
-      'es': 'hladilnik',
-      'sl': 'hladilnik',
-    },
-    '21caknco': {
-      'en': 'silos',
-      'es': 'silos',
-      'sl': 'silosi',
-    },
-    'm8jpw007': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '3pygr422': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'smm271ch': {
-      'en': 'Container No:  ',
-      'es': 'No contenedor:',
-      'sl': 'Št. zabojnika:',
-    },
-    '0wve7iz3': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'hjysxbze': {
-      'en': 'Comment:  ',
-      'es': 'Comentario:',
-      'sl': 'komentar:',
-    },
-    '5kbrismp': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'hi0qdz0v': {
-      'en': 'Quantity:  ',
-      'es': 'Cantidad:',
-      'sl': 'Količina:',
-    },
-    'j12vk162': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'waatswcs': {
-      'en': 'Pallet position:  ',
-      'es': 'Posición del palet:',
-      'sl': 'Položaj palete:',
-    },
-    'tqluabnb': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    '4vnkj172': {
-      'en': 'Unit:  ',
-      'es': 'Unidad:',
-      'sl': 'Enota:',
-    },
-    'wh6ouiik': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    '1fgz3hxz': {
-      'en': 'Weight:  ',
-      'es': 'Peso:',
-      'sl': 'Utež:',
-    },
-    'lma8ep7p': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'ukicl9fp': {
-      'en': 'Other manipulations:  ',
-      'es': 'Otras manipulaciones:',
-      'sl': 'Druge manipulacije:',
-    },
-    'ijt84yvo': {
-      'en': 'paletiranje',
-      'es': 'paletiranje',
-      'sl': 'paletiranje',
-    },
-    'a1ap7dng': {
-      'en': 'čiščenje',
-      'es': 'ciščenje',
-      'sl': 'čiščenje',
-    },
-    '26jkxfik': {
-      'en': 'ovijanje-folija',
-      'es': 'ovijanje-folija',
-      'sl': 'ovijanje-folija',
-    },
-    's2x5quv0': {
-      'en': 'povezovanje',
-      'es': 'povezovanje',
-      'sl': 'povezovanje',
-    },
-    'j0xre2rn': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '6iv7p2u8': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    '2km6ibqu': {
-      'en': 'Type of un/upload:  ',
-      'es': 'Tipo de descarga/descarga:',
-      'sl': 'Vrsta odstranitve/nalaganja:',
-    },
-    'f3m2m2rs': {
-      'en': 'viličar',
-      'es': 'vilicar',
-      'sl': 'viličar',
-    },
-    '3j7gfdkd': {
-      'en': 'ročno',
-      'es': 'ročno',
-      'sl': 'ročno',
-    },
-    'rgvd6jdo': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'l1l2lzcn': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'x7i4bdpo': {
-      'en': 'Type of un/upload 2:  ',
-      'es': 'Tipo de descarga/descarga 2:',
-      'sl': 'Vrsta razveljavitve/nalaganja 2:',
-    },
-    'i52kl5nk': {
-      'en': 'viličar',
-      'es': 'vilicar',
-      'sl': 'viličar',
-    },
-    '6yfdmir9': {
-      'en': 'ročno',
-      'es': 'ročno',
-      'sl': 'ročno',
-    },
-    'xez7k68e': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'uqzgkw92': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    '2m24f05u': {
-      'en': 'Responsible  ',
-      'es': 'Responsable',
-      'sl': 'Odgovorno',
-    },
-    '3aw7jzk5': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '0598vkt1': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    '1mv16gw8': {
-      'en': 'Assistant 1:  ',
-      'es': 'Asistente 1:',
-      'sl': 'Pomočnik 1:',
-    },
-    '7ufhq9kl': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'olcw703g': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'igz3phjk': {
-      'en': 'Assistant 2:  ',
-      'es': 'Asistente 2:',
-      'sl': 'Pomočnik 2:',
-    },
-    'r5gd6z1j': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '0gfuabrx': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'vt92pqpj': {
-      'en': 'Assistant 3:  ',
-      'es': 'Asistente 3:',
-      'sl': 'Pomočnik 3:',
-    },
-    'pus37n2r': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'fqdcp673': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'zp1xkwo1': {
-      'en': 'Assistant 4:  ',
-      'es': 'Asistente 4:',
-      'sl': 'Pomočnik 4:',
-    },
-    '7iw76xzw': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'fl2m8kwn': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    '06dsjx0t': {
-      'en': 'Assistant 5:  ',
-      'es': 'Asistente 5:',
-      'sl': 'Pomočnik 5:',
-    },
-    '9ihfe2e0': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'gipgh51l': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'c7npmm9z': {
-      'en': 'Assistant 6:  ',
-      'es': 'Asistente 6:',
-      'sl': 'Pomočnik 6:',
-    },
-    'lechkiyi': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    'aa5uo62h': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'l1buairv': {
-      'en': 'Universal ref num:  ',
-      'es': 'Número de referencia universal:',
-      'sl': 'Univerzalna referenčna številka:',
-    },
-    'uh38ddo3': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    '8hq2ipp7': {
-      'en': 'FMS ref:  ',
-      'es': 'Referencia FMS:',
-      'sl': 'Ref. FMS:',
-    },
-    'h1ur5wgi': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    '9k0yde9k': {
-      'en': 'Load ref/dvh:  ',
-      'es': 'Cargar ref/dvh:',
-      'sl': 'Naloži ref/dvh:',
-    },
-    'kjwg1ti3': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'y5o5dbxu': {
-      'en': 'Good:  ',
-      'es': 'Bien:',
-      'sl': 'dobro:',
-    },
-    'olu8pg20': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '95hwmajy': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'df1xiv22': {
-      'en': 'Good description:  ',
-      'es': 'Buena descripción:',
-      'sl': 'Dober opis:',
-    },
-    '1dn5ocu9': {
-      'en': 'Please select...',
-      'es': 'Por favor seleccione...',
-      'sl': 'Prosim izberite...',
-    },
-    '3ymgthd8': {
-      'en': 'Search for an item...',
-      'es': 'Buscar un artículo...',
-      'sl': 'Iskanje predmeta ...',
-    },
-    'aulaxeej': {
-      'en': 'Barcodes:  ',
-      'es': 'Códigos de barras:',
-      'sl': 'črtne kode:',
-    },
-    'fc2wnpy4': {
-      'en': 'Insert new value...',
-      'es': 'Insertar nuevo valor...',
-      'sl': 'Vstavi novo vrednost ...',
-    },
-    'lbv650ew': {
-      'en': 'Save new record',
-      'es': 'Guardar nuevo registro',
-      'sl': 'Shrani nov zapis',
-    },
-  },
-  // userDetail
-  {
-    '956587sr': {
-      'en': 'Log out',
-      'es': 'Cerrar sesión',
-      'sl': 'Odjava',
     },
   },
   // editDetails
@@ -2795,6 +2164,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
     },
+    '4rzkuskn': {
+      'en': '',
+      'es': '',
+      'sl': '',
+    },
+    'k1w7p134': {
+      'en': 'Select barcode...',
+      'es': 'Seleccionar código de barras...',
+      'sl': 'Izberite črtno kodo ...',
+    },
+    '75bemxhw': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
     '8na66h35': {
       'en': 'Select responsible...',
       'es': 'Seleccionar responsable...',
@@ -2891,6 +2275,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'sl': 'Izberite pomočnika 6 ...',
     },
     'wp8ny3c5': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'awl2534n': {
+      'en': '',
+      'es': '',
+      'sl': '',
+    },
+    'tf7wjto0': {
+      'en': 'Select container...',
+      'es': 'Seleccionar contenedor...',
+      'sl': 'Izberite vsebnik ...',
+    },
+    'wwh1a5q5': {
       'en': 'Search for an item...',
       'es': 'Buscar un artículo...',
       'sl': 'Iskanje predmeta ...',
@@ -3052,6 +2451,1014 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Pdf viewer',
       'es': 'Visor de PDF',
       'sl': 'Pregledovalnik pdf',
+    },
+  },
+  // createRecord
+  {
+    'icazai1q': {
+      'en': 'Create record',
+      'es': 'Crear registro',
+      'sl': 'Ustvari zapis',
+    },
+    'awyh9clr': {
+      'en': 'Form 1',
+      'es': 'Formulario 1',
+      'sl': 'obrazec 1',
+    },
+    'oqag4g4z': {
+      'en': 'Form 2',
+      'es': 'Formulario 2',
+      'sl': 'obrazec 2',
+    },
+    '7gxoffrz': {
+      'en': 'Form 3',
+      'es': 'Formulario 3',
+      'sl': 'Obrazec 3',
+    },
+    'ciz89uu4': {
+      'en': 'Form 4',
+      'es': 'Formulario 4',
+      'sl': 'Obrazec 4',
+    },
+    'c28mc4jt': {
+      'en': 'Form 5',
+      'es': 'Formulario 5',
+      'sl': 'Obrazec 5',
+    },
+    'ky1fkyq8': {
+      'en': 'Order No:  ',
+      'es': 'N º de pedido:',
+      'sl': 'Številka naročila:',
+    },
+    'd4pgq4wh': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'n4lv60m3': {
+      'en': 'Client:  ',
+      'es': 'Cliente:',
+      'sl': 'Naročnik:',
+    },
+    '7ch3gvd9': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '8kuki8c8': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '4t7wu43q': {
+      'en': 'Input/output:  ',
+      'es': 'De entrada y salida:',
+      'sl': 'Vhod/izhod:',
+    },
+    'mb6t6xsl': {
+      'en': 'in-razklad',
+      'es': 'en razklad',
+      'sl': 'in-razklad',
+    },
+    'uhas6n8o': {
+      'en': 'out-naklad',
+      'es': 'fuera-naklad',
+      'sl': 'izven-naklad',
+    },
+    '1hn2bb2c': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '7ng7rqd2': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'u3y2wa25': {
+      'en': 'Estimated arrival:  ',
+      'es': 'Llegada estimada:',
+      'sl': 'Predviden prihod:',
+    },
+    'mdnjx34b': {
+      'en': 'Order status:  ',
+      'es': 'Estado del pedido:',
+      'sl': 'Status naročila:',
+    },
+    'w7oxraah': {
+      'en': '',
+      'es': '',
+      'sl': '',
+    },
+    '6gbetm8e': {
+      'en': 'novo naročilo',
+      'es': 'nuevo naročilo',
+      'sl': 'novo naročilo',
+    },
+    'u24qhs2i': {
+      'en': 'izvajanje',
+      'es': 'izvajanje',
+      'sl': 'izvajanje',
+    },
+    'qld2hdoq': {
+      'en': 'zaključeno',
+      'es': 'zaključeno',
+      'sl': 'zaključeno',
+    },
+    'wa3dr3qi': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'a4hkbbbs': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'yf58ods0': {
+      'en': 'Warehouse:  ',
+      'es': 'Depósito:',
+      'sl': 'Skladišče:',
+    },
+    '2oi66ola': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'p9h1yasj': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'gyl4et1g': {
+      'en': 'Creation date:  ',
+      'es': 'Fecha de creación:',
+      'sl': 'Datum nastanka:',
+    },
+    '3i8fpg3s': {
+      'en': 'Admin:  ',
+      'es': 'Administración:',
+      'sl': 'skrbnik:',
+    },
+    'o51pbopf': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'rsbq7dpb': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'wtl5gquy': {
+      'en': 'Custom:  ',
+      'es': 'Costumbre:',
+      'sl': 'Po meri:',
+    },
+    'npwrukop': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '6o1amf6g': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'y9nlr7l1': {
+      'en': 'Internal reference number - customs:  ',
+      'es': 'Número de referencia interna - aduanas:',
+      'sl': 'Interna referenčna številka - carina:',
+    },
+    'nwod5dwl': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'u8csng2w': {
+      'en': 'Internal number - accounting:  ',
+      'es': 'Número interno - contabilidad:',
+      'sl': 'Interna številka - računovodstvo:',
+    },
+    'jnxu2lw2': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    '97flenab': {
+      'en': 'Documents:  ',
+      'es': 'Documentos:',
+      'sl': 'Dokumenti:',
+    },
+    'jfdgfk2h': {
+      'en': 'Inventory status:  ',
+      'es': 'Estado de inventario:',
+      'sl': 'Stanje inventarja:',
+    },
+    'm6u9emjf': {
+      'en': 'najava',
+      'es': 'najavá',
+      'sl': 'najava',
+    },
+    'muuxrfd4': {
+      'en': 'obdelava',
+      'es': 'obdelava',
+      'sl': 'obdelava',
+    },
+    '8hy4f85f': {
+      'en': 'izdano',
+      'es': 'izdano',
+      'sl': 'izdano',
+    },
+    'fsquvroe': {
+      'en': 'zaloga',
+      'es': 'zaloga',
+      'sl': 'zaloga',
+    },
+    '1xbyxef0': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'jrmz0qkd': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'byxykt3p': {
+      'en': 'Announced time 1:  ',
+      'es': 'Hora anunciada 1:',
+      'sl': 'Napovedan čas 1:',
+    },
+    'mmasmgj8': {
+      'en': 'Announced time 2:  ',
+      'es': 'Hora anunciada 2:',
+      'sl': 'Napovedan čas 2:',
+    },
+    '5jx8ei1h': {
+      'en': 'Arrival:  ',
+      'es': 'Llegada:',
+      'sl': 'Prihod:',
+    },
+    '7n1wz3dg': {
+      'en': 'Loading gate:  ',
+      'es': 'Puerta de carga:',
+      'sl': 'Vrata za nakladanje:',
+    },
+    'o1s3lijj': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'u0463ju1': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '2wf0bwqi': {
+      'en': 'Loading gate sequence:  ',
+      'es': 'Secuencia de puerta de carga:',
+      'sl': 'Zaporedje vrat za nalaganje:',
+    },
+    'h6ak5k8v': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'zgrpo3te': {
+      'en': 'Start (upload/unload):  ',
+      'es': 'Iniciar (cargar/descargar):',
+      'sl': 'Začetek (nalaganje/razlaganje):',
+    },
+    'bjs4ou59': {
+      'en': 'Stop (upload/unload):  ',
+      'es': 'Detener (cargar/descargar):',
+      'sl': 'Ustavi (nalaganje/odlaganje):',
+    },
+    '7o7laf2a': {
+      'en': 'Licence plate No:  ',
+      'es': 'Número de matrícula:',
+      'sl': 'Številka registrske tablice:',
+    },
+    '040ubt2z': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    '8l4ktgnn': {
+      'en': 'Improvement:  ',
+      'es': 'Mejora:',
+      'sl': 'Izboljšava:',
+    },
+    '2imyah2q': {
+      'en': 'kont.-20"',
+      'es': 'conector-20"',
+      'sl': 'kont.-20"',
+    },
+    'zwo8ap52': {
+      'en': 'kont.-40"',
+      'es': 'conector-40"',
+      'sl': 'kont.-40"',
+    },
+    '41rqmaea': {
+      'en': 'kont.-45"',
+      'es': 'conector-45"',
+      'sl': 'kont.-45"',
+    },
+    '2hadsask': {
+      'en': 'cerada',
+      'es': 'cerada',
+      'sl': 'cerada',
+    },
+    'k97naf92': {
+      'en': 'hladilnik',
+      'es': 'hladilnik',
+      'sl': 'hladilnik',
+    },
+    'cvptjha4': {
+      'en': 'silos',
+      'es': 'silos',
+      'sl': 'silosi',
+    },
+    'ipq9i6k0': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'oo7imzeb': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'otst498k': {
+      'en': 'Container No:  ',
+      'es': 'No contenedor:',
+      'sl': 'Št. zabojnika:',
+    },
+    'mq0tkjys': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'y9prqowd': {
+      'en': 'Container No:  ',
+      'es': 'No contenedor:',
+      'sl': 'Št. zabojnika:',
+    },
+    'jutridg4': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'z0krpsur': {
+      'en': 'Quantity:  ',
+      'es': 'Cantidad:',
+      'sl': 'Količina:',
+    },
+    'z0zeitio': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'xhr03gwm': {
+      'en': 'Pallet position:  ',
+      'es': 'Posición del palet:',
+      'sl': 'Položaj palete:',
+    },
+    'kwuyrj9a': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'od7hk99b': {
+      'en': 'Unit:  ',
+      'es': 'Unidad:',
+      'sl': 'Enota:',
+    },
+    '913l23f5': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'yx7l9lto': {
+      'en': 'Weight:  ',
+      'es': 'Peso:',
+      'sl': 'Utež:',
+    },
+    'c0ibmp0t': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'ht9lg19b': {
+      'en': 'Other manipulations:  ',
+      'es': 'Otras manipulaciones:',
+      'sl': 'Druge manipulacije:',
+    },
+    'v0605lcd': {
+      'en': 'paletiranje',
+      'es': 'paletiranje',
+      'sl': 'paletiranje',
+    },
+    'tmtr4y35': {
+      'en': 'čiščenje',
+      'es': 'ciščenje',
+      'sl': 'čiščenje',
+    },
+    '5khc979z': {
+      'en': 'ovijanje-folija',
+      'es': 'ovijanje-folija',
+      'sl': 'ovijanje-folija',
+    },
+    'z88b9v9x': {
+      'en': 'povezovanje',
+      'es': 'povezovanje',
+      'sl': 'povezovanje',
+    },
+    '9ulabaix': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '041hw8ml': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '4gp0ce5z': {
+      'en': 'Type of un/upload:  ',
+      'es': 'Tipo de descarga/descarga:',
+      'sl': 'Vrsta odstranitve/nalaganja:',
+    },
+    'dmx4t6wo': {
+      'en': 'viličar',
+      'es': 'vilicar',
+      'sl': 'viličar',
+    },
+    'e2m4u9ep': {
+      'en': 'ročno',
+      'es': 'ročno',
+      'sl': 'ročno',
+    },
+    'ukdhot6n': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '0adkqdb5': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '7ydq3891': {
+      'en': 'Type of un/upload 2:  ',
+      'es': 'Tipo de descarga/descarga 2:',
+      'sl': 'Vrsta razveljavitve/nalaganja 2:',
+    },
+    'fx5olq4n': {
+      'en': 'viličar',
+      'es': 'vilicar',
+      'sl': 'viličar',
+    },
+    'jq0mat9m': {
+      'en': 'ročno',
+      'es': 'ročno',
+      'sl': 'ročno',
+    },
+    'ts5hctjo': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'olzhk09c': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'zytdv2ys': {
+      'en': 'Responsible: ',
+      'es': 'Responsable:',
+      'sl': 'Odgovorni:',
+    },
+    'wxjgz326': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'u80efgss': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'jnlfkmmw': {
+      'en': 'Assistant 1:  ',
+      'es': 'Asistente 1:',
+      'sl': 'Pomočnik 1:',
+    },
+    'csazqy88': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'yhfsslm2': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    's426vfgc': {
+      'en': 'Assistant 2:  ',
+      'es': 'Asistente 2:',
+      'sl': 'Pomočnik 2:',
+    },
+    'swcholxu': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'qg1iiw0j': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'jgpsl4dd': {
+      'en': 'Assistant 3:  ',
+      'es': 'Asistente 3:',
+      'sl': 'Pomočnik 3:',
+    },
+    'hlv8vfr3': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    't1v9iowk': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '8036iqop': {
+      'en': 'Assistant 4:  ',
+      'es': 'Asistente 4:',
+      'sl': 'Pomočnik 4:',
+    },
+    'r2cw4w1m': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'ow8i19ho': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '7a6k2c70': {
+      'en': 'Assistant 5:  ',
+      'es': 'Asistente 5:',
+      'sl': 'Pomočnik 5:',
+    },
+    '24ma87ab': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'rtsoidp1': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '8yhti2ho': {
+      'en': 'Assistant 6:  ',
+      'es': 'Asistente 6:',
+      'sl': 'Pomočnik 6:',
+    },
+    'ui5ftwzv': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'xrvq7npn': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '661m7b63': {
+      'en': 'Universal ref num:  ',
+      'es': 'Número de referencia universal:',
+      'sl': 'Univerzalna referenčna številka:',
+    },
+    '7ucthrgi': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'uzqbwrs4': {
+      'en': 'FMS ref:  ',
+      'es': 'Referencia FMS:',
+      'sl': 'Ref. FMS:',
+    },
+    '4eyjotd7': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'm83558ve': {
+      'en': 'Load ref/dvh:  ',
+      'es': 'Cargar ref/dvh:',
+      'sl': 'Naloži ref/dvh:',
+    },
+    'rifu34tn': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'gv7oe9hp': {
+      'en': 'Good:  ',
+      'es': 'Bien:',
+      'sl': 'dobro:',
+    },
+    'u695q7kd': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    's4gle6c6': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'hrowwhe2': {
+      'en': 'Good description:  ',
+      'es': 'Buena descripción:',
+      'sl': 'Dober opis:',
+    },
+    'fcbj06jg': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    'xwklnla0': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '3vtdt1fk': {
+      'en': 'Packaging:  ',
+      'es': 'Embalaje:',
+      'sl': 'Pakiranje:',
+    },
+    'jlucklwu': {
+      'en': 'Please select...',
+      'es': 'Por favor seleccione...',
+      'sl': 'Prosim izberite...',
+    },
+    '3p880det': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    '2bivx6rb': {
+      'en': 'Barcodes:  ',
+      'es': 'Códigos de barras:',
+      'sl': 'črtne kode:',
+    },
+    'pk58e2bi': {
+      'en': 'Insert new value...',
+      'es': 'Insertar nuevo valor...',
+      'sl': 'Vstavi novo vrednost ...',
+    },
+    'xhdbltbx': {
+      'en': 'Save changes',
+      'es': 'Guardar cambios',
+      'sl': 'Shrani spremembe',
+    },
+  },
+  // documents
+  {
+    'dfjn6g41': {
+      'en': 'Documents',
+      'es': 'Documentos',
+      'sl': 'Dokumenti',
+    },
+    '0a2yk14h': {
+      'en': 'Pdf',
+      'es': 'Pdf',
+      'sl': 'PDF',
+    },
+    'url3h1t4': {
+      'en': 'Link',
+      'es': 'Enlace',
+      'sl': 'Povezava',
+    },
+  },
+  // userDetails
+  {
+    'q2ttw3nx': {
+      'en': 'Log out',
+      'es': 'Cerrar sesión',
+      'sl': 'Odjava',
+    },
+  },
+  // newWarehouse
+  {
+    'o97erejm': {
+      'en': 'Warehouse: ',
+      'es': 'Depósito:',
+      'sl': 'Skladišče:',
+    },
+    'p1lfr17r': {
+      'en': 'New warehouse...',
+      'es': 'Nuevo almacén...',
+      'sl': 'Novo skladišče...',
+    },
+  },
+  // newClient
+  {
+    'h6jtdngy': {
+      'en': 'Client:  ',
+      'es': 'Cliente:',
+      'sl': 'Naročnik:',
+    },
+    '1px7ctty': {
+      'en': 'New client...',
+      'es': 'Cliente nuevo...',
+      'sl': 'Nova stranka...',
+    },
+    'sjbvje91': {
+      'en': 'Address: ',
+      'es': 'DIRECCIÓN:',
+      'sl': 'Naslov:',
+    },
+    'vz4q8jsk': {
+      'en': 'New address...',
+      'es': 'Nueva direccion...',
+      'sl': 'Nov naslov...',
+    },
+    '65cnxij8': {
+      'en': 'City: ',
+      'es': 'Ciudad:',
+      'sl': 'mesto:',
+    },
+    'enfhsq8e': {
+      'en': 'New city...',
+      'es': 'Ciudad Nueva...',
+      'sl': 'Novo mesto...',
+    },
+    'kj7tuqhy': {
+      'en': 'Country: ',
+      'es': 'País:',
+      'sl': 'Država:',
+    },
+    'dljeiog1': {
+      'en': 'New country...',
+      'es': 'Nuevo país...',
+      'sl': 'Nova država...',
+    },
+    'eslqukvn': {
+      'en': 'Name aiss: ',
+      'es': 'Nombre:',
+      'sl': 'Ime aiss:',
+    },
+    'mdbs2xhl': {
+      'en': 'New name aiss...',
+      'es': 'Nuevo nombre ais...',
+      'sl': 'Novo ime aiss...',
+    },
+    'jm18165z': {
+      'en': 'Vat no: ',
+      'es': 'N° IVA:',
+      'sl': 'DDV številka:',
+    },
+    'tem12gym': {
+      'en': 'New vat no...',
+      'es': 'cuba nueva no...',
+      'sl': 'Nova pdv št...',
+    },
+    'h1eq3lya': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    'j76z399g': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+    'h6pnjwkz': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    'eerv76l0': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+    'rtp7499s': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    'js7r29h2': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+    'ohi3ikuc': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    'fw0xj1uq': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+    '44nfv83y': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    '6cw4jtvg': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+    '5oph71lk': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    '2scpc0r9': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+  },
+  // newCustom
+  {
+    'gfr0zflc': {
+      'en': 'Custom: ',
+      'es': 'Costumbre:',
+      'sl': 'Po meri:',
+    },
+    'cnq234w7': {
+      'en': 'New custom...',
+      'es': 'Nueva costumbre...',
+      'sl': 'Nov običaj...',
+    },
+    'u5vics5e': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    'jtaa65zm': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+  },
+  // newGoodDescription
+  {
+    'qbsp1a8h': {
+      'en': 'Description: ',
+      'es': 'Descripción:',
+      'sl': 'Opis:',
+    },
+    'kmm0hkye': {
+      'en': 'New description...',
+      'es': 'Nueva descripción...',
+      'sl': 'Nov opis...',
+    },
+    'dj9hrp0p': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    'yu78z8qo': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+  },
+  // newGood
+  {
+    'xwu1uyct': {
+      'en': 'Good: ',
+      'es': 'Bien:',
+      'sl': 'dobro:',
+    },
+    '2un22j9z': {
+      'en': 'New good...',
+      'es': 'Nuevo bueno...',
+      'sl': 'Nova dobra...',
+    },
+    'sq2f2k0w': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    '64b7o6um': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+  },
+  // newLoadingGate
+  {
+    '95q7dja7': {
+      'en': 'Warehouse: ',
+      'es': 'Depósito:',
+      'sl': 'Skladišče:',
+    },
+    'wx224juo': {
+      'en': 'Option 1',
+      'es': 'Opción 1',
+      'sl': 'Možnost 1',
+    },
+    '3696mz9p': {
+      'en': 'Select warehouse...',
+      'es': 'Seleccionar almacén...',
+      'sl': 'Izberite skladišče...',
+    },
+    'hz84ye0l': {
+      'en': 'Search for an item...',
+      'es': 'Buscar un artículo...',
+      'sl': 'Iskanje predmeta ...',
+    },
+    'spkxcu4p': {
+      'en': 'Ramp: ',
+      'es': 'Rampa:',
+      'sl': 'Rampa:',
+    },
+    'r5pyn0sn': {
+      'en': 'New ramp...',
+      'es': 'Nueva rampa...',
+      'sl': 'Nova rampa...',
+    },
+    'lwps3dsm': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    '8bzeqmly': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+  },
+  // newManipulation
+  {
+    'y4j5k3yp': {
+      'en': 'Manipulation: ',
+      'es': 'Manipulación:',
+      'sl': 'Manipulacija:',
+    },
+    'ke8apo4f': {
+      'en': 'New manipulation...',
+      'es': 'Nueva manipulación...',
+      'sl': 'Nova manipulacija...',
+    },
+    'tsup8plf': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    '5b1cdr4g': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
+    },
+  },
+  // newPackaging
+  {
+    '9mqkzgm4': {
+      'en': 'Packaging: ',
+      'es': 'Embalaje:',
+      'sl': 'Pakiranje:',
+    },
+    'b56ct651': {
+      'en': 'New packaging...',
+      'es': 'Nuevo envase...',
+      'sl': 'Nova embalaža...',
+    },
+    'hxgjg6fl': {
+      'en': 'Abbreviation: ',
+      'es': 'Abreviatura:',
+      'sl': 'Okrajšava:',
+    },
+    'u3sqa3vh': {
+      'en': 'New abbreviation...',
+      'es': 'Nueva abreviatura...',
+      'sl': 'Nova okrajšava...',
+    },
+    'pmyl2hn9': {
+      'en': 'Field is required',
+      'es': 'Se requiere campo',
+      'sl': 'Polje je obvezno',
+    },
+    'fwiuhoz2': {
+      'en': 'Please choose an option from the dropdown',
+      'es': 'Por favor elija una opción del menú desplegable',
+      'sl': 'V spustnem meniju izberite možnost',
     },
   },
   // Miscellaneous

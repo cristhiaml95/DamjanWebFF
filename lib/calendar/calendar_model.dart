@@ -2,7 +2,7 @@ import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/filters/filters_widget.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
-import '/pages/components/user_detail/user_detail_widget.dart';
+import '/pages/components/user_details/user_details_widget.dart';
 import 'calendar_widget.dart' show CalendarWidget;
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +13,8 @@ class CalendarModel extends FlutterFlowModel<CalendarWidget> {
   final unfocusNode = FocusNode();
   // Model for lightMode component.
   late LightModeModel lightModeModel;
-  // Model for userDetail component.
-  late UserDetailModel userDetailModel;
+  // Model for userDetails component.
+  late UserDetailsModel userDetailsModel;
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
   // State field(s) for Switch widget.
@@ -27,7 +27,7 @@ class CalendarModel extends FlutterFlowModel<CalendarWidget> {
   @override
   void initState(BuildContext context) {
     lightModeModel = createModel(context, () => LightModeModel());
-    userDetailModel = createModel(context, () => UserDetailModel());
+    userDetailsModel = createModel(context, () => UserDetailsModel());
     calendarSelectedDay = DateTimeRange(
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
@@ -40,7 +40,7 @@ class CalendarModel extends FlutterFlowModel<CalendarWidget> {
   void dispose() {
     unfocusNode.dispose();
     lightModeModel.dispose();
-    userDetailModel.dispose();
+    userDetailsModel.dispose();
     filtersModel.dispose();
   }
 
