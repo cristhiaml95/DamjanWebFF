@@ -37,6 +37,35 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_navOpen', value);
   }
 
+  List<String> _idsFromBarcodes = [];
+  List<String> get idsFromBarcodes => _idsFromBarcodes;
+  set idsFromBarcodes(List<String> value) {
+    _idsFromBarcodes = value;
+  }
+
+  void addToIdsFromBarcodes(String value) {
+    _idsFromBarcodes.add(value);
+  }
+
+  void removeFromIdsFromBarcodes(String value) {
+    _idsFromBarcodes.remove(value);
+  }
+
+  void removeAtIndexFromIdsFromBarcodes(int index) {
+    _idsFromBarcodes.removeAt(index);
+  }
+
+  void updateIdsFromBarcodesAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _idsFromBarcodes[index] = updateFn(_idsFromBarcodes[index]);
+  }
+
+  void insertAtIndexInIdsFromBarcodes(int index, String value) {
+    _idsFromBarcodes.insert(index, value);
+  }
+
   final _tablesManager =
       FutureRequestManager<List<VistaOrderLevelExtendedRow>>();
   Future<List<VistaOrderLevelExtendedRow>> tables({
@@ -97,22 +126,6 @@ class FFAppState extends ChangeNotifier {
   void clearCustomsCache() => _customsManager.clear();
   void clearCustomsCacheKey(String? uniqueKey) =>
       _customsManager.clearRequest(uniqueKey);
-
-  final _usersManager =
-      FutureRequestManager<List<VistaOrderLevelExtendedRow>>();
-  Future<List<VistaOrderLevelExtendedRow>> users({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<List<VistaOrderLevelExtendedRow>> Function() requestFn,
-  }) =>
-      _usersManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearUsersCache() => _usersManager.clear();
-  void clearUsersCacheKey(String? uniqueKey) =>
-      _usersManager.clearRequest(uniqueKey);
 
   final _goodsManager = FutureRequestManager<List<GoodsRow>>();
   Future<List<GoodsRow>> goods({

@@ -171,4 +171,7 @@ class OrderLevelRow extends SupabaseDataRow {
 
   bool get checked => getField<bool>('checked')!;
   set checked(bool value) => setField<bool>('checked', value);
+
+  bool get precheck => getField<bool>('precheck')!;
+  set precheck(bool value) => setField<bool>('precheck', value);
 }

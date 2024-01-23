@@ -85,9 +85,12 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   // State field(s) for inventoryStatusDD widget.
   String? inventoryStatusDDValue;
   FormFieldController<String>? inventoryStatusDDValueController;
-  DateTime? datePicked3;
-  DateTime? datePicked4;
-  DateTime? datePicked5;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? announcedTime1;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? announcedTime2;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? arrivalTime;
   // State field(s) for loadingGateDD widget.
   String? loadingGateDDValue;
   FormFieldController<String>? loadingGateDDValueController;
@@ -95,8 +98,10 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   FocusNode? sequenceFocusNode;
   TextEditingController? sequenceController;
   String? Function(BuildContext, String?)? sequenceControllerValidator;
-  DateTime? datePicked6;
-  DateTime? datePicked7;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? startT;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? stopT;
   // State field(s) for licencePlateTF widget.
   FocusNode? licencePlateTFFocusNode;
   TextEditingController? licencePlateTFController;

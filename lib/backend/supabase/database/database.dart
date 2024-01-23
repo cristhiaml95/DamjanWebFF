@@ -13,7 +13,6 @@ export 'tables/packaging.dart';
 export 'tables/goods.dart';
 export 'tables/details.dart';
 export 'tables/clients.dart';
-export 'tables/barcodetest.dart';
 export 'tables/vista_order_level_extended.dart';
 export 'tables/customs.dart';
 export 'tables/users.dart';

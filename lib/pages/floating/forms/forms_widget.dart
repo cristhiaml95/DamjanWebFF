@@ -239,7 +239,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              's2ln34za' /* Form 1 */,
+                              's2ln34za' /* Announcement */,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
@@ -275,7 +275,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              'ixgnt5vg' /* Form 2 */,
+                              'ixgnt5vg' /* Vehicle, quantity */,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
@@ -311,7 +311,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              'slij6xnt' /* Form 3 */,
+                              'slij6xnt' /* Time, ramp */,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
@@ -347,7 +347,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              '7mz1zveh' /* Form 4 */,
+                              '7mz1zveh' /* Manipulations, warehouses */,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
@@ -383,7 +383,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              '06cqog9s' /* Form 5 */,
+                              '06cqog9s' /* Goods, ref. no, barcode */,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
@@ -650,6 +650,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
+                                                  searchTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium,
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
                                                       .bodyMedium
@@ -687,7 +691,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                   borderRadius: 8.0,
                                                   margin: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          0.0, 0.0, 8.0, 0.0),
+                                                          8.0, 0.0, 8.0, 0.0),
                                                   hidesUnderline: true,
                                                   isSearchable: true,
                                                   isMultiSelect: false,
@@ -1321,6 +1325,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               searchHintTextStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium,
+                                              searchTextStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -1347,7 +1354,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               borderWidth: 2.0,
                                               borderRadius: 8.0,
                                               margin: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               hidesUnderline: true,
                                               isSearchable: true,
                                               isMultiSelect: false,
@@ -3622,7 +3629,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               child: Text(
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  'bbrh0h2w' /* Check:   */,
+                                                  'bbrh0h2w' /* Pre - Check:   */,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -3641,16 +3648,71 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Switch.adaptive(
-                                                value: _model.switchValue ??=
+                                                value: _model.preCheckValue ??=
+                                                    containerVistaOrderLevelExtendedRow!
+                                                        .precheck!,
+                                                onChanged: (newValue) async {
+                                                  setState(() =>
+                                                      _model.preCheckValue =
+                                                          newValue);
+                                                },
+                                                activeColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                activeTrackColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent1,
+                                                inactiveTrackColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                inactiveThumbColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: 160.0,
+                                              height: 50.0,
+                                              decoration: const BoxDecoration(),
+                                              alignment: const AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  '8c0v3o3c' /* Check:   */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 296.0,
+                                              height: 50.0,
+                                              decoration: const BoxDecoration(),
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Switch.adaptive(
+                                                value: _model.checkValue ??=
                                                     containerVistaOrderLevelExtendedRow!
                                                         .checked!,
                                                 onChanged: (newValue) async {
                                                   setState(() => _model
-                                                      .switchValue = newValue);
+                                                      .checkValue = newValue);
                                                 },
                                                 activeColor:
                                                     FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                        .success,
                                                 activeTrackColor:
                                                     FlutterFlowTheme.of(context)
                                                         .accent1,
@@ -4287,6 +4349,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -4405,6 +4471,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -4509,6 +4579,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -4613,6 +4687,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -4721,6 +4799,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -4827,6 +4909,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -4935,6 +5021,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -5423,6 +5513,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -5566,6 +5660,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -5711,6 +5809,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -6261,31 +6363,14 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                     ? _model.packagingDDValue
                                                     : containerVistaOrderLevelExtendedRow
                                                         ?.packaging,
-                                                'checked': _model.switchValue,
+                                                'checked': _model.checkValue,
+                                                'precheck':
+                                                    _model.preCheckValue,
                                               },
                                               matchingRows: (rows) => rows.eq(
                                                 'id',
                                                 widget.orderId,
                                               ),
-                                            );
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title:
-                                                      const Text('Successful update'),
-                                                  content: const Text(
-                                                      'Record has been edited.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Ok'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
                                             );
                                           },
                                         ),
@@ -6304,7 +6389,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                         'The value of unit is less than the number of barcodes.',
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                              .primaryBackground,
                                         ),
                                       ),
                                       duration: const Duration(milliseconds: 4000),

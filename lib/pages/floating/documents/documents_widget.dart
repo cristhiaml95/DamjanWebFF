@@ -5,6 +5,7 @@ import '/flutter_flow/upload_data.dart';
 import '/pages/floating/pdf_viewer/pdf_viewer_widget.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'documents_model.dart';
 export 'documents_model.dart';
@@ -300,17 +301,52 @@ class _DocumentsWidgetState extends State<DocumentsWidget> {
                                       ),
                                     ),
                                   ),
-                                  Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 0.0, 8.0, 0.0),
-                                      child: SelectionArea(
-                                          child: Text(
-                                        documentsListItem,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      )),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 0.0, 8.0, 0.0),
+                                            child: SelectionArea(
+                                                child: Text(
+                                              documentsListItem
+                                                  .maybeHandleOverflow(
+                                                maxChars: 50,
+                                                replacement: '…',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            )),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await Clipboard.setData(
+                                                ClipboardData(
+                                                    text: documentsListItem));
+                                          },
+                                          child: Icon(
+                                            Icons.content_copy,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Align(

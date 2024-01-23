@@ -175,6 +175,9 @@ class VistaOrderLevelExtendedRow extends SupabaseDataRow {
   List<String> get barcodes => getListField<String>('barcodes');
   set barcodes(List<String>? value) => setListField<String>('barcodes', value);
 
+  bool? get precheck => getField<bool>('precheck');
+  set precheck(bool? value) => setField<bool>('precheck', value);
+
   String? get adminName => getField<String>('admin_name');
   set adminName(String? value) => setField<String>('admin_name', value);
 

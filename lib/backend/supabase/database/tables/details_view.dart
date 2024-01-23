@@ -60,4 +60,8 @@ class DetailsViewRow extends SupabaseDataRow {
 
   String? get warehouse => getField<String>('warehouse');
   set warehouse(String? value) => setField<String>('warehouse', value);
+
+  String? get warehouseOrder => getField<String>('warehouse_order');
+  set warehouseOrder(String? value) =>
+      setField<String>('warehouse_order', value);
 }

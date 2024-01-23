@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -216,7 +217,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           );
                         },
                         text: FFLocalizations.of(context).getText(
-                          'awyh9clr' /* Form 1 */,
+                          'awyh9clr' /* Announcement */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -251,7 +252,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           );
                         },
                         text: FFLocalizations.of(context).getText(
-                          'oqag4g4z' /* Form 2 */,
+                          'oqag4g4z' /* Vehicle, quantity */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -286,7 +287,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           );
                         },
                         text: FFLocalizations.of(context).getText(
-                          '7gxoffrz' /* Form 3 */,
+                          '7gxoffrz' /* Time, ramp */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -321,7 +322,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           );
                         },
                         text: FFLocalizations.of(context).getText(
-                          'ciz89uu4' /* Form 4 */,
+                          'ciz89uu4' /* Manipulations, warehouses */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -356,7 +357,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                           );
                         },
                         text: FFLocalizations.of(context).getText(
-                          'c28mc4jt' /* Form 5 */,
+                          'c28mc4jt' /* Goods, ref. no, barcode */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -599,6 +600,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
+                                              searchTextStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -634,7 +638,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                               borderWidth: 2.0,
                                               borderRadius: 8.0,
                                               margin: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 8.0, 0.0),
+                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               hidesUnderline: true,
                                               isSearchable: true,
                                               isMultiSelect: false,
@@ -1190,6 +1194,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                           searchHintTextStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium,
+                                          searchTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium,
@@ -1217,7 +1224,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                           borderRadius: 8.0,
                                           margin:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 8.0, 0.0),
+                                                  8.0, 0.0, 8.0, 0.0),
                                           hidesUnderline: true,
                                           isSearchable: true,
                                           isMultiSelect: false,
@@ -1783,70 +1790,12 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            // announcedT1
-
-                                            final datePicked3Time =
-                                                await showTimePicker(
-                                              context: context,
-                                              initialTime:
-                                                  TimeOfDay.fromDateTime(
-                                                      getCurrentTimestamp),
-                                              builder: (context, child) {
-                                                return wrapInMaterialTimePickerTheme(
-                                                  context,
-                                                  child!,
-                                                  headerBackgroundColor:
-                                                      const Color(0xFFD59699),
-                                                  headerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  headerTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Open Sans',
-                                                            fontSize: 32.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                  pickerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  pickerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  selectedDateTimeBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  selectedDateTimeForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  actionButtonForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  iconSize: 24.0,
-                                                );
-                                              },
+                                            _model.announcedTime1 =
+                                                await actions.selectTime(
+                                              context,
                                             );
-                                            if (datePicked3Time != null) {
-                                              safeSetState(() {
-                                                _model.datePicked3 = DateTime(
-                                                  getCurrentTimestamp.year,
-                                                  getCurrentTimestamp.month,
-                                                  getCurrentTimestamp.day,
-                                                  datePicked3Time.hour,
-                                                  datePicked3Time.minute,
-                                                );
-                                              });
-                                            }
+
+                                            setState(() {});
                                           },
                                           child: Container(
                                             width: 280.0,
@@ -1869,9 +1818,15 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                   .fromSTEB(8.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 valueOrDefault<String>(
-                                                  _model.datePicked3 != null
-                                                      ? _model.datePicked3
-                                                          ?.toString()
+                                                  _model.announcedTime1 != null
+                                                      ? dateTimeFormat(
+                                                          'Hm',
+                                                          _model.announcedTime1,
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )
                                                       : 'Pick a time...',
                                                   'brez izbire',
                                                 ),
@@ -1911,70 +1866,12 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            // announcedT2
-
-                                            final datePicked4Time =
-                                                await showTimePicker(
-                                              context: context,
-                                              initialTime:
-                                                  TimeOfDay.fromDateTime(
-                                                      getCurrentTimestamp),
-                                              builder: (context, child) {
-                                                return wrapInMaterialTimePickerTheme(
-                                                  context,
-                                                  child!,
-                                                  headerBackgroundColor:
-                                                      const Color(0xFFD59699),
-                                                  headerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  headerTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Open Sans',
-                                                            fontSize: 32.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                  pickerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  pickerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  selectedDateTimeBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  selectedDateTimeForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  actionButtonForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  iconSize: 24.0,
-                                                );
-                                              },
+                                            _model.announcedTime2 =
+                                                await actions.selectTime(
+                                              context,
                                             );
-                                            if (datePicked4Time != null) {
-                                              safeSetState(() {
-                                                _model.datePicked4 = DateTime(
-                                                  getCurrentTimestamp.year,
-                                                  getCurrentTimestamp.month,
-                                                  getCurrentTimestamp.day,
-                                                  datePicked4Time.hour,
-                                                  datePicked4Time.minute,
-                                                );
-                                              });
-                                            }
+
+                                            setState(() {});
                                           },
                                           child: Container(
                                             width: 280.0,
@@ -1997,9 +1894,15 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                   .fromSTEB(8.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 valueOrDefault<String>(
-                                                  _model.datePicked4 != null
-                                                      ? _model.datePicked4
-                                                          ?.toString()
+                                                  _model.announcedTime2 != null
+                                                      ? dateTimeFormat(
+                                                          'Hm',
+                                                          _model.announcedTime2,
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )
                                                       : 'Pick a time...',
                                                   'brez izbire',
                                                 ),
@@ -2039,70 +1942,12 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            // arrivalTime
-
-                                            final datePicked5Time =
-                                                await showTimePicker(
-                                              context: context,
-                                              initialTime:
-                                                  TimeOfDay.fromDateTime(
-                                                      getCurrentTimestamp),
-                                              builder: (context, child) {
-                                                return wrapInMaterialTimePickerTheme(
-                                                  context,
-                                                  child!,
-                                                  headerBackgroundColor:
-                                                      const Color(0xFFD59699),
-                                                  headerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  headerTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Open Sans',
-                                                            fontSize: 32.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                  pickerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  pickerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  selectedDateTimeBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  selectedDateTimeForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  actionButtonForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  iconSize: 24.0,
-                                                );
-                                              },
+                                            _model.arrivalTime =
+                                                await actions.selectTime(
+                                              context,
                                             );
-                                            if (datePicked5Time != null) {
-                                              safeSetState(() {
-                                                _model.datePicked5 = DateTime(
-                                                  getCurrentTimestamp.year,
-                                                  getCurrentTimestamp.month,
-                                                  getCurrentTimestamp.day,
-                                                  datePicked5Time.hour,
-                                                  datePicked5Time.minute,
-                                                );
-                                              });
-                                            }
+
+                                            setState(() {});
                                           },
                                           child: Container(
                                             width: 280.0,
@@ -2125,9 +1970,15 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                   .fromSTEB(8.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 valueOrDefault<String>(
-                                                  _model.datePicked5 != null
-                                                      ? _model.datePicked5
-                                                          ?.toString()
+                                                  _model.arrivalTime != null
+                                                      ? dateTimeFormat(
+                                                          'Hm',
+                                                          _model.arrivalTime,
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )
                                                       : 'Pick a date...',
                                                   'brez izbire',
                                                 ),
@@ -2388,71 +2239,12 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              // startLoad
-
-                                              final datePicked6Time =
-                                                  await showTimePicker(
-                                                context: context,
-                                                initialTime:
-                                                    TimeOfDay.fromDateTime(
-                                                        getCurrentTimestamp),
-                                                builder: (context, child) {
-                                                  return wrapInMaterialTimePickerTheme(
-                                                    context,
-                                                    child!,
-                                                    headerBackgroundColor:
-                                                        const Color(0xFFD59699),
-                                                    headerForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    headerTextStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Open Sans',
-                                                              fontSize: 32.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
-                                                    pickerBackgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryBackground,
-                                                    pickerForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                    selectedDateTimeBackgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryBackground,
-                                                    selectedDateTimeForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    actionButtonForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                    iconSize: 24.0,
-                                                  );
-                                                },
+                                              _model.startT =
+                                                  await actions.selectTime(
+                                                context,
                                               );
-                                              if (datePicked6Time != null) {
-                                                safeSetState(() {
-                                                  _model.datePicked6 = DateTime(
-                                                    getCurrentTimestamp.year,
-                                                    getCurrentTimestamp.month,
-                                                    getCurrentTimestamp.day,
-                                                    datePicked6Time.hour,
-                                                    datePicked6Time.minute,
-                                                  );
-                                                });
-                                              }
+
+                                              setState(() {});
                                             },
                                             child: Container(
                                               width: 280.0,
@@ -2476,9 +2268,14 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         8.0, 0.0, 0.0, 0.0),
                                                 child: Text(
                                                   valueOrDefault<String>(
-                                                    _model.datePicked6 != null
-                                                        ? _model.datePicked6
-                                                            ?.toString()
+                                                    _model.startT != null
+                                                        ? dateTimeFormat(
+                                                            'Hm',
+                                                            _model.startT,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          )
                                                         : 'Pick a time...',
                                                     'brez izbire',
                                                   ),
@@ -2525,71 +2322,12 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              // finishLoad
-
-                                              final datePicked7Time =
-                                                  await showTimePicker(
-                                                context: context,
-                                                initialTime:
-                                                    TimeOfDay.fromDateTime(
-                                                        getCurrentTimestamp),
-                                                builder: (context, child) {
-                                                  return wrapInMaterialTimePickerTheme(
-                                                    context,
-                                                    child!,
-                                                    headerBackgroundColor:
-                                                        const Color(0xFFD59699),
-                                                    headerForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    headerTextStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Open Sans',
-                                                              fontSize: 32.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
-                                                    pickerBackgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryBackground,
-                                                    pickerForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                    selectedDateTimeBackgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryBackground,
-                                                    selectedDateTimeForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    actionButtonForegroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                    iconSize: 24.0,
-                                                  );
-                                                },
+                                              _model.stopT =
+                                                  await actions.selectTime(
+                                                context,
                                               );
-                                              if (datePicked7Time != null) {
-                                                safeSetState(() {
-                                                  _model.datePicked7 = DateTime(
-                                                    getCurrentTimestamp.year,
-                                                    getCurrentTimestamp.month,
-                                                    getCurrentTimestamp.day,
-                                                    datePicked7Time.hour,
-                                                    datePicked7Time.minute,
-                                                  );
-                                                });
-                                              }
+
+                                              setState(() {});
                                             },
                                             child: Container(
                                               width: 280.0,
@@ -2613,9 +2351,14 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         8.0, 0.0, 0.0, 0.0),
                                                 child: Text(
                                                   valueOrDefault<String>(
-                                                    _model.datePicked7 != null
-                                                        ? _model.datePicked7
-                                                            ?.toString()
+                                                    _model.stopT != null
+                                                        ? dateTimeFormat(
+                                                            'Hm',
+                                                            _model.stopT,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          )
                                                         : 'Pick a time...',
                                                     'brez izbire',
                                                   ),
@@ -2968,7 +2711,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'y9prqowd' /* Container No:   */,
+                                                    'y9prqowd' /* Comment:   */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -3868,6 +3611,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 searchHintTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium,
+                                                searchTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
@@ -3981,6 +3727,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 searchHintTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium,
+                                                searchTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
@@ -4081,6 +3830,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 searchHintTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium,
+                                                searchTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
@@ -4181,6 +3933,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 searchHintTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium,
+                                                searchTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
@@ -4285,6 +4040,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 searchHintTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium,
+                                                searchTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
@@ -4387,6 +4145,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 searchHintTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium,
+                                                searchTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
@@ -4491,6 +4252,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 searchHintTextStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium,
+                                                searchTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium,
@@ -4951,6 +4715,10 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .labelMedium,
+                                                  searchTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium,
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -5086,6 +4854,10 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .labelMedium,
+                                                  searchTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium,
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -5221,6 +4993,10 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .labelMedium,
+                                                  searchTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium,
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -5473,7 +5249,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         ''
                                                 ? _model
                                                     .orderNoTFController.text
-                                                : 'brez izbire',
+                                                : '',
                                             'flow':
                                                 _model.flowDDValue != null &&
                                                         _model.flowDDValue != ''
@@ -5490,7 +5266,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         null &&
                                                     _model.adminDDValue != ''
                                                 ? _model.adminDDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'warehouse': _model
                                                             .warehouseDDValue !=
                                                         null &&
@@ -5500,12 +5276,13 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 : '08d24180-01bb-41b8-a0e2-35e76a6cd152',
                                             'eta_date': supaSerialize<DateTime>(
                                                 _model.datePicked1 ?? getCurrentTimestamp),
-                                            'eta_i':
-                                                supaSerialize<PostgresTime>(
-                                                    PostgresTime(_model.datePicked3 ?? getCurrentTimestamp)),
+                                            'eta_i': supaSerialize<
+                                                    PostgresTime>(
+                                                PostgresTime(
+                                                    _model.announcedTime1 ?? getCurrentTimestamp)),
                                             'arrival':
                                                 supaSerialize<PostgresTime>(
-                                                    PostgresTime(_model.datePicked5 ?? getCurrentTimestamp)),
+                                                    PostgresTime(_model.arrivalTime ?? getCurrentTimestamp)),
                                             'loading_gate': _model
                                                             .loadingGateDDValue !=
                                                         null &&
@@ -5521,10 +5298,10 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 : -1,
                                             'start':
                                                 supaSerialize<PostgresTime>(
-                                                    PostgresTime(_model.datePicked6 ?? getCurrentTimestamp)),
+                                                    PostgresTime(_model.startT ?? getCurrentTimestamp)),
                                             'stop': supaSerialize<PostgresTime>(
                                                 PostgresTime(
-                                                    _model.datePicked7 ?? getCurrentTimestamp)),
+                                                    _model.stopT ?? getCurrentTimestamp)),
                                             'licence_plate': _model.licencePlateTFController
                                                             .text !=
                                                         ''
@@ -5575,49 +5352,49 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                     _model.responsibleDDValue !=
                                                         ''
                                                 ? _model.responsibleDDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'assistant1': _model
                                                             .assistant1DDValue !=
                                                         null &&
                                                     _model.assistant1DDValue !=
                                                         ''
                                                 ? _model.assistant1DDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'assistant2': _model
                                                             .assistant2DDValue !=
                                                         null &&
                                                     _model.assistant2DDValue !=
                                                         ''
                                                 ? _model.assistant2DDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'assistant3': _model
                                                             .assistant3DDValue !=
                                                         null &&
                                                     _model.assistant3DDValue !=
                                                         ''
                                                 ? _model.assistant3DDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'assistant4': _model
                                                             .assistant4DDValue !=
                                                         null &&
                                                     _model.assistant4DDValue !=
                                                         ''
                                                 ? _model.assistant4DDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'assistant5': _model
                                                             .assistant5DDValue !=
                                                         null &&
                                                     _model.assistant5DDValue !=
                                                         ''
                                                 ? _model.assistant5DDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'assistant6': _model
                                                             .assistant6DDValue !=
                                                         null &&
                                                     _model.assistant6DDValue !=
                                                         ''
                                                 ? _model.assistant6DDValue
-                                                : '95f37c93-e623-4cd5-85ef-5ccfe57421a8',
+                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
                                             'fms_ref': _model.fmsRefTController
                                                             .text !=
                                                         ''
@@ -5693,9 +5470,10 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                             'created_at':
                                                 supaSerialize<DateTime>(
                                                     _model.datePicked2 ?? getCurrentTimestamp),
-                                            'eta_f':
-                                                supaSerialize<PostgresTime>(
-                                                    PostgresTime(_model.datePicked4 ?? getCurrentTimestamp)),
+                                            'eta_f': supaSerialize<
+                                                    PostgresTime>(
+                                                PostgresTime(
+                                                    _model.announcedTime2 ?? getCurrentTimestamp)),
                                             'good': _model.goodsDDValue !=
                                                         null &&
                                                     _model.goodsDDValue != ''
@@ -5721,25 +5499,6 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                     ? _model.pdfLinks
                                                     : _model.pdfLinks,
                                           });
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title:
-                                                    const Text('Successful update'),
-                                                content: const Text(
-                                                    'Record has been created'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
                                         } else {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
@@ -5749,7 +5508,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 style: TextStyle(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
+                                                      .primaryBackground,
                                                 ),
                                               ),
                                               duration:
@@ -5777,7 +5536,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                     'The value of unit is less than the number of barcodes.',
                                     style: TextStyle(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                          .primaryBackground,
                                     ),
                                   ),
                                   duration: const Duration(milliseconds: 4000),

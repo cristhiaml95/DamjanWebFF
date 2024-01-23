@@ -115,14 +115,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'order_overview',
-          path: '/orderOverview',
-          builder: (context, params) => OrderOverviewWidget(
-            orderOverviewTableKey:
-                params.getParam('orderOverviewTableKey', ParamType.String),
-          ),
-        ),
-        FFRoute(
           name: 'explore',
           path: '/explore',
           builder: (context, params) => ExploreWidget(

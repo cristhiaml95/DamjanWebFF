@@ -271,6 +271,10 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -446,6 +450,10 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -620,6 +628,10 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -807,6 +819,10 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .labelMedium,
+                                                    searchTextStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium,
                                                     textStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)

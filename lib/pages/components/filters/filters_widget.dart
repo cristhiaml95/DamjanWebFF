@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'filters_model.dart';
@@ -110,6 +111,8 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                         height: 50.0,
                         searchHintTextStyle:
                             FlutterFlowTheme.of(context).labelMedium,
+                        searchTextStyle:
+                            FlutterFlowTheme.of(context).bodyMedium,
                         textStyle: FlutterFlowTheme.of(context).bodyMedium,
                         hintText: FFLocalizations.of(context).getText(
                           'mo15p04z' /* Select client... */,
@@ -418,23 +421,33 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                           snapshot.data!;
                       return FlutterFlowDropDown<String>(
                         controller: _model.barcodesDDFValueController ??=
-                            FormFieldController<String>(
-                          _model.barcodesDDFValue ??= '',
-                        ),
-                        options: List<String>.from(barcodesDDFDetailsViewRowList
-                            .map((e) => e.orderId)
-                            .withoutNulls
-                            .toList()),
-                        optionLabels: barcodesDDFDetailsViewRowList
-                            .map((e) => e.barcode)
-                            .withoutNulls
-                            .toList(),
-                        onChanged: (val) =>
-                            setState(() => _model.barcodesDDFValue = val),
+                            FormFieldController<String>(null),
+                        options: functions.noRepeated(
+                            barcodesDDFDetailsViewRowList
+                                .map((e) => e.barcode)
+                                .withoutNulls
+                                .toList()),
+                        onChanged: (val) async {
+                          setState(() => _model.barcodesDDFValue = val);
+                          setState(() {
+                            FFAppState().idsFromBarcodes = functions
+                                .noRepeated(barcodesDDFDetailsViewRowList
+                                    .where((e) =>
+                                        e.barcode == _model.barcodesDDFValue)
+                                    .toList()
+                                    .map((e) => e.orderId)
+                                    .withoutNulls
+                                    .toList())
+                                .toList()
+                                .cast<String>();
+                          });
+                        },
                         width: 200.0,
                         height: 50.0,
                         searchHintTextStyle:
                             FlutterFlowTheme.of(context).labelMedium,
+                        searchTextStyle:
+                            FlutterFlowTheme.of(context).bodyMedium,
                         textStyle: FlutterFlowTheme.of(context).bodyMedium,
                         hintText: FFLocalizations.of(context).getText(
                           'k1w7p134' /* Select barcode... */,
@@ -724,23 +737,18 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.containerDDFValueController ??=
-                        FormFieldController<String>(
-                      _model.containerDDFValue ??= '',
-                    ),
-                    options: List<String>.from(widget.orderLevelView!
-                        .map((e) => e.id)
-                        .withoutNulls
-                        .toList()),
-                    optionLabels: widget.orderLevelView!
+                        FormFieldController<String>(null),
+                    options: functions.noRepeated(widget.orderLevelView!
                         .map((e) => e.containerNo)
                         .withoutNulls
-                        .toList(),
+                        .toList()),
                     onChanged: (val) =>
                         setState(() => _model.containerDDFValue = val),
                     width: 200.0,
                     height: 50.0,
                     searchHintTextStyle:
                         FlutterFlowTheme.of(context).labelMedium,
+                    searchTextStyle: FlutterFlowTheme.of(context).bodyMedium,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium,
                     hintText: FFLocalizations.of(context).getText(
                       'tf7wjto0' /* Select container... */,

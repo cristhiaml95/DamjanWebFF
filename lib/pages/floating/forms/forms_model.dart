@@ -97,8 +97,10 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   FocusNode? palletPositionTFocusNode;
   TextEditingController? palletPositionTController;
   String? Function(BuildContext, String?)? palletPositionTControllerValidator;
-  // State field(s) for Switch widget.
-  bool? switchValue;
+  // State field(s) for preCheck widget.
+  bool? preCheckValue;
+  // State field(s) for check widget.
+  bool? checkValue;
   // State field(s) for unitT widget.
   FocusNode? unitTFocusNode;
   TextEditingController? unitTController;

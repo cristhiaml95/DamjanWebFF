@@ -70,3 +70,7 @@ String joinStrings(List<String> strings) {
 String formatDateTimeForPostgres(DateTime dateTime) {
   return dateTime.toUtc().toIso8601String();
 }
+
+List<String> noRepeated(List<String> duplicatedList) {
+  return duplicatedList.toSet().toList();
+}
