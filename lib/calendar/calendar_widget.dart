@@ -26,12 +26,12 @@ class CalendarWidget extends StatefulWidget {
   const CalendarWidget({
     super.key,
     String? calendarKey,
-  })  : calendarKey = calendarKey ?? 'calendarKeyDefKey';
+  }) : calendarKey = calendarKey ?? 'calendarKeyDefKey';
 
   final String calendarKey;
 
   @override
-  _CalendarWidgetState createState() => _CalendarWidgetState();
+  State<CalendarWidget> createState() => _CalendarWidgetState();
 }
 
 class _CalendarWidgetState extends State<CalendarWidget>
@@ -124,36 +124,6 @@ class _CalendarWidgetState extends State<CalendarWidget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            appBar: MediaQuery.sizeOf(context).width <= 991.0
-                ? AppBar(
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    automaticallyImplyLeading: false,
-                    leading: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30.0,
-                      borderWidth: 1.0,
-                      buttonSize: 60.0,
-                      icon: Icon(
-                        Icons.arrow_back_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30.0,
-                      ),
-                      onPressed: () async {
-                        context.pop();
-                      },
-                    ),
-                    title: Text(
-                      FFLocalizations.of(context).getText(
-                        'yhjdd217' /* Order Details */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyLarge,
-                    ),
-                    actions: const [],
-                    centerTitle: false,
-                    elevation: 0.0,
-                  )
-                : null,
             body: SafeArea(
               top: true,
               child: Row(
@@ -2189,6 +2159,8 @@ class _CalendarWidgetState extends State<CalendarWidget>
                                                                 builder:
                                                                     (dialogContext) {
                                                                   return Dialog(
+                                                                    elevation:
+                                                                        0,
                                                                     insetPadding:
                                                                         EdgeInsets
                                                                             .zero,
@@ -2260,6 +2232,8 @@ class _CalendarWidgetState extends State<CalendarWidget>
                                                                 builder:
                                                                     (dialogContext) {
                                                                   return Dialog(
+                                                                    elevation:
+                                                                        0,
                                                                     insetPadding:
                                                                         EdgeInsets
                                                                             .zero,
@@ -2327,6 +2301,8 @@ class _CalendarWidgetState extends State<CalendarWidget>
                                                                 builder:
                                                                     (dialogContext) {
                                                                   return Dialog(
+                                                                    elevation:
+                                                                        0,
                                                                     insetPadding:
                                                                         EdgeInsets
                                                                             .zero,

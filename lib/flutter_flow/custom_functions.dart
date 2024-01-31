@@ -28,7 +28,7 @@ DateTime parsePostgresTimestamp(String timestamp) {
 
   for (var format in formats) {
     try {
-      return format.parse(timestamp, true).toLocal();
+      return format.parse(timestamp, true);
     } catch (e) {
       // Continue trying other formats
     }
@@ -73,4 +73,26 @@ String formatDateTimeForPostgres(DateTime dateTime) {
 
 List<String> noRepeated(List<String> duplicatedList) {
   return duplicatedList.toSet().toList();
+}
+
+List<String> intToStringList(List<int> intList) {
+  List<String> stringList = intList.map((i) => i.toString()).toList();
+  return stringList;
+}
+
+DateTime stringToDateTime(String timeString) {
+  DateTime now = DateTime.now();
+
+  // Dividir el string 'HH:mm' para obtener las horas y minutos
+  List<String> parts = timeString.split(':');
+  if (parts.length != 2) {
+    throw FormatException("El string debe estar en formato HH:mm");
+  }
+
+  // Convertir las partes en enteros
+  int hour = int.parse(parts[0]);
+  int minute = int.parse(parts[1]);
+
+  // Crear un nuevo objeto DateTime con la fecha actual y la hora especificada
+  return DateTime(now.year, now.month, now.day, hour, minute);
 }

@@ -66,6 +66,35 @@ class FFAppState extends ChangeNotifier {
     _idsFromBarcodes.insert(index, value);
   }
 
+  List<String> _emptyList = [];
+  List<String> get emptyList => _emptyList;
+  set emptyList(List<String> value) {
+    _emptyList = value;
+  }
+
+  void addToEmptyList(String value) {
+    _emptyList.add(value);
+  }
+
+  void removeFromEmptyList(String value) {
+    _emptyList.remove(value);
+  }
+
+  void removeAtIndexFromEmptyList(int index) {
+    _emptyList.removeAt(index);
+  }
+
+  void updateEmptyListAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _emptyList[index] = updateFn(_emptyList[index]);
+  }
+
+  void insertAtIndexInEmptyList(int index, String value) {
+    _emptyList.insert(index, value);
+  }
+
   final _tablesManager =
       FutureRequestManager<List<VistaOrderLevelExtendedRow>>();
   Future<List<VistaOrderLevelExtendedRow>> tables({

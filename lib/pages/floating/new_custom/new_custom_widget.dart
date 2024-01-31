@@ -11,7 +11,7 @@ class NewCustomWidget extends StatefulWidget {
   const NewCustomWidget({super.key});
 
   @override
-  _NewCustomWidgetState createState() => _NewCustomWidgetState();
+  State<NewCustomWidget> createState() => _NewCustomWidgetState();
 }
 
 class _NewCustomWidgetState extends State<NewCustomWidget> {
@@ -140,6 +140,7 @@ class _NewCustomWidgetState extends State<NewCustomWidget> {
                         context: context,
                         builder: (dialogContext) {
                           return Dialog(
+                            elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
                             alignment: const AlignmentDirectional(0.0, 0.0)

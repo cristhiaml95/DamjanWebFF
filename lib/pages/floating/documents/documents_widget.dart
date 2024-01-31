@@ -2,7 +2,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
-import '/pages/floating/pdf_viewer/pdf_viewer_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,12 +14,12 @@ class DocumentsWidget extends StatefulWidget {
   const DocumentsWidget({
     super.key,
     String? orderId,
-  })  : orderId = orderId ?? 'd310d1bc-a931-4f53-a03a-1bf4c3f85e0b';
+  }) : orderId = orderId ?? 'd310d1bc-a931-4f53-a03a-1bf4c3f85e0b';
 
   final String orderId;
 
   @override
-  _DocumentsWidgetState createState() => _DocumentsWidgetState();
+  State<DocumentsWidget> createState() => _DocumentsWidgetState();
 }
 
 class _DocumentsWidgetState extends State<DocumentsWidget> {
@@ -267,37 +267,21 @@ class _DocumentsWidgetState extends State<DocumentsWidget> {
                                 [
                                   Align(
                                     alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Builder(
-                                      builder: (context) => InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: const AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: PdfViewerWidget(
-                                                  pdfLink: documentsListItem,
-                                                ),
-                                              );
-                                            },
-                                          ).then((value) => setState(() {}));
-                                        },
-                                        child: Icon(
-                                          Icons.picture_as_pdf_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 24.0,
-                                        ),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await actions.openLink(
+                                          documentsListItem,
+                                        );
+                                      },
+                                      child: Icon(
+                                        Icons.picture_as_pdf_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
                                       ),
                                     ),
                                   ),

@@ -34,13 +34,13 @@ class ExploreWidget extends StatefulWidget {
   const ExploreWidget({
     super.key,
     String? exploreWarehousesKey,
-  })  : exploreWarehousesKey =
+  }) : exploreWarehousesKey =
             exploreWarehousesKey ?? 'exploreWarehousesDefKey';
 
   final String exploreWarehousesKey;
 
   @override
-  _ExploreWidgetState createState() => _ExploreWidgetState();
+  State<ExploreWidget> createState() => _ExploreWidgetState();
 }
 
 class _ExploreWidgetState extends State<ExploreWidget>
@@ -1105,6 +1105,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -1368,6 +1370,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                 builder:
                                                                     (dialogContext) {
                                                                   return Dialog(
+                                                                    elevation:
+                                                                        0,
                                                                     insetPadding:
                                                                         EdgeInsets
                                                                             .zero,
@@ -1495,6 +1499,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -1557,6 +1563,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -1732,6 +1740,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -1918,6 +1928,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -2113,6 +2125,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -2318,6 +2332,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -2415,6 +2431,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -2477,6 +2495,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,
@@ -2649,6 +2669,8 @@ class _ExploreWidgetState extends State<ExploreWidget>
                                                                   builder:
                                                                       (dialogContext) {
                                                                     return Dialog(
+                                                                      elevation:
+                                                                          0,
                                                                       insetPadding:
                                                                           EdgeInsets
                                                                               .zero,

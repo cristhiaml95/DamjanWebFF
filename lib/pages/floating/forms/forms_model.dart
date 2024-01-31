@@ -62,9 +62,12 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   // State field(s) for inventoryStatusDD widget.
   String? inventoryStatusDDValue;
   FormFieldController<String>? inventoryStatusDDValueController;
-  DateTime? datePicked3;
-  DateTime? datePicked4;
-  DateTime? datePicked5;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? announcedTime1T;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? announcedTime2T;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? arrivalT;
   // State field(s) for loadingGateDD widget.
   String? loadingGateDDValue;
   FormFieldController<String>? loadingGateDDValueController;
@@ -72,8 +75,10 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   FocusNode? sequenceFocusNode;
   TextEditingController? sequenceController;
   String? Function(BuildContext, String?)? sequenceControllerValidator;
-  DateTime? datePicked6;
-  DateTime? datePicked7;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? startT;
+  // Stores action output result for [Custom Action - selectTime] action in Container widget.
+  DateTime? stopT;
   // State field(s) for licencePlateTF widget.
   FocusNode? licencePlateTFFocusNode;
   TextEditingController? licencePlateTFController;

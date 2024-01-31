@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/floating/documents/documents_widget.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +19,13 @@ class FormsWidget extends StatefulWidget {
     super.key,
     required this.orderId,
     String? formsKey,
-  })  : formsKey = formsKey ?? 'formsDefKey';
+  }) : formsKey = formsKey ?? 'formsDefKey';
 
   final String? orderId;
   final String formsKey;
 
   @override
-  _FormsWidgetState createState() => _FormsWidgetState();
+  State<FormsWidget> createState() => _FormsWidgetState();
 }
 
 class _FormsWidgetState extends State<FormsWidget> {
@@ -1758,6 +1759,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           builder:
                                                               (dialogContext) {
                                                             return Dialog(
+                                                              elevation: 0,
                                                               insetPadding:
                                                                   EdgeInsets
                                                                       .zero,
@@ -1926,72 +1928,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                // announcedT1
-
-                                                final datePicked3Time =
-                                                    await showTimePicker(
-                                                  context: context,
-                                                  initialTime:
-                                                      TimeOfDay.fromDateTime(
-                                                          getCurrentTimestamp),
-                                                  builder: (context, child) {
-                                                    return wrapInMaterialTimePickerTheme(
-                                                      context,
-                                                      child!,
-                                                      headerBackgroundColor:
-                                                          const Color(0xFFD59699),
-                                                      headerForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      headerTextStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                fontSize: 32.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                      pickerBackgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryBackground,
-                                                      pickerForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      selectedDateTimeBackgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBackground,
-                                                      selectedDateTimeForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      actionButtonForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      iconSize: 24.0,
-                                                    );
-                                                  },
+                                                _model.announcedTime1T =
+                                                    await actions.selectTime(
+                                                  context,
                                                 );
-                                                if (datePicked3Time != null) {
-                                                  safeSetState(() {
-                                                    _model.datePicked3 =
-                                                        DateTime(
-                                                      getCurrentTimestamp.year,
-                                                      getCurrentTimestamp.month,
-                                                      getCurrentTimestamp.day,
-                                                      datePicked3Time.hour,
-                                                      datePicked3Time.minute,
-                                                    );
-                                                  });
-                                                }
+
+                                                setState(() {});
                                               },
                                               child: Container(
                                                 width: 280.0,
@@ -2016,11 +1958,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           8.0, 0.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      _model.datePicked3 != null
+                                                      _model.announcedTime1T !=
+                                                              null
                                                           ? dateTimeFormat(
                                                               'Hm',
                                                               _model
-                                                                  .datePicked3,
+                                                                  .announcedTime1T,
                                                               locale: FFLocalizations
                                                                       .of(context)
                                                                   .languageCode,
@@ -2077,72 +2020,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                // announcedT2
-
-                                                final datePicked4Time =
-                                                    await showTimePicker(
-                                                  context: context,
-                                                  initialTime:
-                                                      TimeOfDay.fromDateTime(
-                                                          getCurrentTimestamp),
-                                                  builder: (context, child) {
-                                                    return wrapInMaterialTimePickerTheme(
-                                                      context,
-                                                      child!,
-                                                      headerBackgroundColor:
-                                                          const Color(0xFFD59699),
-                                                      headerForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      headerTextStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                fontSize: 32.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                      pickerBackgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryBackground,
-                                                      pickerForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      selectedDateTimeBackgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBackground,
-                                                      selectedDateTimeForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      actionButtonForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      iconSize: 24.0,
-                                                    );
-                                                  },
+                                                _model.announcedTime2T =
+                                                    await actions.selectTime(
+                                                  context,
                                                 );
-                                                if (datePicked4Time != null) {
-                                                  safeSetState(() {
-                                                    _model.datePicked4 =
-                                                        DateTime(
-                                                      getCurrentTimestamp.year,
-                                                      getCurrentTimestamp.month,
-                                                      getCurrentTimestamp.day,
-                                                      datePicked4Time.hour,
-                                                      datePicked4Time.minute,
-                                                    );
-                                                  });
-                                                }
+
+                                                setState(() {});
                                               },
                                               child: Container(
                                                 width: 280.0,
@@ -2167,11 +2050,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           8.0, 0.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      _model.datePicked4 != null
+                                                      _model.announcedTime2T !=
+                                                              null
                                                           ? dateTimeFormat(
                                                               'Hm',
                                                               _model
-                                                                  .datePicked4,
+                                                                  .announcedTime2T,
                                                               locale: FFLocalizations
                                                                       .of(context)
                                                                   .languageCode,
@@ -2228,72 +2112,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                // arrivalTime
-
-                                                final datePicked5Time =
-                                                    await showTimePicker(
-                                                  context: context,
-                                                  initialTime:
-                                                      TimeOfDay.fromDateTime(
-                                                          getCurrentTimestamp),
-                                                  builder: (context, child) {
-                                                    return wrapInMaterialTimePickerTheme(
-                                                      context,
-                                                      child!,
-                                                      headerBackgroundColor:
-                                                          const Color(0xFFD59699),
-                                                      headerForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      headerTextStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                fontSize: 32.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                      pickerBackgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryBackground,
-                                                      pickerForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      selectedDateTimeBackgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryBackground,
-                                                      selectedDateTimeForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      actionButtonForegroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      iconSize: 24.0,
-                                                    );
-                                                  },
+                                                _model.arrivalT =
+                                                    await actions.selectTime(
+                                                  context,
                                                 );
-                                                if (datePicked5Time != null) {
-                                                  safeSetState(() {
-                                                    _model.datePicked5 =
-                                                        DateTime(
-                                                      getCurrentTimestamp.year,
-                                                      getCurrentTimestamp.month,
-                                                      getCurrentTimestamp.day,
-                                                      datePicked5Time.hour,
-                                                      datePicked5Time.minute,
-                                                    );
-                                                  });
-                                                }
+
+                                                setState(() {});
                                               },
                                               child: Container(
                                                 width: 280.0,
@@ -2318,11 +2142,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                           8.0, 0.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      _model.datePicked5 != null
+                                                      _model.arrivalT != null
                                                           ? dateTimeFormat(
                                                               'Hm',
-                                                              _model
-                                                                  .datePicked5,
+                                                              _model.arrivalT,
                                                               locale: FFLocalizations
                                                                       .of(context)
                                                                   .languageCode,
@@ -2626,76 +2449,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  // startLoad
-
-                                                  final datePicked6Time =
-                                                      await showTimePicker(
-                                                    context: context,
-                                                    initialTime:
-                                                        TimeOfDay.fromDateTime(
-                                                            getCurrentTimestamp),
-                                                    builder: (context, child) {
-                                                      return wrapInMaterialTimePickerTheme(
-                                                        context,
-                                                        child!,
-                                                        headerBackgroundColor:
-                                                            const Color(0xFFD59699),
-                                                        headerForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        headerTextStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  fontSize:
-                                                                      32.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                        pickerBackgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryBackground,
-                                                        pickerForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        selectedDateTimeBackgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                        selectedDateTimeForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        actionButtonForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        iconSize: 24.0,
-                                                      );
-                                                    },
+                                                  _model.startT =
+                                                      await actions.selectTime(
+                                                    context,
                                                   );
-                                                  if (datePicked6Time !=
-                                                      null) {
-                                                    safeSetState(() {
-                                                      _model.datePicked6 =
-                                                          DateTime(
-                                                        getCurrentTimestamp
-                                                            .year,
-                                                        getCurrentTimestamp
-                                                            .month,
-                                                        getCurrentTimestamp.day,
-                                                        datePicked6Time.hour,
-                                                        datePicked6Time.minute,
-                                                      );
-                                                    });
-                                                  }
+
+                                                  setState(() {});
                                                 },
                                                 child: Container(
                                                   width: 280.0,
@@ -2722,12 +2481,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        _model.datePicked6 !=
-                                                                null
+                                                        _model.startT != null
                                                             ? dateTimeFormat(
                                                                 'Hm',
-                                                                _model
-                                                                    .datePicked6,
+                                                                _model.startT,
                                                                 locale: FFLocalizations.of(
                                                                         context)
                                                                     .languageCode,
@@ -2790,76 +2547,12 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  // finishLoad
-
-                                                  final datePicked7Time =
-                                                      await showTimePicker(
-                                                    context: context,
-                                                    initialTime:
-                                                        TimeOfDay.fromDateTime(
-                                                            getCurrentTimestamp),
-                                                    builder: (context, child) {
-                                                      return wrapInMaterialTimePickerTheme(
-                                                        context,
-                                                        child!,
-                                                        headerBackgroundColor:
-                                                            const Color(0xFFD59699),
-                                                        headerForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        headerTextStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  fontSize:
-                                                                      32.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                        pickerBackgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryBackground,
-                                                        pickerForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        selectedDateTimeBackgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                        selectedDateTimeForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        actionButtonForegroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        iconSize: 24.0,
-                                                      );
-                                                    },
+                                                  _model.stopT =
+                                                      await actions.selectTime(
+                                                    context,
                                                   );
-                                                  if (datePicked7Time !=
-                                                      null) {
-                                                    safeSetState(() {
-                                                      _model.datePicked7 =
-                                                          DateTime(
-                                                        getCurrentTimestamp
-                                                            .year,
-                                                        getCurrentTimestamp
-                                                            .month,
-                                                        getCurrentTimestamp.day,
-                                                        datePicked7Time.hour,
-                                                        datePicked7Time.minute,
-                                                      );
-                                                    });
-                                                  }
+
+                                                  setState(() {});
                                                 },
                                                 child: Container(
                                                   width: 280.0,
@@ -2886,12 +2579,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        _model.datePicked7 !=
-                                                                null
+                                                        _model.stopT != null
                                                             ? dateTimeFormat(
                                                                 'Hm',
-                                                                _model
-                                                                    .datePicked7,
+                                                                _model.stopT,
                                                                 locale: FFLocalizations.of(
                                                                         context)
                                                                     .languageCode,
@@ -6035,6 +5726,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                     context: context,
                                     builder: (dialogContext) {
                                       return Dialog(
+                                        elevation: 0,
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
@@ -6094,19 +5786,19 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                     DateTime>(_model.datePicked1 ?? containerVistaOrderLevelExtendedRow
                                                         ?.etaDate),
                                                 'eta_i': supaSerialize<
-                                                    PostgresTime>(PostgresTime(_model.datePicked3 ?? functions
+                                                    PostgresTime>(PostgresTime(_model.announcedTime1T ?? functions
                                                         .parsePostgresTimestamp(
                                                             containerVistaOrderLevelExtendedRow!
                                                                 .etaI!
                                                                 .toString()))),
                                                 'eta_f': supaSerialize<
-                                                    PostgresTime>(PostgresTime(_model.datePicked4 ?? functions
+                                                    PostgresTime>(PostgresTime(_model.announcedTime2T ?? functions
                                                         .parsePostgresTimestamp(
                                                             containerVistaOrderLevelExtendedRow!
                                                                 .etaF!
                                                                 .toString()))),
                                                 'arrival': supaSerialize<
-                                                    PostgresTime>(PostgresTime(_model.datePicked5 ?? functions
+                                                    PostgresTime>(PostgresTime(_model.arrivalT ?? functions
                                                         .parsePostgresTimestamp(
                                                             containerVistaOrderLevelExtendedRow!
                                                                 .arrival!
@@ -6128,13 +5820,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                     : containerVistaOrderLevelExtendedRow
                                                         ?.loadingSequence,
                                                 'start': supaSerialize<
-                                                    PostgresTime>(PostgresTime(_model.datePicked6 ?? functions
+                                                    PostgresTime>(PostgresTime(_model.startT ?? functions
                                                         .parsePostgresTimestamp(
                                                             containerVistaOrderLevelExtendedRow!
                                                                 .start!
                                                                 .toString()))),
                                                 'stop': supaSerialize<
-                                                    PostgresTime>(PostgresTime(_model.datePicked7 ?? functions
+                                                    PostgresTime>(PostgresTime(_model.stopT ?? functions
                                                         .parsePostgresTimestamp(
                                                             containerVistaOrderLevelExtendedRow!
                                                                 .stop!
@@ -6351,10 +6043,6 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                         .goodDescriptionsDDValue
                                                     : containerVistaOrderLevelExtendedRow
                                                         ?.goodDescription,
-                                                'barcodes': functions
-                                                    .splitBarcodes(_model
-                                                        .barcodesTFController
-                                                        .text),
                                                 'packaging': _model
                                                                 .packagingDDValue !=
                                                             null &&
@@ -6366,6 +6054,10 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                 'checked': _model.checkValue,
                                                 'precheck':
                                                     _model.preCheckValue,
+                                                'received_barcodes': functions
+                                                    .splitBarcodes(_model
+                                                        .barcodesTFController
+                                                        .text),
                                               },
                                               matchingRows: (rows) => rows.eq(
                                                 'id',

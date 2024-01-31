@@ -42,4 +42,7 @@ class DetailsRow extends SupabaseDataRow {
 
   bool get check => getField<bool>('check')!;
   set check(bool value) => setField<bool>('check', value);
+
+  String get barcodeOut => getField<String>('barcode_out')!;
+  set barcodeOut(String value) => setField<String>('barcode_out', value);
 }

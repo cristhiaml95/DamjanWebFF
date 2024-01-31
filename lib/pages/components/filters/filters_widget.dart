@@ -28,7 +28,7 @@ class FiltersWidget extends StatefulWidget {
   final List<VistaOrderLevelExtendedRow>? orderLevelView;
 
   @override
-  _FiltersWidgetState createState() => _FiltersWidgetState();
+  State<FiltersWidget> createState() => _FiltersWidgetState();
 }
 
 class _FiltersWidgetState extends State<FiltersWidget> {

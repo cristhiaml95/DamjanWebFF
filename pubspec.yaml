@@ -1,4 +1,4 @@
-name: damjan_web
+name: trampuz_web
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -28,7 +28,8 @@ dependencies:
   app_links: 3.4.1
   auto_size_text: 3.0.0
   cached_network_image: 3.2.1
-  data_table_2: 2.3.12
+  collection: 1.17.2
+  data_table_2: 2.5.10
   device_info_plus: 9.1.0
   device_info_plus_platform_interface: 7.0.0
   dropdown_button2: 2.3.9

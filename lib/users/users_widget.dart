@@ -27,7 +27,7 @@ class UsersWidget extends StatefulWidget {
   final String? usersKey;
 
   @override
-  _UsersWidgetState createState() => _UsersWidgetState();
+  State<UsersWidget> createState() => _UsersWidgetState();
 }
 
 class _UsersWidgetState extends State<UsersWidget>

@@ -312,7 +312,7 @@ class FFRoute {
               ? Container(
                   color: Colors.transparent,
                   child: Image.asset(
-                    'assets/images/letter-d.png',
+                    'assets/images/letter-t.png',
                     fit: BoxFit.cover,
                   ),
                 )

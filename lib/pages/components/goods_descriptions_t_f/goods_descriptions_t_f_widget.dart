@@ -16,7 +16,7 @@ class GoodsDescriptionsTFWidget extends StatefulWidget {
   final String? rowId;
 
   @override
-  _GoodsDescriptionsTFWidgetState createState() =>
+  State<GoodsDescriptionsTFWidget> createState() =>
       _GoodsDescriptionsTFWidgetState();
 }
 
@@ -176,6 +176,7 @@ class _GoodsDescriptionsTFWidgetState extends State<GoodsDescriptionsTFWidget> {
                       context: context,
                       builder: (dialogContext) {
                         return Dialog(
+                          elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)

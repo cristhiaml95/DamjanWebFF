@@ -19,7 +19,7 @@ class EditPackagingWidget extends StatefulWidget {
   final String? editPackagingKey;
 
   @override
-  _EditPackagingWidgetState createState() => _EditPackagingWidgetState();
+  State<EditPackagingWidget> createState() => _EditPackagingWidgetState();
 }
 
 class _EditPackagingWidgetState extends State<EditPackagingWidget> {
@@ -450,6 +450,7 @@ class _EditPackagingWidgetState extends State<EditPackagingWidget> {
                               context: context,
                               builder: (dialogContext) {
                                 return Dialog(
+                                  elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
                                   alignment: const AlignmentDirectional(0.0, 0.0)

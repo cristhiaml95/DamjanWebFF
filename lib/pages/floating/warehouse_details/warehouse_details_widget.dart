@@ -20,7 +20,7 @@ class WarehouseDetailsWidget extends StatefulWidget {
   final String? warehouseDetailsKey;
 
   @override
-  _WarehouseDetailsWidgetState createState() => _WarehouseDetailsWidgetState();
+  State<WarehouseDetailsWidget> createState() => _WarehouseDetailsWidgetState();
 }
 
 class _WarehouseDetailsWidgetState extends State<WarehouseDetailsWidget>

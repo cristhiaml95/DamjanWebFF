@@ -16,7 +16,7 @@ class WarehousePositionsTFWidget extends StatefulWidget {
   final String? rowId;
 
   @override
-  _WarehousePositionsTFWidgetState createState() =>
+  State<WarehousePositionsTFWidget> createState() =>
       _WarehousePositionsTFWidgetState();
 }
 
@@ -177,6 +177,7 @@ class _WarehousePositionsTFWidgetState
                       context: context,
                       builder: (dialogContext) {
                         return Dialog(
+                          elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)

@@ -16,7 +16,7 @@ class CustomsTFWidget extends StatefulWidget {
   final String? rowId;
 
   @override
-  _CustomsTFWidgetState createState() => _CustomsTFWidgetState();
+  State<CustomsTFWidget> createState() => _CustomsTFWidgetState();
 }
 
 class _CustomsTFWidgetState extends State<CustomsTFWidget> {
@@ -175,6 +175,7 @@ class _CustomsTFWidgetState extends State<CustomsTFWidget> {
                       context: context,
                       builder: (dialogContext) {
                         return Dialog(
+                          elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)

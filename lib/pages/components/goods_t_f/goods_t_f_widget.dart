@@ -16,7 +16,7 @@ class GoodsTFWidget extends StatefulWidget {
   final String? rowId;
 
   @override
-  _GoodsTFWidgetState createState() => _GoodsTFWidgetState();
+  State<GoodsTFWidget> createState() => _GoodsTFWidgetState();
 }
 
 class _GoodsTFWidgetState extends State<GoodsTFWidget> {
@@ -175,6 +175,7 @@ class _GoodsTFWidgetState extends State<GoodsTFWidget> {
                       context: context,
                       builder: (dialogContext) {
                         return Dialog(
+                          elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)

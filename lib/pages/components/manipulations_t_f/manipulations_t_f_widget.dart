@@ -16,7 +16,7 @@ class ManipulationsTFWidget extends StatefulWidget {
   final String? rowId;
 
   @override
-  _ManipulationsTFWidgetState createState() => _ManipulationsTFWidgetState();
+  State<ManipulationsTFWidget> createState() => _ManipulationsTFWidgetState();
 }
 
 class _ManipulationsTFWidgetState extends State<ManipulationsTFWidget> {
@@ -175,6 +175,7 @@ class _ManipulationsTFWidgetState extends State<ManipulationsTFWidget> {
                       context: context,
                       builder: (dialogContext) {
                         return Dialog(
+                          elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)

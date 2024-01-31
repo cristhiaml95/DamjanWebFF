@@ -11,7 +11,7 @@ class NewPackagingWidget extends StatefulWidget {
   const NewPackagingWidget({super.key});
 
   @override
-  _NewPackagingWidgetState createState() => _NewPackagingWidgetState();
+  State<NewPackagingWidget> createState() => _NewPackagingWidgetState();
 }
 
 class _NewPackagingWidgetState extends State<NewPackagingWidget> {
@@ -152,6 +152,7 @@ class _NewPackagingWidgetState extends State<NewPackagingWidget> {
                               context: context,
                               builder: (dialogContext) {
                                 return Dialog(
+                                  elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
                                   alignment: const AlignmentDirectional(0.0, 0.0)

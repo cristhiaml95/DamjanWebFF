@@ -11,7 +11,7 @@ class LightModeWidget extends StatefulWidget {
   const LightModeWidget({super.key});
 
   @override
-  _LightModeWidgetState createState() => _LightModeWidgetState();
+  State<LightModeWidget> createState() => _LightModeWidgetState();
 }
 
 class _LightModeWidgetState extends State<LightModeWidget>

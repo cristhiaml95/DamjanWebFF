@@ -19,12 +19,12 @@ class CreateRecordWidget extends StatefulWidget {
   const CreateRecordWidget({
     super.key,
     String? formsKey,
-  })  : formsKey = formsKey ?? 'formsDefKey';
+  }) : formsKey = formsKey ?? 'formsDefKey';
 
   final String formsKey;
 
   @override
-  _CreateRecordWidgetState createState() => _CreateRecordWidgetState();
+  State<CreateRecordWidget> createState() => _CreateRecordWidgetState();
 }
 
 class _CreateRecordWidgetState extends State<CreateRecordWidget> {
@@ -5206,6 +5206,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                 context: context,
                                 builder: (dialogContext) {
                                   return Dialog(
+                                    elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
                                     alignment: const AlignmentDirectional(0.0, 0.0)
@@ -5279,10 +5280,14 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                             'eta_i': supaSerialize<
                                                     PostgresTime>(
                                                 PostgresTime(
-                                                    _model.announcedTime1 ?? getCurrentTimestamp)),
+                                                    _model.announcedTime1 ?? functions
+                                                            .stringToDateTime(
+                                                                '00:00'))),
                                             'arrival':
                                                 supaSerialize<PostgresTime>(
-                                                    PostgresTime(_model.arrivalTime ?? getCurrentTimestamp)),
+                                                    PostgresTime(_model.arrivalTime ?? functions
+                                                            .stringToDateTime(
+                                                                '00:00'))),
                                             'loading_gate': _model
                                                             .loadingGateDDValue !=
                                                         null &&
@@ -5298,10 +5303,14 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 : -1,
                                             'start':
                                                 supaSerialize<PostgresTime>(
-                                                    PostgresTime(_model.startT ?? getCurrentTimestamp)),
+                                                    PostgresTime(_model.startT ?? functions
+                                                            .stringToDateTime(
+                                                                '00:00'))),
                                             'stop': supaSerialize<PostgresTime>(
                                                 PostgresTime(
-                                                    _model.stopT ?? getCurrentTimestamp)),
+                                                    _model.stopT ?? functions
+                                                            .stringToDateTime(
+                                                                '00:00'))),
                                             'licence_plate': _model.licencePlateTFController
                                                             .text !=
                                                         ''
@@ -5473,7 +5482,9 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                             'eta_f': supaSerialize<
                                                     PostgresTime>(
                                                 PostgresTime(
-                                                    _model.announcedTime2 ?? getCurrentTimestamp)),
+                                                    _model.announcedTime2 ?? functions
+                                                            .stringToDateTime(
+                                                                '00:00'))),
                                             'good': _model.goodsDDValue !=
                                                         null &&
                                                     _model.goodsDDValue != ''
@@ -5486,7 +5497,6 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         ''
                                                 ? _model.goodDescriptionsDDValue
                                                 : '53a4144c-c413-4cb4-a951-b9c90ac94481',
-                                            'barcodes': _model.barcodesList,
                                             'packaging': _model
                                                             .packagingDDValue !=
                                                         null &&
@@ -5498,6 +5508,13 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 _model.pdfLinks.isNotEmpty
                                                     ? _model.pdfLinks
                                                     : _model.pdfLinks,
+                                            'received_barcodes':
+                                                FFAppState().emptyList,
+                                            'barcodes': _model.barcodesList,
+                                            'no_barcodes':
+                                                FFAppState().emptyList,
+                                            'repeated_barcodes':
+                                                FFAppState().emptyList,
                                           });
                                         } else {
                                           ScaffoldMessenger.of(context)

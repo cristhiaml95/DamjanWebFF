@@ -18,7 +18,7 @@ class UserDetailsWidget extends StatefulWidget {
   final UsersRow? userDetail;
 
   @override
-  _UserDetailsWidgetState createState() => _UserDetailsWidgetState();
+  State<UserDetailsWidget> createState() => _UserDetailsWidgetState();
 }
 
 class _UserDetailsWidgetState extends State<UserDetailsWidget> {

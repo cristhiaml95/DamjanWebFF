@@ -23,7 +23,7 @@ class EditDetailsWidget extends StatefulWidget {
   final String? editDetailsKey;
 
   @override
-  _EditDetailsWidgetState createState() => _EditDetailsWidgetState();
+  State<EditDetailsWidget> createState() => _EditDetailsWidgetState();
 }
 
 class _EditDetailsWidgetState extends State<EditDetailsWidget> {
@@ -1041,6 +1041,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                               context: context,
                               builder: (dialogContext) {
                                 return Dialog(
+                                  elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
                                   alignment: const AlignmentDirectional(0.0, 0.0)

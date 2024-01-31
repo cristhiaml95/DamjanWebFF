@@ -16,7 +16,7 @@ class LoadingGatesTFWidget extends StatefulWidget {
   final String? rowId;
 
   @override
-  _LoadingGatesTFWidgetState createState() => _LoadingGatesTFWidgetState();
+  State<LoadingGatesTFWidget> createState() => _LoadingGatesTFWidgetState();
 }
 
 class _LoadingGatesTFWidgetState extends State<LoadingGatesTFWidget> {
@@ -175,6 +175,7 @@ class _LoadingGatesTFWidgetState extends State<LoadingGatesTFWidget> {
                       context: context,
                       builder: (dialogContext) {
                         return Dialog(
+                          elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)

@@ -27,13 +27,13 @@ class Warehouse2Widget extends StatefulWidget {
   const Warehouse2Widget({
     super.key,
     String? warehouse2TablesKey,
-  })  : warehouse2TablesKey =
+  }) : warehouse2TablesKey =
             warehouse2TablesKey ?? 'warehouse2TablesDefKey';
 
   final String warehouse2TablesKey;
 
   @override
-  _Warehouse2WidgetState createState() => _Warehouse2WidgetState();
+  State<Warehouse2Widget> createState() => _Warehouse2WidgetState();
 }
 
 class _Warehouse2WidgetState extends State<Warehouse2Widget>
@@ -129,36 +129,6 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            appBar: MediaQuery.sizeOf(context).width <= 991.0
-                ? AppBar(
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    automaticallyImplyLeading: false,
-                    leading: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30.0,
-                      borderWidth: 1.0,
-                      buttonSize: 60.0,
-                      icon: Icon(
-                        Icons.arrow_back_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30.0,
-                      ),
-                      onPressed: () async {
-                        context.pop();
-                      },
-                    ),
-                    title: Text(
-                      FFLocalizations.of(context).getText(
-                        'b6apkqdm' /* Order Details */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyLarge,
-                    ),
-                    actions: const [],
-                    centerTitle: false,
-                    elevation: 0.0,
-                  )
-                : null,
             body: SafeArea(
               top: true,
               child: Row(
@@ -2166,6 +2136,8 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                                 builder:
                                                                     (dialogContext) {
                                                                   return Dialog(
+                                                                    elevation:
+                                                                        0,
                                                                     insetPadding:
                                                                         EdgeInsets
                                                                             .zero,
@@ -2237,6 +2209,8 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                                 builder:
                                                                     (dialogContext) {
                                                                   return Dialog(
+                                                                    elevation:
+                                                                        0,
                                                                     insetPadding:
                                                                         EdgeInsets
                                                                             .zero,
@@ -2302,6 +2276,8 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                                                 builder:
                                                                     (dialogContext) {
                                                                   return Dialog(
+                                                                    elevation:
+                                                                        0,
                                                                     insetPadding:
                                                                         EdgeInsets
                                                                             .zero,
@@ -2478,6 +2454,7 @@ class _Warehouse2WidgetState extends State<Warehouse2Widget>
                                               context: context,
                                               builder: (dialogContext) {
                                                 return Dialog(
+                                                  elevation: 0,
                                                   insetPadding: EdgeInsets.zero,
                                                   backgroundColor:
                                                       Colors.transparent,

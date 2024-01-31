@@ -19,7 +19,7 @@ class EditClientsWidget extends StatefulWidget {
   final String? editClientsKey;
 
   @override
-  _EditClientsWidgetState createState() => _EditClientsWidgetState();
+  State<EditClientsWidget> createState() => _EditClientsWidgetState();
 }
 
 class _EditClientsWidgetState extends State<EditClientsWidget> {
@@ -1036,6 +1036,7 @@ class _EditClientsWidgetState extends State<EditClientsWidget> {
                               context: context,
                               builder: (dialogContext) {
                                 return Dialog(
+                                  elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
                                   alignment: const AlignmentDirectional(0.0, 0.0)

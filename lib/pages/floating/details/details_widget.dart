@@ -31,7 +31,7 @@ class DetailsWidget extends StatefulWidget {
   final String? barcode;
 
   @override
-  _DetailsWidgetState createState() => _DetailsWidgetState();
+  State<DetailsWidget> createState() => _DetailsWidgetState();
 }
 
 class _DetailsWidgetState extends State<DetailsWidget> {
@@ -244,429 +244,415 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                 ? (_model.barcodeDDValue == e.barcode)
                                 : true)
                             .toList();
-                        return SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: SizedBox(
-                            width: 800.0,
-                            height: 600.0,
-                            child: DataTable2(
-                              columns: [
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          2.0, 0.0, 2.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: AutoSizeText(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                '19723qox' /* Packaging */,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        fontSize: 12.0,
-                                                      ),
-                                              minFontSize: 6.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          2.0, 0.0, 2.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: AutoSizeText(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                '5kdfhiqm' /* Warehouse position */,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        fontSize: 12.0,
-                                                      ),
-                                              minFontSize: 6.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          2.0, 0.0, 2.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: AutoSizeText(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'nbpuiz1p' /* Barcode */,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        fontSize: 12.0,
-                                                      ),
-                                              minFontSize: 6.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          2.0, 0.0, 2.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: AutoSizeText(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'ad7nmmue' /* Row */,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              maxLines: 1,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelLarge
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .info,
-                                                    fontSize: 12.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                              minFontSize: 6.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  fixedWidth: 40.0,
-                                ),
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: AutoSizeText(
-                                        FFLocalizations.of(context).getText(
-                                          'gfm73591' /* Edit */,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelLarge
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .info,
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                        minFontSize: 6.0,
-                                      ),
-                                    ),
-                                  ),
-                                  fixedWidth: 40.0,
-                                ),
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: AutoSizeText(
-                                        FFLocalizations.of(context).getText(
-                                          '8eqr497d' /* Delete */,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelLarge
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .warning,
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                        minFontSize: 6.0,
-                                      ),
-                                    ),
-                                  ),
-                                  fixedWidth: 50.0,
-                                ),
-                              ],
-                              rows: containerVar
-                                  .mapIndexed((containerVarIndex,
-                                          containerVarItem) =>
-                                      [
+                        return SizedBox(
+                          width: 780.0,
+                          height: 600.0,
+                          child: DataTable2(
+                            columns: [
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        2.0, 0.0, 2.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
                                         Align(
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
                                           child: AutoSizeText(
-                                            containerVarItem
-                                                .packagingDescription!,
-                                            textAlign: TextAlign.center,
-                                            maxLines: 2,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                            minFontSize: 6.0,
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: AutoSizeText(
-                                            containerVarItem
-                                                .warehousePositionName!,
-                                            textAlign: TextAlign.center,
-                                            maxLines: 2,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                            minFontSize: 6.0,
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: AutoSizeText(
-                                            containerVarItem.barcode!,
+                                            FFLocalizations.of(context).getText(
+                                              '19723qox' /* Packaging */,
+                                            ),
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                                .labelLarge
                                                 .override(
                                                   fontFamily: 'Roboto',
-                                                  color: (widget.barcode !=
-                                                                  null &&
-                                                              widget.barcode !=
-                                                                  '') &&
-                                                          (containerVarItem
-                                                                  .barcode ==
-                                                              widget.barcode)
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary
-                                                      : FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
                                                   fontSize: 12.0,
                                                 ),
                                             minFontSize: 6.0,
                                           ),
                                         ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        2.0, 0.0, 2.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
                                         Align(
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            (containerVarIndex + 1).toString(),
+                                          child: AutoSizeText(
+                                            FFLocalizations.of(context).getText(
+                                              '5kdfhiqm' /* Warehouse position */,
+                                            ),
+                                            textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                                .labelLarge
+                                                .override(
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 12.0,
+                                                ),
+                                            minFontSize: 6.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        2.0, 0.0, 2.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: AutoSizeText(
+                                            FFLocalizations.of(context).getText(
+                                              'nbpuiz1p' /* Barcode */,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelLarge
+                                                .override(
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 12.0,
+                                                ),
+                                            minFontSize: 6.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        2.0, 0.0, 2.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: AutoSizeText(
+                                            FFLocalizations.of(context).getText(
+                                              'ad7nmmue' /* Row */,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            maxLines: 1,
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelLarge
                                                 .override(
                                                   fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
+                                                  fontSize: 12.0,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
+                                            minFontSize: 6.0,
                                           ),
                                         ),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Builder(
-                                            builder: (context) => InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      child: EditDetailsWidget(
-                                                        idDetailsP:
-                                                            containerVarItem
-                                                                .id!,
-                                                        warehouseId: widget
-                                                            .warehouseIdDetails!,
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
-                                              child: Icon(
-                                                Icons.edit_square,
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                fixedWidth: 40.0,
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: AutoSizeText(
+                                      FFLocalizations.of(context).getText(
+                                        'gfm73591' /* Edit */,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      maxLines: 1,
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            color: FlutterFlowTheme.of(context)
+                                                .info,
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                      minFontSize: 6.0,
+                                    ),
+                                  ),
+                                ),
+                                fixedWidth: 40.0,
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: AutoSizeText(
+                                      FFLocalizations.of(context).getText(
+                                        '8eqr497d' /* Delete */,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      maxLines: 1,
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            color: FlutterFlowTheme.of(context)
+                                                .warning,
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                      minFontSize: 6.0,
+                                    ),
+                                  ),
+                                ),
+                                fixedWidth: 50.0,
+                              ),
+                            ],
+                            rows: containerVar
+                                .mapIndexed((containerVarIndex,
+                                        containerVarItem) =>
+                                    [
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: SelectionArea(
+                                            child: AutoSizeText(
+                                          containerVarItem
+                                              .packagingDescription!,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          minFontSize: 6.0,
+                                        )),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: SelectionArea(
+                                            child: AutoSizeText(
+                                          containerVarItem
+                                              .warehousePositionName!,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          minFontSize: 6.0,
+                                        )),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: SelectionArea(
+                                            child: AutoSizeText(
+                                          containerVarItem.barcode!,
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                                color: (widget.barcode !=
+                                                                null &&
+                                                            widget.barcode !=
+                                                                '') &&
+                                                        (containerVarItem
+                                                                .barcode ==
+                                                            widget.barcode)
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                fontSize: 12.0,
+                                              ),
+                                          minFontSize: 6.0,
+                                        )),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Text(
+                                          (containerVarIndex + 1).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .info,
-                                                size: 24.0,
                                               ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Builder(
+                                          builder: (context) => InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: EditDetailsWidget(
+                                                      idDetailsP:
+                                                          containerVarItem.id!,
+                                                      warehouseId: widget
+                                                          .warehouseIdDetails!,
+                                                    ),
+                                                  );
+                                                },
+                                              ).then(
+                                                  (value) => setState(() {}));
+                                            },
+                                            child: Icon(
+                                              Icons.edit_square,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              size: 24.0,
                                             ),
                                           ),
                                         ),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Builder(
-                                            builder: (context) => InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      child: SureQueryWidget(
-                                                        saveChangesP: () async {
-                                                          await DetailsTable()
-                                                              .delete(
-                                                            matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
-                                                              'id',
-                                                              containerVarItem
-                                                                  .id,
-                                                            ),
-                                                          );
-                                                          await showDialog(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: const Text(
-                                                                    'Elimination'),
-                                                                content: const Text(
-                                                                    'Row deleted successfully.'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext),
-                                                                    child: const Text(
-                                                                        'Ok'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
-                                              child: Icon(
-                                                Icons.delete_forever,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .warning,
-                                                size: 24.0,
-                                              ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Builder(
+                                          builder: (context) => InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: SureQueryWidget(
+                                                      saveChangesP: () async {
+                                                        await DetailsTable()
+                                                            .delete(
+                                                          matchingRows:
+                                                              (rows) => rows.eq(
+                                                            'id',
+                                                            containerVarItem.id,
+                                                          ),
+                                                        );
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: const Text(
+                                                                  'Elimination'),
+                                                              content: const Text(
+                                                                  'Row deleted successfully.'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: const Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  );
+                                                },
+                                              ).then(
+                                                  (value) => setState(() {}));
+                                            },
+                                            child: Icon(
+                                              Icons.delete_forever,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .warning,
+                                              size: 24.0,
                                             ),
                                           ),
                                         ),
-                                      ].map((c) => DataCell(c)).toList())
-                                  .map((e) => DataRow(cells: e))
-                                  .toList(),
-                              headingRowColor: MaterialStateProperty.all(
-                                FlutterFlowTheme.of(context).primaryBackground,
-                              ),
-                              headingRowHeight: 56.0,
-                              dataRowColor: MaterialStateProperty.all(
-                                FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              dataRowHeight: 40.0,
-                              border: TableBorder(
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              dividerThickness: 1.0,
-                              columnSpacing: 0.0,
-                              showBottomBorder: true,
-                              minWidth: 49.0,
+                                      ),
+                                    ].map((c) => DataCell(c)).toList())
+                                .map((e) => DataRow(cells: e))
+                                .toList(),
+                            headingRowColor: MaterialStateProperty.all(
+                              FlutterFlowTheme.of(context).primaryBackground,
                             ),
+                            headingRowHeight: 56.0,
+                            dataRowColor: MaterialStateProperty.all(
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                            ),
+                            dataRowHeight: 40.0,
+                            border: TableBorder(
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            dividerThickness: 1.0,
+                            columnSpacing: 0.0,
+                            showBottomBorder: true,
+                            minWidth: 49.0,
                           ),
                         );
                       },

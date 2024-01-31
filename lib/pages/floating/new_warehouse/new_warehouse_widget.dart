@@ -11,7 +11,7 @@ class NewWarehouseWidget extends StatefulWidget {
   const NewWarehouseWidget({super.key});
 
   @override
-  _NewWarehouseWidgetState createState() => _NewWarehouseWidgetState();
+  State<NewWarehouseWidget> createState() => _NewWarehouseWidgetState();
 }
 
 class _NewWarehouseWidgetState extends State<NewWarehouseWidget> {
@@ -134,6 +134,7 @@ class _NewWarehouseWidgetState extends State<NewWarehouseWidget> {
                         context: context,
                         builder: (dialogContext) {
                           return Dialog(
+                            elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
                             alignment: const AlignmentDirectional(0.0, 0.0)

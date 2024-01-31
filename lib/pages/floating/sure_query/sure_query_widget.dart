@@ -12,10 +12,10 @@ class SureQueryWidget extends StatefulWidget {
     required this.saveChangesP,
   });
 
-  final Future<dynamic> Function()? saveChangesP;
+  final Future Function()? saveChangesP;
 
   @override
-  _SureQueryWidgetState createState() => _SureQueryWidgetState();
+  State<SureQueryWidget> createState() => _SureQueryWidgetState();
 }
 
 class _SureQueryWidgetState extends State<SureQueryWidget> {

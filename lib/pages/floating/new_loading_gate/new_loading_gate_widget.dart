@@ -18,7 +18,7 @@ class NewLoadingGateWidget extends StatefulWidget {
   final String? loadingGateCompKey;
 
   @override
-  _NewLoadingGateWidgetState createState() => _NewLoadingGateWidgetState();
+  State<NewLoadingGateWidget> createState() => _NewLoadingGateWidgetState();
 }
 
 class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
@@ -174,6 +174,7 @@ class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
                               context: context,
                               builder: (dialogContext) {
                                 return Dialog(
+                                  elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
                                   alignment: const AlignmentDirectional(0.0, 0.0)

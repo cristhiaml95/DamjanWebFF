@@ -11,7 +11,7 @@ class NewGoodDescriptionWidget extends StatefulWidget {
   const NewGoodDescriptionWidget({super.key});
 
   @override
-  _NewGoodDescriptionWidgetState createState() =>
+  State<NewGoodDescriptionWidget> createState() =>
       _NewGoodDescriptionWidgetState();
 }
 
@@ -141,6 +141,7 @@ class _NewGoodDescriptionWidgetState extends State<NewGoodDescriptionWidget> {
                         context: context,
                         builder: (dialogContext) {
                           return Dialog(
+                            elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
                             alignment: const AlignmentDirectional(0.0, 0.0)

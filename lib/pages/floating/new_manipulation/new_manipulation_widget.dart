@@ -11,7 +11,7 @@ class NewManipulationWidget extends StatefulWidget {
   const NewManipulationWidget({super.key});
 
   @override
-  _NewManipulationWidgetState createState() => _NewManipulationWidgetState();
+  State<NewManipulationWidget> createState() => _NewManipulationWidgetState();
 }
 
 class _NewManipulationWidgetState extends State<NewManipulationWidget> {
@@ -140,6 +140,7 @@ class _NewManipulationWidgetState extends State<NewManipulationWidget> {
                         context: context,
                         builder: (dialogContext) {
                           return Dialog(
+                            elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
                             alignment: const AlignmentDirectional(0.0, 0.0)

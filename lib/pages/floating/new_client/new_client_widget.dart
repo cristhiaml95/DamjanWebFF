@@ -11,7 +11,7 @@ class NewClientWidget extends StatefulWidget {
   const NewClientWidget({super.key});
 
   @override
-  _NewClientWidgetState createState() => _NewClientWidgetState();
+  State<NewClientWidget> createState() => _NewClientWidgetState();
 }
 
 class _NewClientWidgetState extends State<NewClientWidget> {
@@ -97,6 +97,7 @@ class _NewClientWidgetState extends State<NewClientWidget> {
                             context: context,
                             builder: (dialogContext) {
                               return Dialog(
+                                elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
                                 alignment: const AlignmentDirectional(0.0, 0.0)

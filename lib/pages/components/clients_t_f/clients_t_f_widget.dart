@@ -17,7 +17,7 @@ class ClientsTFWidget extends StatefulWidget {
   final String? rowId;
 
   @override
-  _ClientsTFWidgetState createState() => _ClientsTFWidgetState();
+  State<ClientsTFWidget> createState() => _ClientsTFWidgetState();
 }
 
 class _ClientsTFWidgetState extends State<ClientsTFWidget> {
@@ -125,6 +125,7 @@ class _ClientsTFWidgetState extends State<ClientsTFWidget> {
                         context: context,
                         builder: (dialogContext) {
                           return Dialog(
+                            elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
                             alignment: const AlignmentDirectional(0.0, 0.0)
@@ -213,6 +214,7 @@ class _ClientsTFWidgetState extends State<ClientsTFWidget> {
                       context: context,
                       builder: (dialogContext) {
                         return Dialog(
+                          elevation: 0,
                           insetPadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           alignment: const AlignmentDirectional(0.0, 0.0)

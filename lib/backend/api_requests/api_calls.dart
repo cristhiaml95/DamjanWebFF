@@ -7,21 +7,18 @@ export 'api_manager.dart' show ApiCallResponse;
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class SearchQueryCall {
-  static Future<ApiCallResponse> call({
-    String? column = '',
-    String? value = '',
-  }) async {
+  static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'searchQuery',
       apiUrl:
-          'https://aaxptvfturwawmigxwgq.supabase.co/rest/v1/vista_order_level_extended?$column=ilike.*$value*&select=*',
+          'https://xvpkpgmwllqgytdtlnts.supabase.co/rest/v1/vista_order_level_extended?order_status=eq.novo naročilo&licence_plate=not.is.null',
       callType: ApiCallType.GET,
       headers: {
-        'Range': '0-9',
         'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFheHB0dmZ0dXJ3YXdtaWd4d2dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgzMzcxODcsImV4cCI6MjAxMzkxMzE4N30.dIt1jxhITMVw7K_JSg7hnOgUNDxnpj441d_6rPxEBTM',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2cGtwZ213bGxxZ3l0ZHRsbnRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU3MDM0NTQsImV4cCI6MjAyMTI3OTQ1NH0.DPS7em_M28tXdHs4wN7AW_DHUKXqLIrSnjbMsnFNDzI',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFheHB0dmZ0dXJ3YXdtaWd4d2dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgzMzcxODcsImV4cCI6MjAxMzkxMzE4N30.dIt1jxhITMVw7K_JSg7hnOgUNDxnpj441d_6rPxEBTM',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2cGtwZ213bGxxZ3l0ZHRsbnRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU3MDM0NTQsImV4cCI6MjAyMTI3OTQ1NH0.DPS7em_M28tXdHs4wN7AW_DHUKXqLIrSnjbMsnFNDzI',
+        'Range': '0-9',
       },
       params: {},
       returnBody: true,

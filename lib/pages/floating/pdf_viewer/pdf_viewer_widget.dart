@@ -15,7 +15,7 @@ class PdfViewerWidget extends StatefulWidget {
   final String? pdfLink;
 
   @override
-  _PdfViewerWidgetState createState() => _PdfViewerWidgetState();
+  State<PdfViewerWidget> createState() => _PdfViewerWidgetState();
 }
 
 class _PdfViewerWidgetState extends State<PdfViewerWidget> {
