@@ -21,6 +21,7 @@ class DetailsWidget extends StatefulWidget {
     required this.warehouseIdDetails,
     this.detailsKey,
     this.barcode,
+    required this.flow,
   })  : orderId = orderId ?? 'brez izbire',
         orderNo = orderNo ?? 'brez izbire';
 
@@ -29,6 +30,7 @@ class DetailsWidget extends StatefulWidget {
   final String? warehouseIdDetails;
   final String? detailsKey;
   final String? barcode;
+  final String? flow;
 
   @override
   State<DetailsWidget> createState() => _DetailsWidgetState();
@@ -65,7 +67,8 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: FutureBuilder<List<DetailsViewRow>>(
-        future: FFAppState().detailsView(
+        future: FFAppState()
+            .detailsView(
           uniqueQueryKey: valueOrDefault<String>(
             widget.detailsKey,
             'detailsDefKey',
@@ -76,7 +79,17 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               widget.orderId,
             ),
           ),
-        ),
+        )
+            .then((result) {
+          try {
+            _model.requestCompleted = true;
+            _model.requestLastUniqueKey = valueOrDefault<String>(
+              widget.detailsKey,
+              'detailsDefKey',
+            );
+          } finally {}
+          return result;
+        }),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -92,7 +105,8 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               ),
             );
           }
-          List<DetailsViewRow> containerDetailsViewRowList = snapshot.data!;
+          List<DetailsViewRow> detailsContainerDetailsViewRowList =
+              snapshot.data!;
           return Container(
             width: 800.0,
             height: 800.0,
@@ -186,7 +200,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           controller: _model.barcodeDDValueController ??=
                               FormFieldController<String>(null),
                           options: functions.noRepeated(
-                              containerDetailsViewRowList
+                              detailsContainerDetailsViewRowList
                                   .map((e) => e.barcode)
                                   .withoutNulls
                                   .toList()),
@@ -238,11 +252,23 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                   Flexible(
                     child: Builder(
                       builder: (context) {
-                        final containerVar = containerDetailsViewRowList
-                            .where((e) => _model.barcodeDDValue != null &&
-                                    _model.barcodeDDValue != ''
-                                ? (_model.barcodeDDValue == e.barcode)
-                                : true)
+                        final containerVar = detailsContainerDetailsViewRowList
+                            .where((e) => () {
+                                  if (widget.flow == 'in') {
+                                    return (_model.barcodeDDValue != null &&
+                                            _model.barcodeDDValue != ''
+                                        ? (_model.barcodeDDValue == e.barcode)
+                                        : true);
+                                  } else if (widget.flow == 'out') {
+                                    return (_model.barcodeDDValue != null &&
+                                            _model.barcodeDDValue != ''
+                                        ? (_model.barcodeDDValue ==
+                                            e.barcodeOut)
+                                        : true);
+                                  } else {
+                                    return true;
+                                  }
+                                }())
                             .toList();
                         return SizedBox(
                           width: 780.0,
@@ -477,7 +503,19 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                             const AlignmentDirectional(0.0, 0.0),
                                         child: SelectionArea(
                                             child: AutoSizeText(
-                                          containerVarItem.barcode!,
+                                          valueOrDefault<String>(
+                                            () {
+                                              if (widget.flow == 'in') {
+                                                return containerVarItem.barcode;
+                                              } else if (widget.flow == 'out') {
+                                                return containerVarItem
+                                                    .barcodeOut;
+                                              } else {
+                                                return '/';
+                                              }
+                                            }(),
+                                            '/',
+                                          ),
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -546,6 +584,21 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                                           containerVarItem.id!,
                                                       warehouseId: widget
                                                           .warehouseIdDetails!,
+                                                      flow: widget.flow!,
+                                                      refreshQueries: () async {
+                                                        FFAppState()
+                                                            .clearDetailsViewCache();
+                                                        setState(() {
+                                                          FFAppState()
+                                                              .clearDetailsViewCacheKey(
+                                                                  _model
+                                                                      .requestLastUniqueKey);
+                                                          _model.requestCompleted =
+                                                              false;
+                                                        });
+                                                        await _model
+                                                            .waitForRequestCompleted();
+                                                      },
                                                     ),
                                                   );
                                                 },

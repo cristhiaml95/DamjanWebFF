@@ -97,6 +97,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OrderWarehouseWidget(
             orderWarehouseTablesKey:
                 params.getParam('orderWarehouseTablesKey', ParamType.String),
+            numberOfRows: params.getParam('numberOfRows', ParamType.int),
           ),
         ),
         FFRoute(

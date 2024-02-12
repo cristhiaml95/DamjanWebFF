@@ -10,12 +10,12 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:url_launcher/url_launcher.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-Future openLink(String urlText) async {
+Future desconectar(String tabela) async {
   // Add your function code here!
-  final Uri url = Uri.parse(urlText);
-  if (!await launchUrl(url)) {
-    throw 'No se pudo lanzar $url';
-  }
+  final supabase = SupaFlow.client;
+  String table = tabela;
+  final channel = supabase.channel('public:' + table);
+  await channel.unsubscribe();
 }

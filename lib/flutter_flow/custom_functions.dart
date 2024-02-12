@@ -50,11 +50,6 @@ List<String> splitBarcodes(String barcodesGroup) {
   return splitList.map((s) => s.replaceAll('\u{FFFF}', 'brez izbire')).toList();
 }
 
-DateTime parseSupabaseTimestamp(String timestampZ) {
-  DateTime dateTime = DateTime.parse(timestampZ);
-  return DateTime(dateTime.year, dateTime.month, dateTime.day);
-}
-
 int sumList(List<int> integerList) {
   int suma = 0;
   for (int numero in integerList) {
@@ -64,7 +59,9 @@ int sumList(List<int> integerList) {
 }
 
 String joinStrings(List<String> strings) {
-  return strings.join(' ');
+  var filteredStrings = strings.where((string) => string != '/').toList();
+
+  return filteredStrings.join(' ');
 }
 
 String formatDateTimeForPostgres(DateTime dateTime) {
@@ -95,4 +92,8 @@ DateTime stringToDateTime(String timeString) {
 
   // Crear un nuevo objeto DateTime con la fecha actual y la hora especificada
   return DateTime(now.year, now.month, now.day, hour, minute);
+}
+
+String toString(int intValue) {
+  return intValue.toString();
 }

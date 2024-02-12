@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/loading_gates_t_f/loading_gates_t_f_widget.dart';
 import '/pages/components/warehouse_positions_t_f/warehouse_positions_t_f_widget.dart';
+import '/pages/floating/new_loading_gate/new_loading_gate_widget.dart';
+import '/pages/floating/new_warehouse_position/new_warehouse_position_widget.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -177,12 +179,65 @@ class _WarehouseDetailsWidgetState extends State<WarehouseDetailsWidget>
                                 DataColumn2(
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'tffmk5em' /* Position */,
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 16.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            FFLocalizations.of(context).getText(
+                                              'tffmk5em' /* Position */,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelLarge,
+                                          ),
+                                          Builder(
+                                            builder: (context) => InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child:
+                                                          NewWarehousePositionWidget(
+                                                        warehouseId:
+                                                            widget.warehouseId!,
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then(
+                                                    (value) => setState(() {}));
+                                              },
+                                              child: Icon(
+                                                Icons.add_circle,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge,
                                     ),
                                   ),
                                 ),
@@ -272,12 +327,65 @@ class _WarehouseDetailsWidgetState extends State<WarehouseDetailsWidget>
                                 DataColumn2(
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'jiqtvl3p' /* Ramp */,
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 16.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            FFLocalizations.of(context).getText(
+                                              'jiqtvl3p' /* Ramp */,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelLarge,
+                                          ),
+                                          Builder(
+                                            builder: (context) => InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child:
+                                                          NewLoadingGateWidget(
+                                                        warehouseId:
+                                                            widget.warehouseId!,
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then(
+                                                    (value) => setState(() {}));
+                                              },
+                                              child: Icon(
+                                                Icons.add_circle,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge,
                                     ),
                                   ),
                                 ),

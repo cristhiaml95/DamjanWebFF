@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -134,7 +135,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
           alignment: const AlignmentDirectional(0.0, 0.0),
           child: Container(
             width: 1200.0,
-            height: 800.0,
+            height: 640.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
               borderRadius: BorderRadius.circular(28.0),
@@ -200,7 +201,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 28.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -674,10 +675,10 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                               FormFieldController<String>(null),
                                           options: [
                                             FFLocalizations.of(context).getText(
-                                              'mb6t6xsl' /* in-razklad */,
+                                              'mb6t6xsl' /* in */,
                                             ),
                                             FFLocalizations.of(context).getText(
-                                              'uhas6n8o' /* out-naklad */,
+                                              'uhas6n8o' /* out */,
                                             )
                                           ],
                                           onChanged: (val) => setState(
@@ -750,7 +751,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 await showDatePicker(
                                               context: context,
                                               initialDate: getCurrentTimestamp,
-                                              firstDate: getCurrentTimestamp,
+                                              firstDate: DateTime(1900),
                                               lastDate: DateTime(2050),
                                               builder: (context, child) {
                                                 return wrapInMaterialDatePickerTheme(
@@ -829,8 +830,14 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                   .fromSTEB(8.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 _model.datePicked1 != null
-                                                    ? _model.datePicked1!
-                                                        .toString()
+                                                    ? dateTimeFormat(
+                                                        'yMMMd',
+                                                        _model.datePicked1,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      )
                                                     : 'Pick a date...',
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -1139,8 +1146,14 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                               child: Text(
                                                 valueOrDefault<String>(
                                                   _model.datePicked2 != null
-                                                      ? _model.datePicked2
-                                                          ?.toString()
+                                                      ? dateTimeFormat(
+                                                          'yMMMd',
+                                                          _model.datePicked2,
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )
                                                       : 'Pick a date',
                                                   'brez izbire',
                                                 ),
@@ -5085,7 +5098,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                           ),
                                           Container(
                                             width: 280.0,
-                                            height: 500.0,
+                                            height: 380.0,
                                             decoration: const BoxDecoration(),
                                             child: SizedBox(
                                               width: 280.0,
@@ -5183,7 +5196,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 28.0, 28.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 28.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -5225,18 +5238,20 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                               .length;
                                         });
                                         if (_model.unitLast >=
-                                            _model.numberOfBarcodes) {
+                                            valueOrDefault<int>(
+                                              _model.numberOfBarcodes,
+                                              0,
+                                            )) {
                                           setState(() {
                                             _model.barcodesList = _model.barcodesTFController
                                                             .text !=
                                                         ''
                                                 ? functions.splitBarcodes(_model
                                                     .barcodesTFController.text)
-                                                : ['brez izbire']
-                                                    .toList()
-                                                    .cast<String>();
+                                                : [].toList().cast<String>();
                                           });
-                                          await OrderLevelTable().insert({
+                                          _model.insertedRowOP =
+                                              await OrderLevelTable().insert({
                                             'inv_status':
                                                 _model.inventoryStatusDDValue !=
                                                             null &&
@@ -5244,7 +5259,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                             ''
                                                     ? _model
                                                         .inventoryStatusDDValue
-                                                    : 'brez izbire',
+                                                    : 'najava',
                                             'order_no': _model.orderNoTFController
                                                             .text !=
                                                         ''
@@ -5255,7 +5270,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 _model.flowDDValue != null &&
                                                         _model.flowDDValue != ''
                                                     ? _model.flowDDValue
-                                                    : 'brez izbire',
+                                                    : '/',
                                             'order_status': _model
                                                             .orderStatusDDValue !=
                                                         null &&
@@ -5267,7 +5282,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         null &&
                                                     _model.adminDDValue != ''
                                                 ? _model.adminDDValue
-                                                : 'f74d24c0-3a35-43bf-9ea9-5c43ef40fd3b',
+                                                : currentUserUid,
                                             'warehouse': _model
                                                             .warehouseDDValue !=
                                                         null &&
@@ -5317,7 +5332,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                 ? _model
                                                     .licencePlateTFController
                                                     .text
-                                                : 'brez izbire',
+                                                : '/',
                                             'quantity': _model.quantityTController
                                                             .text !=
                                                         ''
@@ -5349,7 +5364,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         ''
                                                 ? _model
                                                     .containerTController.text
-                                                : 'brez izbire',
+                                                : '/',
                                             'custom': _model.customDDValue !=
                                                         null &&
                                                     _model.customDDValue != ''
@@ -5408,39 +5423,39 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                             .text !=
                                                         ''
                                                 ? _model.fmsRefTController.text
-                                                : 'brez izbire',
+                                                : '/',
                                             'load_ref_dvh': _model.loadRefDvhTController
                                                             .text !=
                                                         ''
                                                 ? _model
                                                     .loadRefDvhTController.text
-                                                : 'brez izbire',
+                                                : '/',
                                             'universal_ref_no': _model.universalRefNumTController
                                                             .text !=
                                                         ''
                                                 ? _model
                                                     .universalRefNumTController
                                                     .text
-                                                : 'brez izbire',
+                                                : '/',
                                             'comment': _model.commentTFController
                                                             .text !=
                                                         ''
                                                 ? _model
                                                     .commentTFController.text
-                                                : 'brez izbire',
+                                                : '/',
                                             'loading_type': _model
                                                             .loadTypeDDValue !=
                                                         null &&
                                                     _model.loadTypeDDValue != ''
                                                 ? _model.loadTypeDDValue
-                                                : 'brez izbire',
+                                                : '/',
                                             'loading_type2': _model
                                                             .loadType2DDValue !=
                                                         null &&
                                                     _model.loadType2DDValue !=
                                                         ''
                                                 ? _model.loadType2DDValue
-                                                : 'brez izbire',
+                                                : '/',
                                             'document':
                                                 'https://aaxptvfturwawmigxwgq.supabase.co/storage/v1/object/public/documents/noPdf.pdf',
                                             'internal_accounting': _model.internalAccTController
@@ -5448,7 +5463,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                         ''
                                                 ? _model
                                                     .internalAccTController.text
-                                                : 'brez izbire',
+                                                : '/',
                                             'internal_ref_custom': _model.internalRefTController
                                                             .text !=
                                                         ''
@@ -5467,7 +5482,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                     _model.improvementDDValue !=
                                                         ''
                                                 ? _model.improvementDDValue
-                                                : 'brez izbire',
+                                                : '/',
                                             'other_manipulation':
                                                 _model.otherManipulationDDValue !=
                                                             null &&
@@ -5475,7 +5490,7 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                             ''
                                                     ? _model
                                                         .otherManipulationDDValue
-                                                    : 'brez izbire',
+                                                    : '/',
                                             'created_at':
                                                 supaSerialize<DateTime>(
                                                     _model.datePicked2 ?? getCurrentTimestamp),
@@ -5509,13 +5524,15 @@ class _CreateRecordWidgetState extends State<CreateRecordWidget> {
                                                     ? _model.pdfLinks
                                                     : _model.pdfLinks,
                                             'received_barcodes':
-                                                FFAppState().emptyList,
-                                            'barcodes': _model.barcodesList,
+                                                _model.barcodesList,
+                                            'barcodes': FFAppState().emptyList,
                                             'no_barcodes':
                                                 FFAppState().emptyList,
                                             'repeated_barcodes':
                                                 FFAppState().emptyList,
                                           });
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 1000));
                                         } else {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(

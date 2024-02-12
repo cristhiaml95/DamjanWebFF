@@ -1,8 +1,11 @@
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/light_mode/light_mode_widget.dart';
 import '/pages/components/user_details/user_details_widget.dart';
+import 'dart:async';
 import 'order_warehouse_widget.dart' show OrderWarehouseWidget;
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +79,8 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  bool requestCompleted = false;
+  String? requestLastUniqueKey;
   // Model for lightMode component.
   late LightModeModel lightModeModel;
   // Model for userDetails component.
@@ -155,6 +160,9 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   // State field(s) for intCustomDD widget.
   String? intCustomDDValue;
   FormFieldController<String>? intCustomDDValueController;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController =
+      FlutterFlowDataTableController<VistaOrderLevelExtendedRow>();
 
   /// Initialization and disposal methods.
 
@@ -162,7 +170,6 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   void initState(BuildContext context) {
     lightModeModel = createModel(context, () => LightModeModel());
     userDetailsModel = createModel(context, () => UserDetailsModel());
-    dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
   }
 
@@ -176,4 +183,19 @@ class OrderWarehouseModel extends FlutterFlowModel<OrderWarehouseWidget> {
   /// Action blocks are added here.
 
   /// Additional helper methods are added here.
+
+  Future waitForRequestCompleted({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleted;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
 }

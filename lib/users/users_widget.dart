@@ -956,420 +956,448 @@ class _UsersWidgetState extends State<UsersWidget>
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Builder(
-                                builder: (context) {
-                                  final usersVar = usersUsersRowList.toList();
-                                  return SizedBox(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    child: DataTable2(
-                                      columns: [
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '35m2g51k' /* Id */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '2tbhql7j' /* Created time */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'mh9vrq5g' /* Full name */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'mvh0j0ys' /* Email */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '8cvb8jex' /* User type */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '1iu2936f' /* Status */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'ch5dldsy' /* Job role */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'dl4ag5nq' /* Password */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        DataColumn2(
-                                          label: DefaultTextStyle.merge(
-                                            softWrap: true,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: AutoSizeText(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '7wv4l9ei' /* Image */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                minFontSize: 6.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                      rows: usersVar
-                                          .mapIndexed((usersVarIndex,
-                                                  usersVarItem) =>
-                                              [
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    usersVarItem.id,
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                    minFontSize: 6.0,
+                            if (usersUsersRowList
+                                    .where((e) => e.id == currentUserUid)
+                                    .toList()
+                                    .first
+                                    .userType ==
+                                'administrator')
+                              Expanded(
+                                child: Builder(
+                                  builder: (context) {
+                                    final usersVar = usersUsersRowList.toList();
+                                    return SizedBox(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      child: DataTable2(
+                                        columns: [
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '35m2g51k' /* Id */,
                                                   ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    dateTimeFormat(
-                                                      'relative',
-                                                      functions
-                                                          .parsePostgresTimestamp(
-                                                              usersVarItem
-                                                                  .createdAt
-                                                                  .toString()),
-                                                      locale:
-                                                          FFLocalizations.of(
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '2tbhql7j' /* Created time */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'mh9vrq5g' /* Full name */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'mvh0j0ys' /* Email */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '8cvb8jex' /* User type */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '1iu2936f' /* Status */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'ch5dldsy' /* Job role */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'dl4ag5nq' /* Password */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          DataColumn2(
+                                            label: DefaultTextStyle.merge(
+                                              softWrap: true,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: AutoSizeText(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '7wv4l9ei' /* Image */,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        fontSize: 12.0,
+                                                      ),
+                                                  minFontSize: 6.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        rows: usersVar
+                                            .mapIndexed((usersVarIndex,
+                                                    usersVarItem) =>
+                                                [
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      usersVarItem.id,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
                                                                   context)
-                                                              .languageCode,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
-                                                    minFontSize: 6.0,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    '${usersVarItem.name} ${usersVarItem.lastName}',
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                    minFontSize: 6.0,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    usersVarItem.email,
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                    minFontSize: 6.0,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    usersVarItem.userType,
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 10.0,
-                                                        ),
-                                                    minFontSize: 6.0,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    usersVarItem.status,
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                    minFontSize: 6.0,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    usersVarItem.job,
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
-                                                    minFontSize: 6.0,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: AutoSizeText(
-                                                    usersVarItem.password!,
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          fontSize: 12.0,
-                                                        ),
-                                                    minFontSize: 6.0,
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.network(
-                                                      usersVarItem.image,
-                                                      width: 40.0,
-                                                      height: 40.0,
-                                                      fit: BoxFit.cover,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontSize: 12.0,
+                                                              ),
+                                                      minFontSize: 6.0,
                                                     ),
                                                   ),
-                                                ),
-                                              ]
-                                                  .map((c) => DataCell(c))
-                                                  .toList())
-                                          .map((e) => DataRow(cells: e))
-                                          .toList(),
-                                      headingRowColor:
-                                          MaterialStateProperty.all(
-                                        FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      dateTimeFormat(
+                                                        'relative',
+                                                        functions
+                                                            .parsePostgresTimestamp(
+                                                                usersVarItem
+                                                                    .createdAt
+                                                                    .toString()),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                      minFontSize: 6.0,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      '${usersVarItem.name} ${usersVarItem.lastName}',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontSize: 12.0,
+                                                              ),
+                                                      minFontSize: 6.0,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      usersVarItem.email,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontSize: 12.0,
+                                                              ),
+                                                      minFontSize: 6.0,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      usersVarItem.userType,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontSize: 10.0,
+                                                              ),
+                                                      minFontSize: 6.0,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      usersVarItem.status,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontSize: 12.0,
+                                                              ),
+                                                      minFontSize: 6.0,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      usersVarItem.job,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                      minFontSize: 6.0,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      usersVarItem.password!,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontSize: 12.0,
+                                                              ),
+                                                      minFontSize: 6.0,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        usersVarItem.image,
+                                                        width: 40.0,
+                                                        height: 40.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ]
+                                                    .map((c) => DataCell(c))
+                                                    .toList())
+                                            .map((e) => DataRow(cells: e))
+                                            .toList(),
+                                        headingRowColor:
+                                            MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                        ),
+                                        headingRowHeight: 56.0,
+                                        dataRowColor: MaterialStateProperty.all(
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        dataRowHeight: 56.0,
+                                        border: TableBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        dividerThickness: 1.0,
+                                        columnSpacing: 0.0,
+                                        showBottomBorder: true,
+                                        minWidth: 49.0,
                                       ),
-                                      headingRowHeight: 56.0,
-                                      dataRowColor: MaterialStateProperty.all(
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      dataRowHeight: 56.0,
-                                      border: TableBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                      ),
-                                      dividerThickness: 1.0,
-                                      columnSpacing: 0.0,
-                                      showBottomBorder: true,
-                                      minWidth: 49.0,
-                                    ),
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       ),

@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'create_record_widget.dart' show CreateRecordWidget;
@@ -190,6 +191,8 @@ class CreateRecordModel extends FlutterFlowModel<CreateRecordWidget> {
   String? Function(BuildContext, String?)? barcodesTFControllerValidator;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   bool? sureQueryOP;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  OrderLevelRow? insertedRowOP;
 
   /// Initialization and disposal methods.
 

@@ -23,6 +23,8 @@ class EditDetailsModel extends FlutterFlowModel<EditDetailsWidget> {
   FocusNode? barcodeTFFocusNode;
   TextEditingController? barcodeTFController;
   String? Function(BuildContext, String?)? barcodeTFControllerValidator;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  bool? sureQueryOP;
 
   /// Initialization and disposal methods.
 

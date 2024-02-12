@@ -4,11 +4,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/floating/sure_query/sure_query_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'new_loading_gate_model.dart';
-export 'new_loading_gate_model.dart';
+import 'new_warehouse_position_model.dart';
+export 'new_warehouse_position_model.dart';
 
-class NewLoadingGateWidget extends StatefulWidget {
-  const NewLoadingGateWidget({
+class NewWarehousePositionWidget extends StatefulWidget {
+  const NewWarehousePositionWidget({
     super.key,
     required this.warehouseId,
   });
@@ -16,11 +16,13 @@ class NewLoadingGateWidget extends StatefulWidget {
   final String? warehouseId;
 
   @override
-  State<NewLoadingGateWidget> createState() => _NewLoadingGateWidgetState();
+  State<NewWarehousePositionWidget> createState() =>
+      _NewWarehousePositionWidgetState();
 }
 
-class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
-  late NewLoadingGateModel _model;
+class _NewWarehousePositionWidgetState
+    extends State<NewWarehousePositionWidget> {
+  late NewWarehousePositionModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -31,10 +33,10 @@ class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NewLoadingGateModel());
+    _model = createModel(context, () => NewWarehousePositionModel());
 
-    _model.loadingGateTFController ??= TextEditingController();
-    _model.loadingGateTFFocusNode ??= FocusNode();
+    _model.warehousePositionTFController ??= TextEditingController();
+    _model.warehousePositionTFFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -72,7 +74,7 @@ class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
                 alignment: const AlignmentDirectional(-1.0, 0.0),
                 child: Text(
                   FFLocalizations.of(context).getText(
-                    '2t2g5v79' /* Loading gate:  */,
+                    'fxao088z' /* Warehouse position:  */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
@@ -82,13 +84,13 @@ class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
                 child: SizedBox(
                   width: 280.0,
                   child: TextFormField(
-                    controller: _model.loadingGateTFController,
-                    focusNode: _model.loadingGateTFFocusNode,
+                    controller: _model.warehousePositionTFController,
+                    focusNode: _model.warehousePositionTFFocusNode,
                     autofocus: true,
                     obscureText: false,
                     decoration: InputDecoration(
                       labelText: FFLocalizations.of(context).getText(
-                        '67xoxtv5' /* New loading gate... */,
+                        '1a0c3b08' /* New warehouse position... */,
                       ),
                       labelStyle: FlutterFlowTheme.of(context).labelMedium,
                       hintStyle: FlutterFlowTheme.of(context).labelMedium,
@@ -122,7 +124,7 @@ class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
-                    validator: _model.loadingGateTFControllerValidator
+                    validator: _model.warehousePositionTFControllerValidator
                         .asValidator(context),
                   ),
                 ),
@@ -134,7 +136,7 @@ class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    if (_model.loadingGateTFController.text != '') {
+                    if (_model.warehousePositionTFController.text != '') {
                       await showDialog(
                         context: context,
                         builder: (dialogContext) {
@@ -146,9 +148,10 @@ class _NewLoadingGateWidgetState extends State<NewLoadingGateWidget> {
                                 .resolve(Directionality.of(context)),
                             child: SureQueryWidget(
                               saveChangesP: () async {
-                                await LoadingGatesTable().insert({
+                                await WarehousePositionsTable().insert({
                                   'warehouse': widget.warehouseId,
-                                  'ramp': _model.loadingGateTFController.text,
+                                  'position':
+                                      _model.warehousePositionTFController.text,
                                 });
                               },
                             ),

@@ -16,11 +16,15 @@ class EditDetailsWidget extends StatefulWidget {
     required this.idDetailsP,
     required this.warehouseId,
     this.editDetailsKey,
+    required this.refreshQueries,
+    required this.flow,
   });
 
   final String? idDetailsP;
   final String? warehouseId;
   final String? editDetailsKey;
+  final Future Function()? refreshQueries;
+  final String? flow;
 
   @override
   State<EditDetailsWidget> createState() => _EditDetailsWidgetState();
@@ -40,7 +44,6 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
     super.initState();
     _model = createModel(context, () => EditDetailsModel());
 
-    _model.barcodeTFController ??= TextEditingController();
     _model.barcodeTFFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -87,10 +90,12 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
               ),
             );
           }
-          List<DetailsViewRow> containerDetailsViewRowList = snapshot.data!;
-          final containerDetailsViewRow = containerDetailsViewRowList.isNotEmpty
-              ? containerDetailsViewRowList.first
-              : null;
+          List<DetailsViewRow> detailsViewContainerDetailsViewRowList =
+              snapshot.data!;
+          final detailsViewContainerDetailsViewRow =
+              detailsViewContainerDetailsViewRowList.isNotEmpty
+                  ? detailsViewContainerDetailsViewRowList.first
+                  : null;
           return Container(
             width: 800.0,
             height: 800.0,
@@ -183,7 +188,8 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              containerDetailsViewRow?.item,
+                                              detailsViewContainerDetailsViewRow
+                                                  ?.item,
                                               'brez izbire',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -354,7 +360,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              containerDetailsViewRow
+                                              detailsViewContainerDetailsViewRow
                                                   ?.opisBlaga,
                                               'brez izbire',
                                             ),
@@ -533,7 +539,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              containerDetailsViewRow
+                                              detailsViewContainerDetailsViewRow
                                                   ?.packagingDescription,
                                               'brez izbire',
                                             ),
@@ -711,7 +717,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              containerDetailsViewRow
+                                              detailsViewContainerDetailsViewRow
                                                   ?.warehousePositionName,
                                               'brez izbire',
                                             ),
@@ -900,11 +906,25 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
-                                          Text(
-                                            valueOrDefault<String>(
-                                              containerDetailsViewRow?.barcode,
-                                              'brez izbire',
-                                            ),
+                                          SelectionArea(
+                                              child: Text(
+                                            () {
+                                              if (widget.flow == 'in') {
+                                                return valueOrDefault<String>(
+                                                  detailsViewContainerDetailsViewRow
+                                                      ?.barcode,
+                                                  '/',
+                                                );
+                                              } else if (widget.flow == 'out') {
+                                                return valueOrDefault<String>(
+                                                  detailsViewContainerDetailsViewRow
+                                                      ?.barcodeOut,
+                                                  '/',
+                                                );
+                                              } else {
+                                                return '/';
+                                              }
+                                            }(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -914,7 +934,7 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                                       .secondaryText,
                                                   fontWeight: FontWeight.w600,
                                                 ),
-                                          ),
+                                          )),
                                         ],
                                       ),
                                       Padding(
@@ -934,8 +954,30 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                                     BorderRadius.circular(12.0),
                                               ),
                                               child: TextFormField(
-                                                controller:
-                                                    _model.barcodeTFController,
+                                                controller: _model
+                                                        .barcodeTFController ??=
+                                                    TextEditingController(
+                                                  text: () {
+                                                    if (widget.flow == 'in') {
+                                                      return valueOrDefault<
+                                                          String>(
+                                                        detailsViewContainerDetailsViewRow
+                                                            ?.barcode,
+                                                        '/',
+                                                      );
+                                                    } else if (widget.flow ==
+                                                        'out') {
+                                                      return valueOrDefault<
+                                                          String>(
+                                                        detailsViewContainerDetailsViewRow
+                                                            ?.barcodeOut,
+                                                        '/',
+                                                      );
+                                                    } else {
+                                                      return '/';
+                                                    }
+                                                  }(),
+                                                ),
                                                 focusNode:
                                                     _model.barcodeTFFocusNode,
                                                 obscureText: false,
@@ -1053,65 +1095,86 @@ class _EditDetailsWidgetState extends State<EditDetailsWidget> {
                                           'good': _model.goodDDValue != null &&
                                                   _model.goodDDValue != ''
                                               ? _model.goodDDValue
-                                              : containerDetailsViewRow?.good,
+                                              : detailsViewContainerDetailsViewRow
+                                                  ?.good,
                                           'good_description': _model
                                                           .descriptionDDValue !=
                                                       null &&
                                                   _model.descriptionDDValue !=
                                                       ''
                                               ? _model.descriptionDDValue
-                                              : containerDetailsViewRow
+                                              : detailsViewContainerDetailsViewRow
                                                   ?.goodDescription,
-                                          'packaging':
-                                              _model.packagingDDValue != null &&
-                                                      _model.packagingDDValue !=
-                                                          ''
-                                                  ? _model.packagingDDValue
-                                                  : containerDetailsViewRow
-                                                      ?.packaging,
-                                          'warehouse_position':
-                                              _model.warehpusePositionDDValue !=
-                                                          null &&
-                                                      _model.warehpusePositionDDValue !=
-                                                          ''
-                                                  ? _model
-                                                      .warehpusePositionDDValue
-                                                  : containerDetailsViewRow
-                                                      ?.warehousePosition,
-                                          'barcode': _model.barcodeTFController
-                                                          .text !=
+                                          'packaging': _model
+                                                          .packagingDDValue !=
+                                                      null &&
+                                                  _model.packagingDDValue != ''
+                                              ? _model.packagingDDValue
+                                              : detailsViewContainerDetailsViewRow
+                                                  ?.packaging,
+                                          'warehouse_position': _model
+                                                          .warehpusePositionDDValue !=
+                                                      null &&
+                                                  _model.warehpusePositionDDValue !=
                                                       ''
-                                              ? _model.barcodeTFController.text
-                                              : containerDetailsViewRow
-                                                  ?.barcode,
+                                              ? _model.warehpusePositionDDValue
+                                              : detailsViewContainerDetailsViewRow
+                                                  ?.warehousePosition,
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'id',
                                           widget.idDetailsP,
                                         ),
                                       );
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Successful update'),
-                                            content: const Text(
-                                                'Record changes has been saved'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text('Ok'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
+                                      if (widget.flow == 'in') {
+                                        await DetailsTable().update(
+                                          data: {
+                                            'barcode': _model.barcodeTFController
+                                                            .text !=
+                                                        ''
+                                                ? _model
+                                                    .barcodeTFController.text
+                                                : detailsViewContainerDetailsViewRow
+                                                    ?.barcode,
+                                          },
+                                          matchingRows: (rows) => rows.eq(
+                                            'id',
+                                            widget.idDetailsP,
+                                          ),
+                                        );
+                                      }
+                                      if (widget.flow == 'out') {
+                                        await DetailsTable().update(
+                                          data: {
+                                            'barcode_out': _model.barcodeTFController
+                                                            .text !=
+                                                        ''
+                                                ? _model
+                                                    .barcodeTFController.text
+                                                : detailsViewContainerDetailsViewRow
+                                                    ?.barcodeOut,
+                                          },
+                                          matchingRows: (rows) => rows.eq(
+                                            'id',
+                                            widget.idDetailsP,
+                                          ),
+                                        );
+                                      }
                                     },
                                   ),
                                 );
                               },
-                            ).then((value) => setState(() {}));
+                            ).then((value) =>
+                                safeSetState(() => _model.sureQueryOP = value));
+
+                            if (_model.sureQueryOP!) {
+                              await widget.refreshQueries?.call();
+                              Navigator.pop(context);
+                            } else {
+                              Navigator.pop(context);
+                            }
+
+                            setState(() {});
                           },
                           text: FFLocalizations.of(context).getText(
                             'mor3o7pl' /* Save changes */,

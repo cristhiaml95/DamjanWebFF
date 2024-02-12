@@ -169,6 +169,16 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
   FocusNode? barcodesTFFocusNode;
   TextEditingController? barcodesTFController;
   String? Function(BuildContext, String?)? barcodesTFControllerValidator;
+  // State field(s) for repeatedBarcodesTF widget.
+  FocusNode? repeatedBarcodesTFFocusNode;
+  TextEditingController? repeatedBarcodesTFController;
+  String? Function(BuildContext, String?)?
+      repeatedBarcodesTFControllerValidator;
+  // State field(s) for nonExistentBarcodesTF widget.
+  FocusNode? nonExistentBarcodesTFFocusNode;
+  TextEditingController? nonExistentBarcodesTFController;
+  String? Function(BuildContext, String?)?
+      nonExistentBarcodesTFControllerValidator;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   bool? sureQueryOP;
 
@@ -223,6 +233,12 @@ class FormsModel extends FlutterFlowModel<FormsWidget> {
 
     barcodesTFFocusNode?.dispose();
     barcodesTFController?.dispose();
+
+    repeatedBarcodesTFFocusNode?.dispose();
+    repeatedBarcodesTFController?.dispose();
+
+    nonExistentBarcodesTFFocusNode?.dispose();
+    nonExistentBarcodesTFController?.dispose();
   }
 
   /// Action blocks are added here.

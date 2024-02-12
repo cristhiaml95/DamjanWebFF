@@ -19,10 +19,13 @@ class FormsWidget extends StatefulWidget {
     super.key,
     required this.orderId,
     String? formsKey,
-  }) : formsKey = formsKey ?? 'formsDefKey';
+    int? page,
+  })  : formsKey = formsKey ?? 'formsDefKey',
+        page = page ?? 0;
 
   final String? orderId;
   final String formsKey;
+  final int page;
 
   @override
   State<FormsWidget> createState() => _FormsWidgetState();
@@ -85,6 +88,10 @@ class _FormsWidgetState extends State<FormsWidget> {
     _model.loadRefDvhTFocusNode ??= FocusNode();
 
     _model.barcodesTFFocusNode ??= FocusNode();
+
+    _model.repeatedBarcodesTFFocusNode ??= FocusNode();
+
+    _model.nonExistentBarcodesTFFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -155,7 +162,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                       : null;
               return Container(
                 width: 1200.0,
-                height: 800.0,
+                height: 640.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(28.0),
@@ -187,22 +194,48 @@ class _FormsWidgetState extends State<FormsWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                28.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '4w4fampe' /* Edit record */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Roboto',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    fontSize: 24.0,
-                                    fontWeight: FontWeight.bold,
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    28.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    '4w4fampe' /* Edit record */,
                                   ),
-                            ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Roboto',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    28.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  valueOrDefault<String>(
+                                    containerVistaOrderLevelExtendedRow
+                                        ?.orderNo,
+                                    '/',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Roboto',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                           InkWell(
                             splashColor: Colors.transparent,
@@ -223,7 +256,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 28.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -421,7 +454,13 @@ class _FormsWidgetState extends State<FormsWidget> {
                           child: PageView(
                             physics: const NeverScrollableScrollPhysics(),
                             controller: _model.pageViewController ??=
-                                PageController(initialPage: 0),
+                                PageController(
+                                    initialPage: min(
+                                        valueOrDefault<int>(
+                                          widget.page,
+                                          0,
+                                        ),
+                                        4)),
                             scrollDirection: Axis.horizontal,
                             children: [
                               Form(
@@ -733,11 +772,11 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               options: [
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  'beno68e9' /* in-razklad */,
+                                                  'beno68e9' /* in */,
                                                 ),
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  '4f68f0jj' /* out-naklad */,
+                                                  '4f68f0jj' /* out */,
                                                 )
                                               ],
                                               onChanged: (val) => setState(() =>
@@ -3456,9 +3495,9 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                     labelText:
                                                         valueOrDefault<String>(
                                                       containerVistaOrderLevelExtendedRow
-                                                          ?.details
+                                                          ?.unit
                                                           ?.toString(),
-                                                      'brez izbire',
+                                                      '0',
                                                     ),
                                                     labelStyle:
                                                         FlutterFlowTheme.of(
@@ -5598,7 +5637,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               ),
                                               Container(
                                                 width: 280.0,
-                                                height: 500.0,
+                                                height: 200.0,
                                                 decoration: const BoxDecoration(),
                                                 child: SizedBox(
                                                   width: 280.0,
@@ -5689,6 +5728,274 @@ class _FormsWidgetState extends State<FormsWidget> {
                                               ),
                                             ],
                                           ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: 160.0,
+                                                height: 50.0,
+                                                decoration: const BoxDecoration(),
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Container(
+                                                      width: 80.0,
+                                                      decoration:
+                                                          const BoxDecoration(),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'm7gpyzpy' /* Repeated barcodes:   */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                width: 280.0,
+                                                height: 80.0,
+                                                decoration: const BoxDecoration(),
+                                                child: SizedBox(
+                                                  width: 280.0,
+                                                  child: TextFormField(
+                                                    controller: _model
+                                                            .repeatedBarcodesTFController ??=
+                                                        TextEditingController(
+                                                      text: functions.joinStrings(
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .repeatedBarcodes
+                                                              .toList()),
+                                                    ),
+                                                    focusNode: _model
+                                                        .repeatedBarcodesTFFocusNode,
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      labelText:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        's7iw07q6' /* Insert new value... */,
+                                                      ),
+                                                      labelStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium,
+                                                      hintStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium,
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: const BorderSide(
+                                                          color:
+                                                              Color(0xFFFCE5CD),
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                      errorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                      focusedErrorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                    maxLines: 50,
+                                                    validator: _model
+                                                        .repeatedBarcodesTFControllerValidator
+                                                        .asValidator(context),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: 160.0,
+                                                height: 50.0,
+                                                decoration: const BoxDecoration(),
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Container(
+                                                      width: 80.0,
+                                                      decoration:
+                                                          const BoxDecoration(),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'u3jax3cb' /* Non-existent barcodes:   */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                width: 280.0,
+                                                height: 80.0,
+                                                decoration: const BoxDecoration(),
+                                                child: SizedBox(
+                                                  width: 280.0,
+                                                  child: TextFormField(
+                                                    controller: _model
+                                                            .nonExistentBarcodesTFController ??=
+                                                        TextEditingController(
+                                                      text: functions.joinStrings(
+                                                          containerVistaOrderLevelExtendedRow!
+                                                              .noBarcodes
+                                                              .toList()),
+                                                    ),
+                                                    focusNode: _model
+                                                        .nonExistentBarcodesTFFocusNode,
+                                                    obscureText: false,
+                                                    decoration: InputDecoration(
+                                                      labelText:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        'wh7caubp' /* Insert new value... */,
+                                                      ),
+                                                      labelStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium,
+                                                      hintStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium,
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: const BorderSide(
+                                                          color:
+                                                              Color(0xFFFCE5CD),
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                      errorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                      focusedErrorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          width: 2.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                    maxLines: 50,
+                                                    validator: _model
+                                                        .nonExistentBarcodesTFControllerValidator
+                                                        .asValidator(context),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -5702,7 +6009,7 @@ class _FormsWidgetState extends State<FormsWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 28.0, 28.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 28.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -6064,6 +6371,8 @@ class _FormsWidgetState extends State<FormsWidget> {
                                                 widget.orderId,
                                               ),
                                             );
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 500));
                                           },
                                         ),
                                       );
